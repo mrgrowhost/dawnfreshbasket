@@ -484,6 +484,12 @@
     font-size:11.5px; background:rgba(201,146,43,0.12); color:var(--forest); padding:4px 10px;
     border-radius:12px; font-weight:500;
   }
+  .recipe-pairs{display:flex; flex-wrap:wrap; gap:6px}
+  .recipe-pairs span{
+    font-size:11.5px; background:var(--forest); color:var(--paper); padding:4px 10px;
+    border-radius:12px; font-weight:600;
+  }
+  .r-pairs-label{font-size:11.5px; color:var(--forest-light); font-weight:600; margin:10px 0 6px; text-transform:uppercase; letter-spacing:.03em}
 
   .seg-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px}
   .seg-card{
@@ -1313,6 +1319,8 @@
         <div class="recipe-ings">
           <span>Sukuma wiki</span><span>Onions</span><span>Tomatoes</span><span>Garlic</span><span>Maize flour</span>
         </div>
+        <div class="r-pairs-label">Also great with</div>
+        <div class="recipe-pairs"><span>Chapati</span><span>Rice</span><span>Sweet potatoes</span></div>
       </div>
       <div class="recipe-card reveal" onclick="openRecipe('managu')">
         <div class="r-icon">🥘</div>
@@ -1322,6 +1330,8 @@
         <div class="recipe-ings">
           <span>Managu</span><span>Terere</span><span>Dhania</span><span>Onions</span><span>Tomatoes</span>
         </div>
+        <div class="r-pairs-label">Also great with</div>
+        <div class="recipe-pairs"><span>Ugali</span><span>Mukimo</span><span>Rice</span></div>
       </div>
       <div class="recipe-card reveal" onclick="openRecipe('githeri')">
         <div class="r-icon">🍛</div>
@@ -1331,6 +1341,8 @@
         <div class="recipe-ings">
           <span>Maize</span><span>Beans</span><span>Carrots</span><span>Potatoes</span><span>Onions</span>
         </div>
+        <div class="r-pairs-label">Also great with</div>
+        <div class="recipe-pairs"><span>Avocado</span><span>Kachumbari</span><span>Fried greens</span></div>
       </div>
       <div class="recipe-card reveal" onclick="openRecipe('fruit')">
         <div class="r-icon">🥗</div>
@@ -1340,6 +1352,8 @@
         <div class="recipe-ings">
           <span>Mangoes</span><span>Pineapples</span><span>Pawpaw</span><span>Passion fruit</span><span>Lemon</span>
         </div>
+        <div class="r-pairs-label">Also great with</div>
+        <div class="recipe-pairs"><span>Yoghurt</span><span>Honey drizzle</span><span>Mint</span></div>
       </div>
       <div class="recipe-card reveal" onclick="openRecipe('ndengu')">
         <div class="r-icon">🍜</div>
@@ -1349,6 +1363,8 @@
         <div class="recipe-ings">
           <span>Green grams</span><span>Onions</span><span>Tomatoes</span><span>Garlic</span><span>Turmeric</span><span>Chili</span>
         </div>
+        <div class="r-pairs-label">Also great with</div>
+        <div class="recipe-pairs"><span>Chapati</span><span>Rice</span><span>Ugali</span></div>
       </div>
       <div class="recipe-card reveal" onclick="openRecipe('eggs')">
         <div class="r-icon">🍳</div>
@@ -1358,6 +1374,74 @@
         <div class="recipe-ings">
           <span>Eggs</span><span>Spinach</span><span>Tomatoes</span><span>Onions</span><span>Dhania</span>
         </div>
+        <div class="r-pairs-label">Also great with</div>
+        <div class="recipe-pairs"><span>Chapati</span><span>Toast</span><span>Mandazi</span></div>
+      </div>
+      <div class="recipe-card reveal" onclick="openRecipe('beefstew')">
+        <div class="r-icon">🍖</div>
+        <h3>Beef Stew (Nyama Stew)</h3>
+        <div class="r-meta">50 min · Sunday favourite</div>
+        <p>Slow-simmered beef with carrots, potatoes and onions in a rich tomato base.</p>
+        <div class="recipe-ings">
+          <span>Beef</span><span>Onions</span><span>Tomatoes</span><span>Garlic</span><span>Carrots</span><span>Potatoes</span>
+        </div>
+        <div class="r-pairs-label">Also great with</div>
+        <div class="recipe-pairs"><span>Ugali</span><span>Rice</span><span>Chapati</span><span>Mukimo</span></div>
+      </div>
+      <div class="recipe-card reveal" onclick="openRecipe('chapati')">
+        <div class="r-icon">🫓</div>
+        <h3>Soft Layered Chapati</h3>
+        <div class="r-meta">40 min · Kitchen staple</div>
+        <p>Soft, flaky chapati made from wheat flour — the everyday companion to stews and beans.</p>
+        <div class="recipe-ings">
+          <span>Wheat flour</span>
+        </div>
+        <div class="r-pairs-label">Also great with</div>
+        <div class="recipe-pairs"><span>Ndengu stew</span><span>Bean stew</span><span>Beef stew</span></div>
+      </div>
+      <div class="recipe-card reveal" onclick="openRecipe('kachumbari')">
+        <div class="r-icon">🥗</div>
+        <h3>Kachumbari (Tomato-Onion Salad)</h3>
+        <div class="r-meta">10 min · Fresh side</div>
+        <p>A sharp, fresh tomato and onion salad that cuts through rich, grilled, or fried dishes.</p>
+        <div class="recipe-ings">
+          <span>Tomatoes</span><span>Onions</span><span>Chili</span><span>Lemon</span><span>Dhania</span>
+        </div>
+        <div class="r-pairs-label">Also great with</div>
+        <div class="recipe-pairs"><span>Nyama choma</span><span>Pilau</span><span>Fried fish</span></div>
+      </div>
+      <div class="recipe-card reveal" onclick="openRecipe('mukimo')">
+        <div class="r-icon">🥔</div>
+        <h3>Mukimo (Mashed Potatoes &amp; Greens)</h3>
+        <div class="r-meta">40 min · Central Kenyan classic</div>
+        <p>Potatoes mashed with maize and pumpkin leaves or spinach for a hearty side.</p>
+        <div class="recipe-ings">
+          <span>Potatoes</span><span>Maize</span><span>Spinach</span><span>Onions</span>
+        </div>
+        <div class="r-pairs-label">Also great with</div>
+        <div class="recipe-pairs"><span>Beef stew</span><span>Chicken stew</span><span>Nyama choma</span></div>
+      </div>
+      <div class="recipe-card reveal" onclick="openRecipe('fishfry')">
+        <div class="r-icon">🐟</div>
+        <h3>Fried Fish with Kachumbari</h3>
+        <div class="r-meta">25 min · Coastal-style</div>
+        <p>Whole or cut fish fried until crisp, served with a bright tomato-onion kachumbari.</p>
+        <div class="recipe-ings">
+          <span>Fish</span><span>Lemon</span><span>Dhania</span><span>Tomatoes</span><span>Onions</span>
+        </div>
+        <div class="r-pairs-label">Also great with</div>
+        <div class="recipe-pairs"><span>Ugali</span><span>Rice</span><span>Chapati</span></div>
+      </div>
+      <div class="recipe-card reveal" onclick="openRecipe('beanstew')">
+        <div class="r-icon">🫘</div>
+        <h3>Maharagwe (Bean Stew)</h3>
+        <div class="r-meta">55 min · Budget-friendly protein</div>
+        <p>Beans simmered in a light tomato and onion sauce until soft and creamy.</p>
+        <div class="recipe-ings">
+          <span>Beans</span><span>Onions</span><span>Tomatoes</span><span>Garlic</span>
+        </div>
+        <div class="r-pairs-label">Also great with</div>
+        <div class="recipe-pairs"><span>Ugali</span><span>Chapati</span><span>Rice</span><span>Mandazi</span></div>
       </div>
     </div>
   </div>
@@ -1934,7 +2018,7 @@ var U = function(id){ return id; }; // store photo id only; build URLs at render
 var PRODUCTS = [
   /* ---- Kienyeji greens ---- */
   {id:'kales', name:'Kales', local:'Sukuma wiki', unit:'bunch', price:50, cat:'greens', img:'images/kales.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Daily Kenyan staple (sukuma wiki). Tender leaves rich in vitamin A and iron — stir-fry with onions and tomatoes for a quick side.', nutrition:'High in vitamins A, C and K, plus iron and calcium. Supports eyesight, immunity and bone health. Very low calorie.', tips:'Stir-fry with onions and tomatoes 5–8 minutes. Do not overcook — keep a slight bite.', prep:'Wash thoroughly, strip thick stems, and chop or leave whole.', serve:'Hot as a side with ugali, rice, or chapati.', with:'Ugali, fried eggs, beans, or nyama stew.', varieties:['Sukuma wiki (common)','Curly leaf — when available','Baby leaves — when available']},
-  {id:'spinach', name:'Spinach', local:'Spinach', unit:'bunch', price:60, cat:'greens', img:U('photo-1576045057995-568f588f82fb'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Soft, mild leaves high in folate and iron. Perfect for omelettes, stews, or a light sauté with garlic.', nutrition:'Excellent source of folate, iron, vitamin K and magnesium. Supports blood health, energy and bone strength.', tips:'Wilt quickly in a hot pan with garlic, or add to eggs at the end of cooking.', prep:'Rinse well and trim tough stems.', serve:'Wilted as a side, in omelettes, or folded into stews.', with:'Eggs, garlic, chapati, or light tomato sauce.', varieties:['English / soft leaf','Local broad leaf — when available']},
+  {id:'spinach', name:'Spinach', local:'Spinach', unit:'bunch', price:60, cat:'greens', img:'images/spinach.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Soft, mild leaves high in folate and iron. Perfect for omelettes, stews, or a light sauté with garlic.', nutrition:'Excellent source of folate, iron, vitamin K and magnesium. Supports blood health, energy and bone strength.', tips:'Wilt quickly in a hot pan with garlic, or add to eggs at the end of cooking.', prep:'Rinse well and trim tough stems.', serve:'Wilted as a side, in omelettes, or folded into stews.', with:'Eggs, garlic, chapati, or light tomato sauce.', varieties:['English / soft leaf','Local broad leaf — when available']},
   {id:'managu', name:'Managu', local:'African nightshade', unit:'bunch', price:70, cat:'greens', img:'images/managu.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Indigenous African nightshade — slightly bitter, packed with vitamins A & C. Classic kienyeji green for healthy family meals.', nutrition:'Rich in vitamins A and C, iron and fibre. Traditional indigenous green that supports immunity and healthy blood.', tips:'Sauté with onions, tomatoes and a little oil after the optional boil.', prep:'Wash thoroughly; optional brief boil to reduce bitterness, then drain.', serve:'Hot with ugali or as part of a kienyeji greens mix.', with:'Ugali, terere, onions, tomatoes, and a spoon of oil or ghee.', varieties:['African nightshade (Managu)','Mild local strain — when available']},
   {id:'terere', name:'Terere', local:'Amaranth / mchicha', unit:'bunch', price:70, cat:'greens', img:'images/terere.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Amaranth (mchicha) leaves high in calcium and plant protein. Mild flavour; boil or steam with a touch of dhania.', nutrition:'High in calcium, iron and plant protein for a green leaf. Supports bones, muscles and steady energy.', tips:'Finish with onions and dhania; mix with managu for a classic plate.', prep:'Rinse, boil lightly, then drain.', serve:'Hot as a mild kienyeji side.', with:'Managu, dhania, onions, and ugali.', varieties:['Green amaranth (Mchicha)','Red-stem amaranth — when available']},
   {id:'kunde', name:'Kunde', local:'Cowpea leaves', unit:'bunch', price:65, cat:'greens', img:'images/kunde.jpg', seasons:[3,4,5,6,7,8,9,10], desc:'Tender cowpea leaves with a gentle earthy taste. Traditional green often cooked with groundnuts or tomatoes.', nutrition:'Provides vitamin A, C and iron. Pairing with a little oil or groundnuts helps the body absorb fat-soluble vitamins.', tips:'Cook with groundnuts or tomatoes for an earthy, satisfying dish.', prep:'Wash and chop leaves; discard very tough stems.', serve:'Hot traditional green side.', with:'Groundnut paste, tomatoes, or ugali.', varieties:['Cowpea leaves (Kunde)','Young tender shoots']},
@@ -1967,7 +2051,7 @@ var PRODUCTS = [
   {id:'potatoes', name:'Potatoes', local:'Viazi', unit:'kg', price:80, cat:'root', img:'images/potatoes.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Everyday viazi — the backbone of Kenyan stews, fries and mash. Waxy and floury types depending on supply.', varieties:['Waxy / stew (Viazi vya stew)','Floury / mash (Viazi vya puree)','Baby / small — when available'], nutrition:'Good carbohydrate energy, potassium and vitamin C (especially with the skin). Filling and versatile staple.', tips:'Waxy types hold shape in stews; floury types mash smoothly.', prep:'Scrub or peel; cut evenly for even cooking.', serve:'Boiled, mashed, roasted, or in stews.', with:'Stews, greens, eggs, and gravy.'},
   {id:'sweetpotatoes', name:'Sweet potatoes', local:'Viazi vitamu', unit:'kg', price:90, cat:'root', img:'images/sweetpotatoes.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Naturally sweet viazi vitamu — boil, roast, or steam. A favourite snack with tea and a colourful plate staple.', varieties:['Red skin / orange flesh (Viazi vitamu nyekundu)','White / cream flesh — when available'], nutrition:'High in beta-carotene (vitamin A), fibre and complex carbs. Supports eye health and sustained energy.', tips:'Roasting concentrates sweetness; boiling is softer and milder.', prep:'Scrub; boil or roast whole, or cube first.', serve:'As a sweet, filling side or snack.', with:'Tea, beans, or a simple vegetable stew.'},
   {id:'cassava', name:'Cassava', local:'Muhogo', unit:'kg', price:70, cat:'root', img:'images/cassava.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Versatile muhogo root. Boil, fry, or use in traditional dishes; always cook thoroughly.', nutrition:'Energy-dense carbohydrate root. Always cook thoroughly; pair with greens or beans for a more balanced plate.', tips:'Always cook thoroughly. Never eat raw cassava.', prep:'Peel thick skin, remove fibrous core if needed; cut and cook thoroughly.', serve:'Boiled, fried, or in traditional dishes.', with:'Beans, greens, or stew.', varieties:['Sweet cassava (Mhogo)','Local root — cook thoroughly']},
-  {id:'arrowroots', name:'Arrowroots', local:'Nduma', unit:'kg', price:100, cat:'root', img:U('photo-1518977676601-b53f82aba655'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Traditional nduma — mild and comforting. Boil or mash; popular as a soft, easy-to-digest side.', nutrition:'Gentle, easy-to-digest starch. Mild flavour; useful when you want a soft, soothing side.', tips:'Gentle, easy-to-digest option when you want a soft plate.', prep:'Wash and boil or steam until tender; peel after cooking if preferred.', serve:'Soft side dish or snack.', with:'Tea, light stews, or a pinch of salt.', varieties:['Arrowroot / nduma','Local small tubers']},
+  {id:'arrowroots', name:'Arrowroots', local:'Nduma', unit:'kg', price:100, cat:'root', img:'images/arrowroots.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Traditional nduma — mild and comforting. Boil or mash; popular as a soft, easy-to-digest side.', nutrition:'Gentle, easy-to-digest starch. Mild flavour; useful when you want a soft, soothing side.', tips:'Gentle, easy-to-digest option when you want a soft plate.', prep:'Wash and boil or steam until tender; peel after cooking if preferred.', serve:'Soft side dish or snack.', with:'Tea, light stews, or a pinch of salt.', varieties:['Arrowroot / nduma','Local small tubers']},
   {id:'yams', name:'Yams', local:'Viazi vikuu', unit:'kg', price:120, cat:'root', img:'images/yams.jpg', seasons:[6,7,8,9,10,11], desc:'Starchy viazi vikuu, satisfying and filling. Boil or roast; a hearty alternative to potatoes.', nutrition:'Complex carbohydrates and fibre. Filling alternative to potatoes; supports steady energy.', tips:'Roast for a drier, sweeter finish; boil for a softer mash.', prep:'Peel, cube, and boil or roast until tender.', serve:'Hearty side instead of potatoes.', with:'Vegetable stew, beans, or greens.', varieties:['White yam','Yellow yam — when available']},
 
   /* ---- Legumes ---- */
@@ -1981,28 +2065,28 @@ var PRODUCTS = [
   /* ---- Grains ---- */
   {id:'maize', name:'Maize', local:'Mahindi', unit:'kg', price:80, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Mahindi — fresh or dry for ugali, githeri, and roasting. The backbone of many Kenyan plates.', nutrition:'Carbohydrate energy staple for ugali and githeri. Pair with greens and legumes for a complete plate.', tips:'Ugali: add flour gradually to boiling water and steam until firm.', prep:'Dry maize: boil for ugali flour mix or githeri. Fresh: boil or roast cobs.', serve:'Ugali, githeri, or roasted maize.', with:'Sukuma, beans, nyama, and stew.', varieties:['White maize (ugali / githeri)','Yellow maize — when available','Fresh cobs — seasonal']},
   {id:'rice', name:'Rice', local:'Mchele', unit:'kg', price:180, cat:'grain', img:U('photo-1586201375761-83865001e31c'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Mchele in local and imported grades. Everyday accompaniment to stews, beans, and vegetables.', nutrition:'Easily digested energy. Choose portion size to match activity; combine with vegetables and protein.', tips:'Rest off heat 5 minutes after cooking for fluffier grains.', prep:'Rinse until water runs clearer; cook in measured water or stock.', serve:'Plain or pilau-style alongside stews.', with:'Beans, chicken, fish, and vegetable stew.', varieties:['Pishori / aromatic','Basmati-style','Local white']},
-  {id:'wheat', name:'Wheat', local:'Ngano', unit:'kg', price:120, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Ngano flour for chapati, mandazi, and baking. Soft dough when handled with a light hand.', nutrition:'Base for chapati and baking. Provides energy and some B vitamins; wholemeal options add more fibre.', tips:'Resting dough makes softer, easier chapatis.', prep:'Knead with water and a little oil/salt for chapati dough; rest before rolling.', serve:'Chapati, mandazi, or baking.', with:'Bean stew, greens, and tea (for mandazi).', varieties:['All-purpose (chapati)','Wholemeal — when available']},
-  {id:'sorghum', name:'Sorghum', local:'Mtama', unit:'kg', price:100, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Traditional drought-resistant mtama. Use for ugali, porridge, or blending with other flours.', nutrition:'Traditional gluten-free grain with fibre and minerals. Useful for ugali or porridge with a nutty taste.', tips:'Blend with maize flour if you want a milder, familiar ugali texture.', prep:'Mill or use flour for ugali/porridge; cook like other firm porridges.', serve:'Ugali or porridge.', with:'Greens, fermented milk, or vegetable stew.', varieties:['White sorghum','Red sorghum — when available']},
-  {id:'millet', name:'Millet', local:'Uwele', unit:'kg', price:110, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Nutrient-dense ancient uwele grain. Great for porridge and as a wholesome ugali alternative.', nutrition:'Nutrient-dense ancient grain with fibre and minerals. Excellent for porridge and wholesome ugali blends.', tips:'Whisk flour into cool water first to reduce lumps in porridge.', prep:'Use flour for porridge or ugali blends.', serve:'Porridge for breakfast or a denser ugali.', with:'Milk, honey, or savoury greens and stew.', varieties:['Finger millet (wimbi)','Pearl millet — when available']},
+  {id:'wheat', name:'Wheat', local:'Ngano', unit:'kg', price:120, cat:'grain', img:'images/wheat.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Ngano flour for chapati, mandazi, and baking. Soft dough when handled with a light hand.', nutrition:'Base for chapati and baking. Provides energy and some B vitamins; wholemeal options add more fibre.', tips:'Resting dough makes softer, easier chapatis.', prep:'Knead with water and a little oil/salt for chapati dough; rest before rolling.', serve:'Chapati, mandazi, or baking.', with:'Bean stew, greens, and tea (for mandazi).', varieties:['All-purpose (chapati)','Wholemeal — when available']},
+  {id:'sorghum', name:'Sorghum', local:'Mtama', unit:'kg', price:100, cat:'grain', img:'images/sorghum.png', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Traditional drought-resistant mtama. Use for ugali, porridge, or blending with other flours.', nutrition:'Traditional gluten-free grain with fibre and minerals. Useful for ugali or porridge with a nutty taste.', tips:'Blend with maize flour if you want a milder, familiar ugali texture.', prep:'Mill or use flour for ugali/porridge; cook like other firm porridges.', serve:'Ugali or porridge.', with:'Greens, fermented milk, or vegetable stew.', varieties:['White sorghum','Red sorghum — when available']},
+  {id:'millet', name:'Millet', local:'Uwele', unit:'kg', price:110, cat:'grain', img:'images/millet.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Nutrient-dense ancient uwele grain. Great for porridge and as a wholesome ugali alternative.', nutrition:'Nutrient-dense ancient grain with fibre and minerals. Excellent for porridge and wholesome ugali blends.', tips:'Whisk flour into cool water first to reduce lumps in porridge.', prep:'Use flour for porridge or ugali blends.', serve:'Porridge for breakfast or a denser ugali.', with:'Milk, honey, or savoury greens and stew.', varieties:['Finger millet (wimbi)','Pearl millet — when available']},
 
   /* ---- Animal products ---- */
-  {id:'milk', name:'Milk', local:'Maziwa', unit:'litre', price:60, cat:'animal', img:U('photo-1563636619-e9143da7973b'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh farm maziwa, chilled the same day when possible. For tea, cooking, and drinking straight.', nutrition:'Protein, calcium and B vitamins. Supports bones, teeth and muscle repair — especially useful for growing children.', tips:'Store cold and use soon for best freshness.', prep:'Keep chilled; boil for tea if preferred.', serve:'Tea, drinking, cooking, and porridge.', with:'Tea, uji, baking, and creamy sauces.', varieties:['Fresh cow milk','Mala / fermented — when available']},
+  {id:'milk', name:'Milk', local:'Maziwa', unit:'litre', price:60, cat:'animal', img:'images/milk.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh farm maziwa, chilled the same day when possible. For tea, cooking, and drinking straight.', nutrition:'Protein, calcium and B vitamins. Supports bones, teeth and muscle repair — especially useful for growing children.', tips:'Store cold and use soon for best freshness.', prep:'Keep chilled; boil for tea if preferred.', serve:'Tea, drinking, cooking, and porridge.', with:'Tea, uji, baking, and creamy sauces.', varieties:['Fresh cow milk','Mala / fermented — when available']},
   {id:'eggs', name:'Eggs', local:'Mayai', unit:'tray', price:450, cat:'animal', img:U('photo-1582722872445-44dc5f7e3c8f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Farm-fresh mayai. Reliable protein for breakfast, baking, and quick weekday meals.', nutrition:'Complete protein, choline and vitamins A and D. Supports muscles, brain health and everyday energy.', tips:'Low heat and gentle stirring keep scrambled eggs soft.', prep:'Crack into a bowl for scrambling; boil in water for hard/soft eggs.', serve:'Breakfast, salads, or with greens.', with:'Spinach, tomatoes, chapati, and avocado.', varieties:['Kienyeji / free-range','Layer / farm eggs']},
-  {id:'chicken', name:'Chicken', local:'Kuku', unit:'piece', price:800, cat:'animal', img:U('photo-1604503468506-a8da13d82791'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Local free-range or broiler kuku. Order whole or pieces — ideal for stews, fry, and roasting.', nutrition:'Lean protein and B vitamins. Supports muscle repair; remove excess skin if you want a lighter meal.', tips:'Simmer until juices run clear. Brown pieces first for deeper flavour.', prep:'Clean, cut into pieces; marinate if desired.', serve:'Stew, dry-fry, or roast.', with:'Rice, ugali, chapati, and kienyeji greens.', varieties:['Kienyeji / indigenous','Broiler — when available']},
-  {id:'beef', name:'Beef', local:'Nyama ya ng\'ombe', unit:'kg', price:550, cat:'animal', img:U('photo-1603048297172-c92544724d21'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh nyama ya ng\'ombe, cut to order. For stews, mince, and weekend nyama choma.', nutrition:'Protein, iron and B12. Supports blood health and strength; enjoy in balanced portions with plenty of vegetables.', tips:'Slow cooking on low heat makes tougher cuts tender.', prep:'Cut to order; brown before slow stewing if possible.', serve:'Stews, mince dishes, or nyama choma.', with:'Ugali, greens, potatoes, and kachumbari.', varieties:['Stewing beef','Mince','Nyama choma cuts — on request']},
-  {id:'goat', name:'Goat meat', local:'Nyama ya mbuzi', unit:'kg', price:700, cat:'animal', img:U('photo-1603048297172-c92544724d21'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Nyama ya mbuzi — popular for stews and nyama choma. Rich flavour that stands up to bold seasoning.', nutrition:'Protein and iron with a distinctive flavour. Popular in stews and nyama choma; pair with kienyeji greens.', tips:'Goat shines with bold seasoning and patient simmering.', prep:'Cut into stew or choma pieces; season simply.', serve:'Stew or nyama choma.', with:'Ugali, kachumbari, and kienyeji greens.', varieties:['Stewing goat','Nyama choma cuts']},
-  {id:'pork', name:'Pork', local:'Nyama ya nguruwe', unit:'kg', price:480, cat:'animal', img:U('photo-1604503468506-a8da13d82791'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh nyama ya nguruwe cuts. Suitable for stews, chops, and slow cooking.', tips:'Cook through completely; balance richness with fresh greens or lemon.', prep:'Cut into pieces; cook until fully done.', serve:'Stews or pan-fried cuts.', with:'Rice, chapati, and vegetable sides.', varieties:['Stewing pork','Chops — when available']},
-  {id:'fish', name:'Fish', local:'Samaki', unit:'kg', price:400, cat:'animal', img:U('photo-1519708227418-c8fd9a32b7a2'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Samaki — typically tilapia and other local catches. Fry, stew, or grill with lemon and dhania.', nutrition:'Protein and, in many local catches, beneficial fats. Supports heart and brain health when eaten regularly.', tips:'Do not overcook — flesh should flake easily. Finish with lemon and dhania.', prep:'Clean and scale if needed; score sides for even cooking.', serve:'Fried, stewed, or grilled.', with:'Ugali, greens, lemon, and tomato stew.', varieties:['Tilapia','Omena / dagaa — when available','Other local catch — seasonal']},
-  {id:'honey', name:'Honey', local:'Asali', unit:'jar', price:600, cat:'animal', img:U('photo-1587049352846-4a222e784d38'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Pure local asali. Spoon into tea, drizzle on porridge, or use as a natural sweetener.', nutrition:'Natural sugars with trace enzymes and antioxidants. Use as a gentle sweetener; still energy-dense so use sparingly.', tips:'Avoid boiling honey hard if you want to keep a milder flavour; stir into warm (not scalding) drinks.', prep:'Use as-is; spoon or drizzle.', serve:'In tea, on porridge, or as a natural sweetener.', with:'Uji, yoghurt, lemon tea, and roasted groundnuts.', varieties:['Raw local honey','Comb honey — when available']},
+  {id:'chicken', name:'Chicken', local:'Kuku', unit:'piece', price:800, cat:'animal', img:'images/chicken.png', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Local free-range or broiler kuku. Order whole or pieces — ideal for stews, fry, and roasting.', nutrition:'Lean protein and B vitamins. Supports muscle repair; remove excess skin if you want a lighter meal.', tips:'Simmer until juices run clear. Brown pieces first for deeper flavour.', prep:'Clean, cut into pieces; marinate if desired.', serve:'Stew, dry-fry, or roast.', with:'Rice, ugali, chapati, and kienyeji greens.', varieties:['Kienyeji / indigenous','Broiler — when available']},
+  {id:'beef', name:'Beef', local:'Nyama ya ng\'ombe', unit:'kg', price:550, cat:'animal', img:'images/beef.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh nyama ya ng\'ombe, cut to order. For stews, mince, and weekend nyama choma.', nutrition:'Protein, iron and B12. Supports blood health and strength; enjoy in balanced portions with plenty of vegetables.', tips:'Slow cooking on low heat makes tougher cuts tender.', prep:'Cut to order; brown before slow stewing if possible.', serve:'Stews, mince dishes, or nyama choma.', with:'Ugali, greens, potatoes, and kachumbari.', varieties:['Stewing beef','Mince','Nyama choma cuts — on request']},
+  {id:'goat', name:'Goat meat', local:'Nyama ya mbuzi', unit:'kg', price:700, cat:'animal', img:'images/goat.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Nyama ya mbuzi — popular for stews and nyama choma. Rich flavour that stands up to bold seasoning.', nutrition:'Protein and iron with a distinctive flavour. Popular in stews and nyama choma; pair with kienyeji greens.', tips:'Goat shines with bold seasoning and patient simmering.', prep:'Cut into stew or choma pieces; season simply.', serve:'Stew or nyama choma.', with:'Ugali, kachumbari, and kienyeji greens.', varieties:['Stewing goat','Nyama choma cuts']},
+  {id:'pork', name:'Pork', local:'Nyama ya nguruwe', unit:'kg', price:480, cat:'animal', img:'images/pork.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh nyama ya nguruwe cuts. Suitable for stews, chops, and slow cooking.', tips:'Cook through completely; balance richness with fresh greens or lemon.', prep:'Cut into pieces; cook until fully done.', serve:'Stews or pan-fried cuts.', with:'Rice, chapati, and vegetable sides.', varieties:['Stewing pork','Chops — when available']},
+  {id:'fish', name:'Fish', local:'Samaki', unit:'kg', price:400, cat:'animal', img:'images/fish.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Samaki — typically tilapia and other local catches. Fry, stew, or grill with lemon and dhania.', nutrition:'Protein and, in many local catches, beneficial fats. Supports heart and brain health when eaten regularly.', tips:'Do not overcook — flesh should flake easily. Finish with lemon and dhania.', prep:'Clean and scale if needed; score sides for even cooking.', serve:'Fried, stewed, or grilled.', with:'Ugali, greens, lemon, and tomato stew.', varieties:['Tilapia','Omena / dagaa — when available','Other local catch — seasonal']},
+  {id:'honey', name:'Honey', local:'Asali', unit:'jar', price:600, cat:'animal', img:'images/honey.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Pure local asali. Spoon into tea, drizzle on porridge, or use as a natural sweetener.', nutrition:'Natural sugars with trace enzymes and antioxidants. Use as a gentle sweetener; still energy-dense so use sparingly.', tips:'Avoid boiling honey hard if you want to keep a milder flavour; stir into warm (not scalding) drinks.', prep:'Use as-is; spoon or drizzle.', serve:'In tea, on porridge, or as a natural sweetener.', with:'Uji, yoghurt, lemon tea, and roasted groundnuts.', varieties:['Raw local honey','Comb honey — when available']},
 
   /* ---- Herbs & spices ---- */
-  {id:'dhania', name:'Coriander', local:'Dhania', unit:'bunch', price:30, cat:'herb', img:U('photo-1512621776951-a57141f2eefd'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh coriander — essential Kenyan flavour. Chop over stews, salads, and grilled meats.', nutrition:'Fresh herb with vitamin K and plant compounds. Adds flavour so you can use less salt.', tips:'Add off heat — cooking dulls the aroma.', prep:'Wash and chop leaves and tender stems.', serve:'Fresh garnish at the end of cooking.', with:'Stews, grilled meats, eggs, and salads.', varieties:['Fresh coriander leaves','Roots for stock — on request']},
-  {id:'parsley', name:'Parsley', local:'Parsley', unit:'bunch', price:40, cat:'herb', img:U('photo-1594282486552-05b4d80fbb9f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh green garnish and mild herb flavour. Finish soups, eggs, and light sauces.', tips:'Add at the end for a clean, green finish.', prep:'Wash and finely chop.', serve:'Garnish for soups, eggs, and light sauces.', with:'Potatoes, fish, and tomato dishes.', varieties:['Curly parsley','Flat-leaf — when available']},
-  {id:'mint', name:'Mint', local:'Mint', unit:'bunch', price:40, cat:'herb', img:U('photo-1512621776951-a57141f2eefd'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Cooling leaves for drinks, fruit salads, and light sauces. A bright lift on hot days.', tips:'Bruise leaves lightly to release aroma in drinks.', prep:'Wash; tear or slice leaves.', serve:'Drinks, fruit salads, and light sauces.', with:'Pineapple, watermelon, lemon water, and yoghurt.', varieties:['Spearmint / garden mint']},
-  {id:'ginger', name:'Ginger', local:'Tangawizi', unit:'250g', price:90, cat:'herb', img:U('photo-1599940824399-b87987ceb72a'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Warming tangawizi root. Grate into tea, stews, and marinades for aroma and gentle heat.', nutrition:'Aromatic compounds that support comfortable digestion. Common in tea and stews for warmth and flavour.', tips:'Young ginger is milder; older roots are hotter and woodier.', prep:'Peel and grate, slice, or crush.', serve:'Tea, stews, and marinades.', with:'Lemon, garlic, chicken, and chai.', varieties:['Fresh root ginger','Young ginger — when available']},
-  {id:'garlic', name:'Garlic', local:'Kitunguu saumu', unit:'250g', price:80, cat:'herb', img:U('photo-1599940824399-b87987ceb72a'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Kitunguu saumu for flavour and everyday cooking. Crush into stews, greens, and marinades.', nutrition:'Flavour powerhouse with beneficial sulphur compounds. Supports everyday cooking and savoury depth.', tips:'Add early for sweetness, or later for a sharper bite.', prep:'Peel; crush, mince, or slice.', serve:'Flavour base for stews, greens, and marinades.', with:'Onions, tomatoes, chicken, and sukuma.', varieties:['Local garlic bulbs','Single-clove — when available']},
-  {id:'turmeric', name:'Turmeric', local:'Manjano', unit:'250g', price:100, cat:'herb', img:U('photo-1615485290382-441e4d049cb5'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Golden manjano root with a warm, earthy note. Colour and depth for rice, stews, and teas.', nutrition:'Curcumin and warm spice notes. Traditional in stews and teas; pair with a little black pepper and fat for absorption.', tips:'Pair with a little black pepper and fat to help the body use curcumin.', prep:'Peel fresh root and grate, or use dried powder.', serve:'In stews, rice, and teas.', with:'Ndengu, rice, chicken, and warm milk drinks.', varieties:['Fresh turmeric root','Dried powder — when available']},
-  {id:'chili', name:'Chili peppers', local:'Pilipili', unit:'kg', price:150, cat:'herb', img:U('photo-1563565375-f3fdfdbefa83'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh pilipili heat for every kitchen. Use sparingly in stews, sauces, and chutneys.', nutrition:'Capsaicin and vitamin C. Adds heat and flavour; use to taste.', tips:'Start small — heat builds. Wash hands after cutting.', prep:'Wash; slice or chop. Remove seeds for less heat.', serve:'In stews, sauces, and chutneys.', with:'Beans, meat stews, and kachumbari.', varieties:['Bird\'s eye / local hot','Cayenne-style','Mild green — when available']}
+  {id:'dhania', name:'Coriander', local:'Dhania', unit:'bunch', price:30, cat:'herb', img:'images/dhania.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh coriander — essential Kenyan flavour. Chop over stews, salads, and grilled meats.', nutrition:'Fresh herb with vitamin K and plant compounds. Adds flavour so you can use less salt.', tips:'Add off heat — cooking dulls the aroma.', prep:'Wash and chop leaves and tender stems.', serve:'Fresh garnish at the end of cooking.', with:'Stews, grilled meats, eggs, and salads.', varieties:['Fresh coriander leaves','Roots for stock — on request']},
+  {id:'parsley', name:'Parsley', local:'Parsley', unit:'bunch', price:40, cat:'herb', img:'images/parsley.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh green garnish and mild herb flavour. Finish soups, eggs, and light sauces.', tips:'Add at the end for a clean, green finish.', prep:'Wash and finely chop.', serve:'Garnish for soups, eggs, and light sauces.', with:'Potatoes, fish, and tomato dishes.', varieties:['Curly parsley','Flat-leaf — when available']},
+  {id:'mint', name:'Mint', local:'Mint', unit:'bunch', price:40, cat:'herb', img:'images/mint.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Cooling leaves for drinks, fruit salads, and light sauces. A bright lift on hot days.', tips:'Bruise leaves lightly to release aroma in drinks.', prep:'Wash; tear or slice leaves.', serve:'Drinks, fruit salads, and light sauces.', with:'Pineapple, watermelon, lemon water, and yoghurt.', varieties:['Spearmint / garden mint']},
+  {id:'ginger', name:'Ginger', local:'Tangawizi', unit:'250g', price:90, cat:'herb', img:'images/ginger.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Warming tangawizi root. Grate into tea, stews, and marinades for aroma and gentle heat.', nutrition:'Aromatic compounds that support comfortable digestion. Common in tea and stews for warmth and flavour.', tips:'Young ginger is milder; older roots are hotter and woodier.', prep:'Peel and grate, slice, or crush.', serve:'Tea, stews, and marinades.', with:'Lemon, garlic, chicken, and chai.', varieties:['Fresh root ginger','Young ginger — when available']},
+  {id:'garlic', name:'Garlic', local:'Kitunguu saumu', unit:'250g', price:80, cat:'herb', img:'images/garlic.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Kitunguu saumu for flavour and everyday cooking. Crush into stews, greens, and marinades.', nutrition:'Flavour powerhouse with beneficial sulphur compounds. Supports everyday cooking and savoury depth.', tips:'Add early for sweetness, or later for a sharper bite.', prep:'Peel; crush, mince, or slice.', serve:'Flavour base for stews, greens, and marinades.', with:'Onions, tomatoes, chicken, and sukuma.', varieties:['Local garlic bulbs','Single-clove — when available']},
+  {id:'turmeric', name:'Turmeric', local:'Manjano', unit:'250g', price:100, cat:'herb', img:'images/turmeric.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Golden manjano root with a warm, earthy note. Colour and depth for rice, stews, and teas.', nutrition:'Curcumin and warm spice notes. Traditional in stews and teas; pair with a little black pepper and fat for absorption.', tips:'Pair with a little black pepper and fat to help the body use curcumin.', prep:'Peel fresh root and grate, or use dried powder.', serve:'In stews, rice, and teas.', with:'Ndengu, rice, chicken, and warm milk drinks.', varieties:['Fresh turmeric root','Dried powder — when available']},
+  {id:'chili', name:'Chili peppers', local:'Pilipili', unit:'kg', price:150, cat:'herb', img:'images/chili.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh pilipili heat for every kitchen. Use sparingly in stews, sauces, and chutneys.', nutrition:'Capsaicin and vitamin C. Adds heat and flavour; use to taste.', tips:'Start small — heat builds. Wash hands after cutting.', prep:'Wash; slice or chop. Remove seeds for less heat.', serve:'In stews, sauces, and chutneys.', with:'Beans, meat stews, and kachumbari.', varieties:['Bird\'s eye / local hot','Cayenne-style','Mild green — when available']}
 ];
 
 var MIN_ORDER = 500;
@@ -2752,13 +2836,20 @@ function renderPendingOrders(){
 
 
 var RECIPES_DATA = {
-  sukuma: {icon:'🍲', name:'Sukuma Wiki & Ugali', meta:'15 min · Everyday staple', desc:'Classic Kenyan greens stir-fried with onions and tomatoes, served with soft ugali.', ings:['kales','onions','tomatoes','garlic','maize'], steps:['Boil water and stir in maize flour until firm ugali forms.','Wash and chop sukuma wiki.','Sauté onions, tomatoes and garlic.','Add sukuma and cook until tender. Season and serve with ugali.']},
-  managu: {icon:'🥘', name:'Managu & Terere Mix', meta:'20 min · Kienyeji favourite', desc:'Traditional African nightshade and amaranth greens, lightly cooked with a touch of dhania.', ings:['managu','terere','dhania','onions','tomatoes'], steps:['Wash managu and terere thoroughly.','Boil briefly to reduce bitterness if preferred.','Sauté onions and tomatoes.','Add greens and dhania; cook lightly. Serve warm.']},
-  githeri: {icon:'🍛', name:'Githeri (Beans & Maize)', meta:'45 min · Hearty one-pot', desc:'Boiled maize and beans simmered with carrots, potatoes and a light tomato base.', ings:['maize','beans','carrots','potatoes','onions'], steps:['Soak beans overnight if dry.','Boil maize and beans until soft.','Add diced carrots, potatoes and onions.','Simmer with tomatoes until thick. Season to taste.']},
-  fruit: {icon:'🥗', name:'Fresh Fruit Salad', meta:'10 min · Light & bright', desc:'Seasonal mango, pineapple, pawpaw and passion fruit with a squeeze of lemon.', ings:['mangoes','pineapples','pawpaws','passion','lemons'], steps:['Peel and cube mango, pineapple and pawpaw.','Scoop passion fruit pulp over the top.','Squeeze lemon juice and toss gently.','Chill briefly and serve.']},
-  ndengu: {icon:'🍜', name:'Ndengu Stew', meta:'35 min · Protein-rich', desc:'Green grams cooked with onions, tomatoes, garlic and a hint of turmeric and chili.', ings:['greengrams','onions','tomatoes','garlic','turmeric','chili'], steps:['Wash and boil green grams until soft.','Sauté onions, garlic, tomatoes, turmeric and chili.','Add green grams and simmer.','Adjust seasoning and serve with chapati or rice.']},
-  eggs: {icon:'🍳', name:'Farm Egg & Veggie Scramble', meta:'12 min · Quick breakfast', desc:'Farm eggs scrambled with spinach, tomatoes, onions and a sprinkle of dhania.', ings:['eggs','spinach','tomatoes','onions','dhania'], steps:['Beat eggs lightly.','Sauté onions, tomatoes and spinach.','Pour in eggs and scramble gently.','Finish with chopped dhania.']}
+  sukuma: {icon:'🍲', name:'Sukuma Wiki & Ugali', meta:'15 min · Everyday staple', desc:'Classic Kenyan greens stir-fried with onions and tomatoes, served with soft ugali.', ings:['kales','onions','tomatoes','garlic','maize'], pairs:['Ugali','Chapati','Rice','Boiled sweet potatoes'], steps:['Boil water and stir in maize flour until firm ugali forms.','Wash and chop sukuma wiki.','Sauté onions, tomatoes and garlic.','Add sukuma and cook until tender. Season and serve with ugali.']},
+  managu: {icon:'🥘', name:'Managu & Terere Mix', meta:'20 min · Kienyeji favourite', desc:'Traditional African nightshade and amaranth greens, lightly cooked with a touch of dhania.', ings:['managu','terere','dhania','onions','tomatoes'], pairs:['Ugali','Mukimo','Boiled rice','Sweet potatoes'], steps:['Wash managu and terere thoroughly.','Boil briefly to reduce bitterness if preferred.','Sauté onions and tomatoes.','Add greens and dhania; cook lightly. Serve warm.']},
+  githeri: {icon:'🍛', name:'Githeri (Beans & Maize)', meta:'45 min · Hearty one-pot', desc:'Boiled maize and beans simmered with carrots, potatoes and a light tomato base.', ings:['maize','beans','carrots','potatoes','onions'], pairs:['On its own','Avocado on the side','Kachumbari','Fried greens'], steps:['Soak beans overnight if dry.','Boil maize and beans until soft.','Add diced carrots, potatoes and onions.','Simmer with tomatoes until thick. Season to taste.']},
+  fruit: {icon:'🥗', name:'Fresh Fruit Salad', meta:'10 min · Light & bright', desc:'Seasonal mango, pineapple, pawpaw and passion fruit with a squeeze of lemon.', ings:['mangoes','pineapples','pawpaws','passion','lemons'], pairs:['Plain yoghurt','Honey drizzle','Mint garnish'], steps:['Peel and cube mango, pineapple and pawpaw.','Scoop passion fruit pulp over the top.','Squeeze lemon juice and toss gently.','Chill briefly and serve.']},
+  ndengu: {icon:'🍜', name:'Ndengu Stew', meta:'35 min · Protein-rich', desc:'Green grams cooked with onions, tomatoes, garlic and a hint of turmeric and chili.', ings:['greengrams','onions','tomatoes','garlic','turmeric','chili'], pairs:['Chapati','Rice','Ugali','Mandazi (for breakfast-style ndengu)'], steps:['Wash and boil green grams until soft.','Sauté onions, garlic, tomatoes, turmeric and chili.','Add green grams and simmer.','Adjust seasoning and serve with chapati or rice.']},
+  eggs: {icon:'🍳', name:'Farm Egg & Veggie Scramble', meta:'12 min · Quick breakfast', desc:'Farm eggs scrambled with spinach, tomatoes, onions and a sprinkle of dhania.', ings:['eggs','spinach','tomatoes','onions','dhania'], pairs:['Chapati','Toast','Mandazi','Sweet potatoes'], steps:['Beat eggs lightly.','Sauté onions, tomatoes and spinach.','Pour in eggs and scramble gently.','Finish with chopped dhania.']},
+  beefstew: {icon:'🍖', name:'Beef Stew (Nyama Stew)', meta:'50 min · Sunday favourite', desc:'Slow-simmered beef with carrots, potatoes and onions in a rich tomato base.', ings:['beef','onions','tomatoes','garlic','carrots','potatoes'], pairs:['Ugali','Rice','Chapati','Mukimo'], steps:['Brown beef pieces in a little oil.','Add onions and garlic; cook until soft.','Stir in tomatoes and enough water to cover; simmer until beef is tender.','Add carrots and potatoes; simmer until soft. Season and serve hot.']},
+  chapati: {icon:'🫓', name:'Soft Layered Chapati', meta:'40 min · Kitchen staple', desc:'Soft, flaky chapati made from wheat flour — the everyday companion to stews and beans.', ings:['wheat'], pairs:['Ndengu stew','Bean stew','Beef stew','Sweet tea'], steps:['Knead wheat flour with warm water, a little oil and salt into a soft dough.','Rest dough 20–30 minutes covered.','Roll thin, brush with oil, coil and re-roll for layers.','Cook on a hot, lightly oiled pan until golden on both sides.']},
+  kachumbari: {icon:'🥗', name:'Kachumbari (Tomato-Onion Salad)', meta:'10 min · Fresh side', desc:'A sharp, fresh tomato and onion salad that cuts through rich, grilled, or fried dishes.', ings:['tomatoes','onions','chili','lemons','dhania'], pairs:['Nyama choma','Pilau','Fried fish','Grilled chicken'], steps:['Dice tomatoes and onions finely.','Add finely chopped chili and dhania to taste.','Squeeze in fresh lemon juice.','Toss gently and serve chilled alongside grilled or fried dishes.']},
+  mukimo: {icon:'🥔', name:'Mukimo (Mashed Potatoes & Greens)', meta:'40 min · Central Kenyan classic', desc:'Potatoes mashed with maize, beans or peas, and pumpkin leaves or spinach for a hearty side.', ings:['potatoes','maize','spinach','onions'], pairs:['Beef stew','Chicken stew','Nyama choma','Fried greens'], steps:['Boil potatoes and maize together until soft.','Add chopped spinach or pumpkin leaves in the last few minutes.','Drain and mash everything together until smooth.','Serve warm alongside a meat or bean stew.']},
+  fishfry: {icon:'🐟', name:'Fried Fish with Kachumbari', meta:'25 min · Coastal-style', desc:'Whole or cut fish fried until crisp, served with a bright tomato-onion kachumbari.', ings:['fish','lemons','dhania','tomatoes','onions'], pairs:['Ugali','Rice','Chapati','Kachumbari'], steps:['Clean fish and score the sides; season with salt and lemon.','Shallow fry until golden and crisp on both sides.','Prepare a quick kachumbari of tomatoes, onions and dhania.','Serve fish hot topped with kachumbari and a lemon wedge.']},
+  beanstew: {icon:'🫘', name:'Maharagwe (Bean Stew)', meta:'55 min · Budget-friendly protein', desc:'Beans simmered in a light tomato and onion sauce until soft and creamy.', ings:['beans','onions','tomatoes','garlic'], pairs:['Ugali','Chapati','Rice','Mandazi'], steps:['Soak beans overnight, then boil until soft.','Sauté onions and garlic; add tomatoes and cook down.','Add cooked beans and a little of their cooking water.','Simmer until the sauce thickens. Season and serve.']}
 };
+
 function openRecipe(id){
   var r = RECIPES_DATA[id];
   if (!r) return;
@@ -2771,6 +2862,14 @@ function openRecipe(id){
     var p = findProduct(iid);
     return p ? '<span>'+p.name+'</span>' : '<span>'+iid+'</span>';
   }).join('');
+  var pairsWrap = document.getElementById('rm-pairs-wrap');
+  var pairsEl = document.getElementById('rm-pairs');
+  if (r.pairs && r.pairs.length){
+    pairsEl.innerHTML = r.pairs.map(function(p){ return '<span>'+p+'</span>'; }).join('');
+    pairsWrap.style.display = '';
+  } else {
+    pairsWrap.style.display = 'none';
+  }
   document.getElementById('rm-steps').innerHTML = r.steps.map(function(s,i){
     return '<li data-n="'+(i+1)+'.">'+s+'</li>';
   }).join('');
@@ -2859,6 +2958,10 @@ window.addEventListener('scroll', function(){
     <div class="pm-local" id="rm-meta"></div>
     <p class="pm-desc" id="rm-desc"></p>
     <div class="recipe-ings" id="rm-ings" style="margin-bottom:16px"></div>
+    <div id="rm-pairs-wrap">
+      <div class="r-pairs-label">Serve it with</div>
+      <div class="recipe-pairs" id="rm-pairs" style="margin-bottom:16px"></div>
+    </div>
     <h4 style="font-size:15px;margin-bottom:8px;color:var(--forest)">Steps</h4>
     <ol class="recipe-steps" id="rm-steps"></ol>
     <button class="btn btn-primary btn-sm" style="margin-top:18px" onclick="addRecipeIngredients()">Add ingredients to basket</button>
