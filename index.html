@@ -13,17 +13,44 @@
 <meta name="format-detection" content="telephone=yes">
 <meta name="application-name" content="Dawn Fresh Basket">
 <meta name="msapplication-TileColor" content="#1F3D2E">
-<meta name="msapplication-TileImage" content="icon-192.png">
+<meta name="msapplication-TileImage" content="icons/icon-144.png">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/icon-72.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+<link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* PWA install banner */
+  .pwa-install-banner{
+    position:fixed; left:12px; right:12px; bottom:calc(88px + env(safe-area-inset-bottom));
+    z-index:85; background:var(--forest-dark); color:var(--paper);
+    border:1.5px solid var(--gold); border-radius:14px; padding:14px 16px;
+    display:none; align-items:center; gap:12px; box-shadow:0 12px 32px rgba(0,0,0,0.35);
+    animation:pwaSlideUp 0.4s ease;
+  }
+  .pwa-install-banner.show{display:flex}
+  @keyframes pwaSlideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .pwa-install-banner .pwa-icon{width:44px;height:44px;border-radius:10px;flex-shrink:0;object-fit:cover}
+  .pwa-install-banner .pwa-text{flex:1;min-width:0}
+  .pwa-install-banner .pwa-text strong{display:block;font-size:14px;color:var(--paper)}
+  .pwa-install-banner .pwa-text span{font-size:12px;color:rgba(243,240,227,0.65)}
+  .pwa-install-banner .pwa-actions{display:flex;gap:8px;flex-shrink:0}
+  .pwa-install-banner button{
+    border:none; border-radius:8px; padding:8px 14px; font-size:13px; font-weight:600;
+    cursor:pointer; font-family:inherit;
+  }
+  .pwa-install-banner .pwa-btn-install{background:var(--gold); color:var(--ink)}
+  .pwa-install-banner .pwa-btn-dismiss{background:transparent; color:rgba(243,240,227,0.6)}
+  @media all and (display-mode: standalone){
+    .pwa-install-banner{display:none !important}
+  }
   :root{
     --ink:#16281F; --forest:#1F3D2E; --forest-light:#2F5240; --forest-dark:#122019;
     --paper:#F3F0E3; --paper-warm:#EDE8D6; --gold:#C9922B; --gold-light:#E8B94A; --gold-dark:#8A6013;
@@ -313,6 +340,14 @@
   .cat-tab:hover:not(.active){border-color:var(--gold); color:var(--forest)}
 
   .product-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:14px}
+  .admin-bar{display:none; position:sticky; top:0; z-index:41; background:var(--gold-dark); color:var(--paper); font-size:12.5px; font-weight:600; text-align:center; padding:7px 10px; letter-spacing:.02em}
+  body.admin-mode .admin-bar{display:block}
+  .admin-photo-btn{position:absolute; top:8px; right:8px; z-index:5; width:32px; height:32px; border-radius:50%; border:none; background:rgba(22,40,31,0.72); color:var(--paper); display:none; align-items:center; justify-content:center; cursor:pointer; backdrop-filter:blur(4px)}
+  .admin-photo-btn:hover{background:var(--forest-dark)}
+  body.admin-mode .admin-photo-btn{display:flex}
+  .admin-photo-reset{position:absolute; top:8px; left:8px; z-index:5; width:28px; height:28px; border-radius:50%; border:none; background:rgba(178,58,46,0.85); color:#fff; display:none; align-items:center; justify-content:center; cursor:pointer; font-size:14px; line-height:1}
+  body.admin-mode .product-card.has-override .admin-photo-reset{display:flex}
+  .pic-wrap{position:relative}
   .product-card{
     background:var(--paper); border:1.5px solid var(--line); border-radius:14px;
     padding:0 0 16px; text-align:center; transition:all 0.28s; position:relative; overflow:hidden;
@@ -326,6 +361,7 @@
   }
   .product-card:hover .pic-wrap img{transform:scale(1.06)}
   .product-card .pname{font-family:'Fraunces', serif; font-weight:600; font-size:15px; color:var(--forest); display:block; margin-top:12px; padding:0 10px}
+  .product-card .pvars{font-size:11px; color:#8a6a1a; margin-bottom:6px; line-height:1.35; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
   .product-card .plocal{font-size:11.5px; color:var(--forest-light); margin-top:2px; display:block; padding:0 10px}
   .product-card .pprice{font-size:13px; font-weight:600; color:var(--gold-dark); margin-top:8px; padding:0 10px}
   .product-card .season-badge{
@@ -394,6 +430,22 @@
   .season-legend span::before{content:""; display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:middle}
   .season-legend .in::before{background:rgba(201,146,43,0.4); border:1px solid var(--gold)}
   .season-legend .out::before{background:var(--paper); border:1px solid var(--line)}
+  .harvest-table-wrap{margin-top:36px; overflow-x:auto; border:1.5px solid var(--line); border-radius:14px; background:var(--paper)}
+  .harvest-table{width:100%; border-collapse:collapse; font-size:12.5px; min-width:720px}
+  .harvest-table th, .harvest-table td{padding:10px 8px; text-align:center; border-bottom:1px solid var(--line)}
+  .harvest-table th{background:var(--forest); color:var(--paper); font-weight:600; position:sticky; top:0; z-index:1}
+  .harvest-table th:first-child, .harvest-table td:first-child{text-align:left; padding-left:14px; position:sticky; left:0; background:var(--paper); z-index:2; min-width:120px}
+  .harvest-table th:first-child{background:var(--forest); color:var(--paper); z-index:3}
+  .harvest-table tr:hover td{background:rgba(201,146,43,0.06)}
+  .harvest-table tr:hover td:first-child{background:var(--paper-warm)}
+  .harvest-table .h-name{font-weight:600; color:var(--forest); display:block}
+  .harvest-table .h-local{font-size:11px; color:var(--forest-light); font-weight:500}
+  .harvest-table .h-cell{width:36px}
+  .harvest-table .h-on{background:rgba(201,146,43,0.35); color:var(--forest); font-weight:700; border-radius:4px}
+  .harvest-table .h-off{color:rgba(22,40,31,0.2)}
+  .harvest-table .h-now{box-shadow:inset 0 0 0 2px var(--gold)}
+  .harvest-caption{font-size:13px; color:var(--forest-light); margin-top:28px; margin-bottom:10px}
+  .harvest-caption strong{color:var(--forest)}
 
   /* Farm stories / videos */
   .video-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-top:28px}
@@ -581,9 +633,17 @@
   .product-modal .pm-body{padding:22px 24px 28px}
   .product-modal h3{font-size:24px; margin-bottom:4px}
   .product-modal .pm-local{color:var(--gold-dark); font-weight:600; font-size:14px; margin-bottom:12px}
-  .product-modal .pm-desc{font-size:14.5px; color:var(--forest-light); margin-bottom:16px; line-height:1.55}
+  .product-modal .pm-desc{font-size:14.5px; color:var(--forest-light); margin-bottom:16px; line-height:1.55; white-space:pre-line}
   .product-modal .pm-meta{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:18px; font-size:13px}
   .product-modal .pm-meta span{background:var(--paper-warm); padding:6px 12px; border-radius:8px; font-weight:500}
+  .pm-varieties{margin:14px 0 4px}
+  .pm-varieties-label{font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--forest-light); margin-bottom:10px}
+  .pm-var-grid{display:flex; gap:10px; overflow-x:auto; padding-bottom:8px; -webkit-overflow-scrolling:touch; scroll-snap-type:x mandatory}
+  .pm-var-card{flex:0 0 108px; scroll-snap-align:start; background:var(--paper-warm); border-radius:12px; overflow:hidden; border:1.5px solid var(--line); text-align:center}
+  .pm-var-card img{width:108px; height:88px; object-fit:cover; display:block; background:#e8e4d8}
+  .pm-var-card span{display:block; padding:8px 6px; font-size:11px; font-weight:600; color:var(--forest); line-height:1.3; min-height:2.6em}
+  .product-card .pvars{font-size:11px; color:#8a6a1a; margin-bottom:6px; line-height:1.35; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
+
   .product-modal .pm-actions{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
   .product-modal .close-btn{
     position:absolute; top:12px; right:12px; width:36px; height:36px; border-radius:50%;
@@ -643,69 +703,6 @@
   .recipe-steps li{font-size:14px; color:var(--forest-light); padding:10px 0 10px 28px; position:relative; border-top:1px solid var(--line); list-style:none}
   .recipe-steps li::before{content:attr(data-n); position:absolute; left:0; color:var(--gold-dark); font-weight:700; font-family:'Fraunces',serif}
   .recipe-card{cursor:pointer}
-
-  
-  
-  /* Notification settings */
-  .notif-card{
-    background:rgba(243,240,227,0.06); border:1px solid var(--line-onDark);
-    border-radius:12px; padding:14px 16px; margin-top:16px;
-  }
-  .notif-card h4{font-size:13px; color:var(--gold-light); margin-bottom:10px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase}
-  .notif-row{
-    display:flex; align-items:center; justify-content:space-between; gap:12px;
-    padding:10px 0; border-top:1px solid var(--line-onDark); font-size:13.5px; color:rgba(243,240,227,0.85);
-  }
-  .notif-row:first-of-type{border-top:none}
-  .notif-row .nr-label{flex:1}
-  .notif-row .nr-label small{display:block; font-size:11.5px; color:rgba(243,240,227,0.45); margin-top:2px}
-  .toggle-switch{
-    position:relative; width:44px; height:26px; flex-shrink:0;
-  }
-  .toggle-switch input{opacity:0; width:0; height:0}
-  .toggle-switch .slider{
-    position:absolute; cursor:pointer; inset:0; background:rgba(243,240,227,0.15);
-    border-radius:26px; transition:0.25s;
-  }
-  .toggle-switch .slider::before{
-    content:""; position:absolute; height:20px; width:20px; left:3px; bottom:3px;
-    background:var(--paper); border-radius:50%; transition:0.25s;
-  }
-  .toggle-switch input:checked + .slider{background:var(--gold)}
-  .toggle-switch input:checked + .slider::before{transform:translateX(18px)}
-  .notif-status{font-size:12px; color:rgba(243,240,227,0.5); margin-top:8px}
-  .notif-status.on{color:var(--gold-light)}
-  .notif-test-btn{margin-top:10px; width:100%}
-
-  /* PWA install banner */
-  .install-banner{
-    position:fixed; left:16px; right:16px; bottom:calc(88px + env(safe-area-inset-bottom));
-    z-index:85; background:var(--forest-dark); color:var(--paper);
-    border:1.5px solid var(--gold); border-radius:16px; padding:16px 18px;
-    display:none; align-items:center; gap:14px; flex-wrap:wrap;
-    box-shadow:0 12px 40px rgba(0,0,0,0.35);
-    animation:slideUp 0.4s cubic-bezier(0.22,1,0.36,1);
-  }
-  .install-banner.show{display:flex}
-  @keyframes slideUp{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
-  .install-banner .ib-icon{
-    width:48px; height:48px; border-radius:12px; background:var(--gold);
-    display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0;
-  }
-  .install-banner .ib-text{flex:1; min-width:140px}
-  .install-banner .ib-text strong{display:block; font-size:15px; margin-bottom:2px}
-  .install-banner .ib-text span{font-size:12.5px; color:rgba(243,240,227,0.6)}
-  .install-banner .ib-actions{display:flex; gap:8px; align-items:center}
-  .install-banner .ib-dismiss{
-    background:none; border:none; color:rgba(243,240,227,0.5); font-size:20px;
-    cursor:pointer; padding:4px 8px; line-height:1;
-  }
-  .install-banner .ib-dismiss:hover{color:var(--paper)}
-  /* Standalone mode tweaks */
-  @media all and (display-mode: standalone){
-    .install-banner{display:none !important}
-    body{padding-top: env(safe-area-inset-top)}
-  }
 
   /* ---- App shell ---- */
   body{padding-bottom:88px}
@@ -779,9 +776,10 @@
 
 <div class="scroll-progress" id="scroll-progress"></div>
 
+<div class="admin-bar" id="admin-bar">Admin mode — tap the camera icon on any product to change its photo · <a href="javascript:void(0)" onclick="toggleAdminMode()" style="color:inherit;text-decoration:underline">turn off</a></div>
 <header id="site-header">
   <div class="wrap">
-    <div class="brand">Dawn Fresh <span>Basket</span></div>
+    <div class="brand" id="brand-logo" onclick="handleBrandTap()">Dawn Fresh <span>Basket</span></div>
     <nav class="subnav">
       <a href="#story">About</a>
       <a href="#baskets">Baskets</a>
@@ -1099,6 +1097,7 @@
           <div class="min-order-warning" id="min-order-warning" style="display:none">Minimum order for delivery is KES 500 — add a bit more to check out.</div>
         </div>
       </div>
+    </div>
 
     <div class="mode-panel" id="panel-gift">
       <div class="gift-grid">
@@ -1133,7 +1132,6 @@
       </div>
       <p style="margin-top:24px;font-size:14px;color:rgba(243,240,227,0.65);text-align:center">Add a personal note on WhatsApp. We'll deliver with care and a simple card.</p>
     </div>
-    </div>
   </div>
 </section>
 
@@ -1161,6 +1159,7 @@
 
     <div class="cat-tabs" id="cat-tabs" style="margin-top:40px"></div>
     <div class="product-grid" id="product-grid"></div>
+    <input type="file" id="admin-photo-input" accept="image/*" style="display:none" onchange="handleAdminPhotoUpload(event)">
 
     <div class="photo-note">
       <strong>About product photos:</strong> High-quality free stock photos (Unsplash — free for commercial use) are shown. Send your own real farm/produce photos and they can replace these for full authenticity.
@@ -1242,6 +1241,13 @@
       <div class="season-legend">
         <span class="in">In season / peak</span>
         <span class="out">Limited or out of peak</span>
+      </div>
+      <p class="harvest-caption"><strong>Harvest calendar</strong> — typical peak months around Nakuru / Rift Valley. Gold cells = harvest / best availability.</p>
+      <div class="harvest-table-wrap">
+        <table class="harvest-table" id="harvest-table" aria-label="Harvest dates by month">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -1683,16 +1689,6 @@
         <div class="faq-a"><p><strong>Paid:</strong> in full with your M-Pesa payment now (together with any 50% deposit on basket + delivery). <strong>Topped up:</strong> only after we confirm your M-Pesa message matches the order reference and airtime amount. Airtime is never held as a deposit or paid on delivery.</p></div>
       </div>
 
-
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Do you send push notifications? <span class="chev">▾</span></button>
-        <div class="faq-a"><p>Yes — if you allow them. Open <strong>Account</strong> and turn on Notifications. You can choose order confirmations, seasonal tips, and delivery reminders. On Android Chrome these work even when the app is closed (after you install it). On iPhone, notifications work best once the site is added to your Home Screen and permission is granted in Safari/Settings.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Can I install this like an app? <span class="chev">▾</span></button>
-        <div class="faq-a"><p>Yes. On Android Chrome, tap <strong>Install</strong> when the banner appears (or use the menu → Install app). On iPhone Safari, tap the Share button → <strong>Add to Home Screen</strong>. Once installed it opens full-screen, keeps your details on this device, and works even with a weak connection.</p></div>
-      </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Can I send a gift basket? <span class="chev">▾</span></button>
         <div class="faq-a"><p>Yes. Use the Gift basket mode or the Gifts section, choose a pack, and tell us the recipient's name, phone and delivery pin on WhatsApp. We'll include a short note from you.</p></div>
@@ -1794,84 +1790,219 @@
 /* ===================== FULL PRODUCT CATALOG ===================== */
 /* seasons: array of month numbers 1-12 when item is typically in peak/good supply in Nakuru region */
 /* Real produce photos — free commercial use (Unsplash License). Optimized sizes + modern format. */
+/* Local farm photos — add filename here when you drop images/{id}.jpg */
+var LOCAL_PHOTOS = {
+  kales: 'images/kales.jpg',
+  managu: 'images/managu.jpg',
+  terere: 'images/terere.jpg',
+  kunde: 'images/kunde.jpg',
+  saga: 'images/saga.jpg',
+  tomatoes: 'images/tomatoes.jpg',
+  onions: 'images/onions.jpg',
+  capsicum: 'images/capsicum.jpg',
+  cucumbers: 'images/cucumbers.jpg',
+  eggplant: 'images/eggplant.jpg',
+  okra: 'images/okra.jpg',
+  courgettes: 'images/courgettes.jpg',
+  bananas: 'images/bananas.jpg',
+  mangoes: 'images/mangoes.jpg',
+  oranges: 'images/oranges.jpg',
+  pawpaws: 'images/pawpaws.jpg',
+  pineapples: 'images/pineapples.jpg',
+  avocados: 'images/avocados.jpg',
+  lemons: 'images/lemons.jpg',
+  passion: 'images/passion.jpg',
+  apples: 'images/apples.jpg',
+  potatoes: 'images/potatoes.jpg',
+  sweetpotatoes: 'images/sweetpotatoes.jpg'
+};
+
 function imgUrl(id, size){
   size = size || 400;
-  // auto=format serves WebP/AVIF when supported; q=70 balances quality & weight
+  if (!id) return '';
+  // Local product photos (in /images/) or full URLs — use as-is
+  if (id.indexOf('images/') === 0 || id.indexOf('http') === 0 || id.indexOf('/') === 0) {
+    return id;
+  }
+  // Unsplash stock: auto=format serves WebP/AVIF when supported; q=70 balances quality & weight
   return 'https://images.unsplash.com/'+id+'?w='+size+'&h='+size+'&fit=crop&q=70&auto=format';
+}
+/** Prefer real farm photo when available, else stock */
+function productImg(p, size){
+  if (PHOTO_OVERRIDES[p.id]) return PHOTO_OVERRIDES[p.id];
+  if (LOCAL_PHOTOS[p.id]) return LOCAL_PHOTOS[p.id];
+  if (p.img && (String(p.img).indexOf('images/') === 0 || String(p.img).indexOf('http') === 0)) return p.img;
+  return imgUrl(p.img, size);
+}
+
+/* ===================== ADMIN: per-product photo upload ===================== */
+/* Lets whoever runs the site swap a product photo right from the catalog, no code changes needed.
+   Photos are resized/compressed in the browser and kept in this device's local storage. */
+var PHOTO_OVERRIDES = {};
+var ADMIN_STORAGE_PREFIX = 'dfb_photo_';
+var adminMode = false;
+var pendingUploadId = null;
+var brandTapCount = 0;
+var brandTapTimer = null;
+var CAMERA_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>';
+
+function loadPhotoOverrides(){
+  try{
+    for (var i = 0; i < localStorage.length; i++){
+      var key = localStorage.key(i);
+      if (key && key.indexOf(ADMIN_STORAGE_PREFIX) === 0){
+        var id = key.slice(ADMIN_STORAGE_PREFIX.length);
+        PHOTO_OVERRIDES[id] = localStorage.getItem(key);
+      }
+    }
+  } catch(err){ /* storage unavailable — overrides simply won't load */ }
+  try{ adminMode = localStorage.getItem('dfb_admin_mode') === '1'; } catch(err){ adminMode = false; }
+  if (adminMode) document.body.classList.add('admin-mode');
+}
+
+function handleBrandTap(){
+  brandTapCount++;
+  clearTimeout(brandTapTimer);
+  brandTapTimer = setTimeout(function(){ brandTapCount = 0; }, 1800);
+  if (brandTapCount >= 5){
+    brandTapCount = 0;
+    toggleAdminMode();
+  }
+}
+
+function toggleAdminMode(){
+  adminMode = !adminMode;
+  document.body.classList.toggle('admin-mode', adminMode);
+  try{ localStorage.setItem('dfb_admin_mode', adminMode ? '1' : '0'); } catch(err){}
+  showToast(adminMode ? 'Admin mode on — tap the camera icon on a product to change its photo' : 'Admin mode off');
+  filterCatalog(catalogActiveCat);
+}
+
+function openPhotoUpload(id){
+  pendingUploadId = id;
+  var input = document.getElementById('admin-photo-input');
+  if (input) input.click();
+}
+
+function handleAdminPhotoUpload(e){
+  var file = e.target.files && e.target.files[0];
+  e.target.value = '';
+  if (!file || !pendingUploadId) return;
+  if (file.size > 15 * 1024 * 1024){
+    showToast('That photo is too large — try one under 15MB');
+    return;
+  }
+  var id = pendingUploadId;
+  var reader = new FileReader();
+  reader.onload = function(ev){
+    var img = new Image();
+    img.onload = function(){
+      var MAX = 640;
+      var w = img.width, h = img.height;
+      if (w > h && w > MAX){ h = Math.round(h * MAX / w); w = MAX; }
+      else if (h > MAX){ w = Math.round(w * MAX / h); h = MAX; }
+      var canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      var dataUrl = canvas.toDataURL('image/jpeg', 0.72);
+      try{
+        localStorage.setItem(ADMIN_STORAGE_PREFIX + id, dataUrl);
+        PHOTO_OVERRIDES[id] = dataUrl;
+        filterCatalog(catalogActiveCat);
+        buildProductList();
+        showToast('Photo updated');
+      } catch(err){
+        showToast('Storage is full — remove another custom photo first');
+      }
+    };
+    img.onerror = function(){ showToast('Could not read that image — try a different file'); };
+    img.src = ev.target.result;
+  };
+  reader.onerror = function(){ showToast('Could not read that file'); };
+  reader.readAsDataURL(file);
+}
+
+function resetPhoto(id){
+  delete PHOTO_OVERRIDES[id];
+  try{ localStorage.removeItem(ADMIN_STORAGE_PREFIX + id); } catch(err){}
+  filterCatalog(catalogActiveCat);
+  buildProductList();
+  showToast('Reverted to default photo');
 }
 var U = function(id){ return id; }; // store photo id only; build URLs at render time
 var PRODUCTS = [
   /* ---- Kienyeji greens ---- */
-  {id:'kales', name:'Kales', local:'Sukuma wiki', unit:'bunch', price:50, cat:'greens', img:U('photo-1540420773420-3366772f4999'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Daily staple — rich in vitamin A and iron.'},
-  {id:'spinach', name:'Spinach', local:'Spinach', unit:'bunch', price:60, cat:'greens', img:U('photo-1576045057995-568f588f82fb'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Soft-leaved, high in folate and iron.'},
-  {id:'managu', name:'Managu', local:'African nightshade', unit:'bunch', price:70, cat:'greens', img:U('photo-1540420773420-3366772f4999'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Indigenous green packed with vitamins A & C.'},
-  {id:'terere', name:'Terere', local:'Amaranth / mchicha', unit:'bunch', price:70, cat:'greens', img:U('photo-1512621776951-a57141f2eefd'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'High in calcium and plant protein.'},
-  {id:'kunde', name:'Kunde', local:'Cowpea leaves', unit:'bunch', price:65, cat:'greens', img:U('photo-1557844352-761f2565b576'), seasons:[3,4,5,6,7,8,9,10], desc:'Tender leaves of the cowpea plant.'},
-  {id:'saga', name:'Saga', local:'Spider plant', unit:'bunch', price:75, cat:'greens', img:U('photo-1622206151226-18ca2c96fe25'), seasons:[4,5,6,7,8,9,10], desc:'Traditional bitter-leaf green, highly nutritious.'},
+  {id:'kales', name:'Kales', local:'Sukuma wiki', unit:'bunch', price:50, cat:'greens', img:'images/kales.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Daily Kenyan staple (sukuma wiki). Tender leaves rich in vitamin A and iron — stir-fry with onions and tomatoes for a quick side.', nutrition:'High in vitamins A, C and K, plus iron and calcium. Supports eyesight, immunity and bone health. Very low calorie.', tips:'Stir-fry with onions and tomatoes 5–8 minutes. Do not overcook — keep a slight bite.', prep:'Wash thoroughly, strip thick stems, and chop or leave whole.', serve:'Hot as a side with ugali, rice, or chapati.', with:'Ugali, fried eggs, beans, or nyama stew.', varieties:['Sukuma wiki (common)','Curly leaf — when available','Baby leaves — when available']},
+  {id:'spinach', name:'Spinach', local:'Spinach', unit:'bunch', price:60, cat:'greens', img:U('photo-1576045057995-568f588f82fb'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Soft, mild leaves high in folate and iron. Perfect for omelettes, stews, or a light sauté with garlic.', nutrition:'Excellent source of folate, iron, vitamin K and magnesium. Supports blood health, energy and bone strength.', tips:'Wilt quickly in a hot pan with garlic, or add to eggs at the end of cooking.', prep:'Rinse well and trim tough stems.', serve:'Wilted as a side, in omelettes, or folded into stews.', with:'Eggs, garlic, chapati, or light tomato sauce.', varieties:['English / soft leaf','Local broad leaf — when available']},
+  {id:'managu', name:'Managu', local:'African nightshade', unit:'bunch', price:70, cat:'greens', img:'images/managu.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Indigenous African nightshade — slightly bitter, packed with vitamins A & C. Classic kienyeji green for healthy family meals.', nutrition:'Rich in vitamins A and C, iron and fibre. Traditional indigenous green that supports immunity and healthy blood.', tips:'Sauté with onions, tomatoes and a little oil after the optional boil.', prep:'Wash thoroughly; optional brief boil to reduce bitterness, then drain.', serve:'Hot with ugali or as part of a kienyeji greens mix.', with:'Ugali, terere, onions, tomatoes, and a spoon of oil or ghee.', varieties:['African nightshade (Managu)','Mild local strain — when available']},
+  {id:'terere', name:'Terere', local:'Amaranth / mchicha', unit:'bunch', price:70, cat:'greens', img:'images/terere.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Amaranth (mchicha) leaves high in calcium and plant protein. Mild flavour; boil or steam with a touch of dhania.', nutrition:'High in calcium, iron and plant protein for a green leaf. Supports bones, muscles and steady energy.', tips:'Finish with onions and dhania; mix with managu for a classic plate.', prep:'Rinse, boil lightly, then drain.', serve:'Hot as a mild kienyeji side.', with:'Managu, dhania, onions, and ugali.', varieties:['Green amaranth (Mchicha)','Red-stem amaranth — when available']},
+  {id:'kunde', name:'Kunde', local:'Cowpea leaves', unit:'bunch', price:65, cat:'greens', img:'images/kunde.jpg', seasons:[3,4,5,6,7,8,9,10], desc:'Tender cowpea leaves with a gentle earthy taste. Traditional green often cooked with groundnuts or tomatoes.', nutrition:'Provides vitamin A, C and iron. Pairing with a little oil or groundnuts helps the body absorb fat-soluble vitamins.', tips:'Cook with groundnuts or tomatoes for an earthy, satisfying dish.', prep:'Wash and chop leaves; discard very tough stems.', serve:'Hot traditional green side.', with:'Groundnut paste, tomatoes, or ugali.', varieties:['Cowpea leaves (Kunde)','Young tender shoots']},
+  {id:'saga', name:'Saga', local:'Spider plant', unit:'bunch', price:75, cat:'greens', img:'images/saga.jpg', seasons:[4,5,6,7,8,9,10], desc:'Traditional spider plant (saget) with soft hairy leaves — a classic kienyeji green, slightly bitter and rich in vitamins. Lightly boil to mellow the taste, then sauté with onions and tomatoes.', nutrition:'Dense in vitamins A and C and minerals. Slight bitterness is linked to beneficial plant compounds; light boiling softens the taste.', tips:'After boiling, sauté with onions and tomatoes to mellow the taste.', prep:'Wash well; boil briefly to soften bitterness, then drain.', serve:'Hot with ugali.', with:'Onions, tomatoes, and ugali or rice.', varieties:['Spider plant (Saget)','Local bitter leaf']},
 
   /* ---- Vegetables ---- */
-  {id:'tomatoes', name:'Tomatoes', local:'Nyanya', unit:'kg', price:120, cat:'veg', img:U('photo-1563565375-f3fdfdbefa83'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Base of every Kenyan stew.'},
-  {id:'onions', name:'Onions', local:'Vitunguu', unit:'kg', price:100, cat:'veg', img:U('photo-1518977676601-b53f82aba655'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Red & white kitchen essentials.'},
-  {id:'cabbage', name:'Cabbage', local:'Kabichi', unit:'head', price:80, cat:'veg', img:U('photo-1594282486552-05b4d80fbb9f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Crisp and versatile.'},
-  {id:'carrots', name:'Carrots', local:'Karoti', unit:'kg', price:90, cat:'veg', img:U('photo-1598170845058-32b9d6a5da37'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Naturally sweet, rich in beta-carotene.'},
-  {id:'capsicum', name:'Green peppers', local:'Hoho', unit:'kg', price:150, cat:'veg', img:U('photo-1563565375-f3fdfdbefa83'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Crunchy and high in vitamin C.'},
-  {id:'cucumbers', name:'Cucumbers', local:'Tango', unit:'kg', price:80, cat:'veg', img:U('photo-1594282486552-05b4d80fbb9f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Cool and hydrating.'},
-  {id:'eggplant', name:'Eggplants', local:'Biringanya', unit:'kg', price:100, cat:'veg', img:U('photo-1563565375-f3fdfdbefa83'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Mild and versatile.'},
-  {id:'okra', name:'Okra', local:'Bamia', unit:'kg', price:110, cat:'veg', img:U('photo-1594282486552-05b4d80fbb9f'), seasons:[3,4,5,6,7,8,9,10], desc:'Great in stews and soups.'},
-  {id:'courgettes', name:'Courgettes', local:'Zucchini', unit:'kg', price:100, cat:'veg', img:U('photo-1594282486552-05b4d80fbb9f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Mild, low-calorie vegetable.'},
+  {id:'tomatoes', name:'Tomatoes', local:'Nyanya', unit:'kg', price:120, cat:'veg', img:'images/tomatoes.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Firm, ripe nyanya — the base of every Kenyan stew, sauce and salad. Grown in greenhouse and open field around Nakuru.', varieties:['Roma / cooking (Nyanya za kupika)','Salad / round (Nyanya za saladi)','Cherry — when in season (Nyanya cherry)','Greenhouse hybrid (Nyanya za greenhaus)'], nutrition:'Rich in vitamin C, lycopene and potassium. Lycopene (especially when cooked) supports heart health and healthy skin. Low calorie, high fibre.', tips:'Roma types hold shape in cooking; salad types shine raw. Cook down with onions as a stew base.', prep:'Wash; chop for stews or slice for salad. Optional peel after blanching.', serve:'Cooked in stews/sauces or raw in salad.', with:'Onions, garlic, meat stews, sukuma, eggs, and chapati.'},
+  {id:'onions', name:'Onions', local:'Vitunguu', unit:'kg', price:100, cat:'veg', img:'images/onions.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh red onions (vitunguu nyekundu) — the everyday base for stews, sukuma wiki, and Kenyan seasoning. Strong flavour and long shelf life.', varieties:['Red onion (Vitunguu nyekundu)','White onion (Vitunguu nyeupe) — when available'], nutrition:'Contains vitamin C, B6 and sulphur compounds. Supports immunity and adds flavour with very few calories.', tips:'Sauté slowly until soft and sweet for stews; keep firmer for quick sukuma.', prep:'Peel, then slice or dice as needed.', serve:'Cooked base for almost every savoury dish.', with:'Tomatoes, garlic, sukuma, stews, and marinades.'},
+  {id:'cabbage', name:'Cabbage', local:'Kabichi', unit:'head', price:80, cat:'veg', img:U('photo-1594282486552-05b4d80fbb9f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Crisp kabichi heads — great shredded raw, stewed, or in coleslaw. Keeps well and feeds a crowd.', nutrition:'Good source of vitamin C, vitamin K and fibre. Supports digestion and immunity; keeps well and is budget-friendly nutrition.', tips:'Do not overcook if you want crunch; stewing longer gives a softer, sweeter result.', prep:'Remove outer leaves, wash, and shred or wedge.', serve:'Stewed, steamed, or raw coleslaw.', with:'Carrots, onions, potatoes, and light tomato stew.', varieties:['Green ball (Kabichi kijani)','Red cabbage — when available','Savoy / crinkle — when available']},
+  {id:'carrots', name:'Carrots', local:'Karoti', unit:'kg', price:90, cat:'veg', img:U('photo-1598170845058-32b9d6a5da37'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Naturally sweet karoti, rich in beta-carotene. Use in stews, githeri, juices, or as a crunchy snack.', nutrition:'Very high in beta-carotene (vitamin A). Supports eye health, immunity and skin. Naturally sweet and filling.', tips:'Roast with a little oil for natural sweetness; add early to stews so they soften.', prep:'Scrub or peel; slice, dice, or grate.', serve:'In stews, githeri, juices, or roasted.', with:'Potatoes, peas, beef stew, and fresh juice with ginger.', varieties:['Nantes / orange (Karoti)','Baby carrots — when available']},
+  {id:'capsicum', name:'Green peppers', local:'Hoho', unit:'kg', price:150, cat:'veg', img:'images/capsicum.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh green hoho (capsicum) — crunchy, mild and versatile for stir-fries, stews, salads and stuffing.', varieties:['Green hoho (Hoho kijani)','Red hoho (Hoho nyekundu) — when in season','Yellow / mixed — when available'], nutrition:'One of the best everyday sources of vitamin C, plus vitamin A. Supports immunity and eye health. Low calorie, high fibre.', tips:'Add near the end of cooking to keep colour and crunch.', prep:'Wash, deseed, and slice or dice.', serve:'Stir-fries, stews, salads, or stuffed.', with:'Onions, tomatoes, chicken, and egg dishes.'},
+  {id:'cucumbers', name:'Cucumbers', local:'Tango', unit:'kg', price:80, cat:'veg', img:'images/cucumbers.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh, crisp tango (cucumber) — cool and hydrating. Slice for salads, blend into juice, or serve with a pinch of salt.', varieties:['Long green (Tango refu)','Short / local (Tango fupi)'], nutrition:'Over 95% water — excellent for hydration. Provides vitamin K, potassium and antioxidants with almost no calories.', tips:'No cooking needed. Chill for extra refreshment on hot days.', prep:'Wash; peel if skin is thick. Slice or blend.', serve:'Raw salads, snacks, or juice.', with:'Lemon, salt, tomatoes, and yoghurt-style dips.'},
+  {id:'eggplant', name:'Eggplants', local:'Biringanya', unit:'kg', price:100, cat:'veg', img:'images/eggplant.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh purple biringanya (eggplant) — mild flesh that soaks up flavour. Roast, stew, or grill with garlic and tomatoes.', varieties:['Long purple (Biringanya refu)','Round / oval (Biringanya duara)','Baby / mini (Biringanya ndogo)'], nutrition:'Provides fibre, manganese and antioxidants (nasunin in purple skin). Low calorie; supports digestion and heart-friendly meals.', tips:'Salting reduces bitterness. It soaks up sauce — ideal in rich tomato stews.', prep:'Wash, trim top; cube or slice. Optional salt-and-rest 10 minutes.', serve:'Roasted, stewed, or grilled.', with:'Tomatoes, garlic, onions, and chapati or rice.'},
+  {id:'okra', name:'Okra', local:'Bamia', unit:'kg', price:110, cat:'veg', img:'images/okra.jpg', seasons:[3,4,5,6,7,8,9,10], desc:'Fresh green bamia (okra) pods — classic in Kenyan stews and soups. Cook briefly to keep a pleasant bite and light texture.', varieties:['Long green (Bamia refu)','Short / thick (Bamia fupi)'], nutrition:'Good source of fibre, vitamin C and folate. Supports digestion and is naturally low in calories.', tips:'Cook quickly; avoid over-stirring if you prefer less “draw”.', prep:'Wash and trim tops. Slice or leave whole.', serve:'In stews and soups, or quick-fried.', with:'Tomatoes, onions, and fish or chicken stew.'},
+  {id:'courgettes', name:'Courgettes', local:'Zucchini', unit:'kg', price:100, cat:'veg', img:'images/courgettes.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh green courgettes (zucchini) — mild and low-calorie. Steam, grill, sauté, or add to stews and omelettes.', varieties:['Green zucchini (Zucchini kijani)','Yellow — when available (Zucchini njano)'], nutrition:'High in water and fibre, with vitamin C and potassium. Very low calorie — ideal for light, healthy meals.', tips:'Add late to stews so they stay firm and mild.', prep:'Wash, trim ends; slice into rounds or batons.', serve:'Steamed, grilled, sautéed, or in stews.', with:'Garlic, eggs, tomatoes, and light sauces.'},
 
   /* ---- Fruits ---- */
-  {id:'bananas', name:'Bananas', local:'Ndizi', unit:'bunch', price:200, cat:'fruit', img:U('photo-1571771894821-ce9b6c11b08e'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Sweet and energy-rich.'},
-  {id:'mangoes', name:'Mangoes', local:'Maembe', unit:'kg', price:150, cat:'fruit', img:U('photo-1553279768-865429fa0078'), seasons:[11,12,1,2,3,4], desc:'Peak tropical sweetness.'},
-  {id:'oranges', name:'Oranges', local:'Machungwa', unit:'kg', price:120, cat:'fruit', img:U('photo-1547514701-42782101795e'), seasons:[5,6,7,8,9,10], desc:'Juicy and vitamin-C packed.'},
-  {id:'avocados', name:'Avocados', local:'Parachichi', unit:'kg', price:180, cat:'fruit', img:U('photo-1523049673857-eb18f1d7b578'), seasons:[3,4,5,6,7,8,9], desc:'Creamy and nutrient-dense.'},
-  {id:'pineapples', name:'Pineapples', local:'Nanasi', unit:'piece', price:150, cat:'fruit', img:U('photo-1550258987-190a2d41a8ba'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Tangy and refreshing.'},
-  {id:'watermelons', name:'Watermelons', local:'Tikiti maji', unit:'piece', price:250, cat:'fruit', img:U('photo-1587049352846-4a222e784d38'), seasons:[10,11,12,1,2,3], desc:'Hydrating summer favourite.'},
-  {id:'pawpaws', name:'Pawpaws', local:'Papai', unit:'piece', price:120, cat:'fruit', img:U('photo-1550258987-190a2d41a8ba'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Soft, sweet and digestive-friendly.'},
-  {id:'lemons', name:'Lemons', local:'Ndimu', unit:'kg', price:100, cat:'fruit', img:U('photo-1582284540020-8acbeba4bb3e'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Bright acidity for cooking and drinks.'},
-  {id:'passion', name:'Passion fruits', local:'Passion', unit:'kg', price:200, cat:'fruit', img:U('photo-1553279768-865429fa0078'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Aromatic and tart.'},
-  {id:'apples', name:'Apples', local:'Tufaha', unit:'kg', price:250, cat:'fruit', img:U('photo-1560806887-1e4cd0b6cbd6'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Crisp imported & highland varieties.'},
+  {id:'bananas', name:'Bananas', local:'Ndizi', unit:'bunch', price:200, cat:'fruit', img:'images/bananas.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Sweet, energy-rich ndizi — perfect for snacks, porridge and lunchboxes. Eating and cooking types depending on supply.', varieties:['Sweet / dessert (Ndizi tamu)','Cooking banana (Ndizi za kupika / matoke)','Apple banana — when available'], nutrition:'Excellent potassium and vitamin B6. Natural sugars for quick energy; supports muscle function and heart rhythm.', tips:'Sweet ndizi: eat ripe. Matoke: boil/steam until soft, mash or serve with stew.', prep:'Peel when ripe for eating; peel cooking bananas before boiling or steaming.', serve:'Fresh snack, porridge topping, or cooked matoke.', with:'Peanut butter, porridge, stews (for matoke), or yoghurt.'},
+  {id:'mangoes', name:'Mangoes', local:'Maembe', unit:'kg', price:150, cat:'fruit', img:'images/mangoes.jpg', seasons:[11,12,1,2,3,4], desc:'Sweet, juicy maembe at peak season — perfect eaten fresh, in juice, or fruit salad.', varieties:['Apple mango (Maembe apple)','Ngowe / local (Maembe ya kienyeji)','Tommy / export type — when available'], nutrition:'Rich in vitamins A and C plus fibre. Supports immunity, eye health and digestion when eaten ripe.', tips:'Best at room temperature when fragrant and slightly soft.', prep:'Wash, slice off cheeks, score flesh, and invert to cube.', serve:'Fresh, in juice, or fruit salad.', with:'Passion fruit, pineapple, yoghurt, or ice.'},
+  {id:'oranges', name:'Oranges', local:'Machungwa', unit:'kg', price:120, cat:'fruit', img:'images/oranges.jpg', seasons:[5,6,7,8,9,10], desc:'Juicy machungwa — bright and refreshing. Squeeze for juice or peel for a healthy snack.', varieties:['Sweet orange (Machungwa matamu)','Navel / seedless — when available','Local highland (Machungwa ya mlima)'], nutrition:'Excellent vitamin C and folate. Supports immunity, skin health and helps the body absorb iron from plant foods.', tips:'Roll firmly before juicing to release more liquid.', prep:'Peel and segment, or roll and juice.', serve:'Fresh segments, juice, or tea companion.', with:'Breakfast, greens salads, or ginger tea.'},
+  {id:'avocados', name:'Avocados', local:'Parachichi', unit:'kg', price:180, cat:'fruit', img:'images/avocados.jpg', seasons:[3,4,5,6,7,8,9], desc:'Creamy parachichi — nutrient-dense and filling. Mash on toast, add to salads, or blend into smoothies.', varieties:['Hass (Parachichi hass)','Fuerte / smooth skin — when available','Local highland (Parachichi ya mlima)'], nutrition:'Healthy monounsaturated fats, fibre, potassium and vitamin E. Supports heart health and keeps you full longer.', tips:'Ripe when it yields near the stem. Ripen firm fruit at room temperature.', prep:'Halve, remove stone, scoop flesh.', serve:'On toast, in salads, or blended.', with:'Eggs, lemon, tomatoes, and chapati.'},
+  {id:'pineapples', name:'Pineapples', local:'Nanasi', unit:'piece', price:150, cat:'fruit', img:'images/pineapples.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Sweet-tangy nanasi — refreshing and versatile. Core and cube for fruit salad, juice, or a side with nyama choma.', varieties:['Smooth cayenne / sweet (Nanasi tamu)','Local / small (Nanasi ndogo)'], nutrition:'High in vitamin C and manganese, plus bromelain for digestion. Naturally hydrating and refreshing.', tips:'Slightly under-ripe fruit is tarter and firmer for cooking or grilling.', prep:'Twist off crown, slice base, cut skin in strips; core if tough.', serve:'Cubed, juiced, or as a side.', with:'Nyama choma, fruit salad, or mint.'},
+  {id:'watermelons', name:'Watermelons', local:'Tikiti maji', unit:'piece', price:250, cat:'fruit', img:U('photo-1587049352846-4a222e784d38'), seasons:[10,11,12,1,2,3], desc:'Hydrating tikiti maji — peak in the warm months. Chill, slice, and share.', nutrition:'Very high water content for hydration, with vitamins A and C and lycopene. Low calorie summer fruit.', tips:'Chill before serving. Keep cut pieces covered in the fridge.', prep:'Wash outer skin, slice, and cut flesh from rind.', serve:'Chilled wedges or cubes.', with:'Lemon, mint, or on its own as a hydrating snack.', varieties:['Sugar baby / small','Large striped (Tikiti maji)','Seedless — when available']},
+  {id:'pawpaws', name:'Pawpaws', local:'Papai', unit:'piece', price:120, cat:'fruit', img:'images/pawpaws.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Soft, sweet papai — gentle on digestion. A breakfast favourite and excellent in fruit salads.', varieties:['Red / orange flesh (Papai nyekundu)','Yellow flesh (Papai njano)','Green / cooking — when requested'], nutrition:'Rich in vitamins A and C and the enzyme papain for digestion. High fibre and naturally hydrating.', tips:'Slightly under-ripe papai can be cooked as a vegetable in stews.', prep:'Halve, scoop seeds, peel or scoop flesh.', serve:'Breakfast bowls and fruit salads.', with:'Lemon, passion fruit, or yoghurt.'},
+  {id:'lemons', name:'Lemons', local:'Ndimu', unit:'kg', price:100, cat:'fruit', img:'images/lemons.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Bright ndimu — essential for cooking, tea and drinks. A squeeze lifts stews, greens and salads.', varieties:['Eureka / common (Ndimu)','Local thin-skin — when available'], nutrition:'Concentrated vitamin C. A squeeze brightens food and supports immunity; use juice and a little zest.', tips:'Roll before juicing. A little zest adds aroma without extra sourness.', prep:'Wash; juice and/or zest as needed.', serve:'As a finish for drinks, tea, stews, and salads.', with:'Greens, fish, tea, and fruit salads.'},
+  {id:'passion', name:'Passion fruits', local:'Passion', unit:'kg', price:200, cat:'fruit', img:'images/passion.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Aromatic, tart passion fruit — scoop the pulp for juice, yoghurt, or fruit salad.', varieties:['Purple passion (Passion ya zambarau)','Yellow passion — when available'], nutrition:'Vitamin C, fibre and plant compounds. Tart pulp is excellent in juice and supports hydration and immunity.', tips:'Strain for smooth juice, or keep seeds for texture and fibre.', prep:'Halve and scoop pulp and seeds.', serve:'Over fruit, in juice, or on yoghurt.', with:'Mango, pineapple, banana, and ice-cold water.'},
+  {id:'apples', name:'Apples', local:'Tufaha', unit:'kg', price:250, cat:'fruit', img:'images/apples.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Crisp tufaha — ideal for snacks and lunchboxes. Imported and highland varieties depending on supply.', varieties:['Red dessert (Tufaha nyekundu)','Green / tart — when available','Highland local — when available'], nutrition:'Fibre (including pectin) and vitamin C. Supports digestion and steady energy; a convenient everyday snack.', tips:'Keep cool to stay crisp. Slice just before serving to limit browning.', prep:'Wash; eat whole or slice. Optional peel.', serve:'Snack, lunchbox, or chopped into fruit salad.', with:'Peanut butter, cheese, or plain as a crisp snack.'},
 
   /* ---- Roots & tubers ---- */
-  {id:'potatoes', name:'Potatoes', local:'Viazi', unit:'kg', price:80, cat:'root', img:U('photo-1518977676601-b53f82aba655'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Everyday staple.'},
-  {id:'sweetpotatoes', name:'Sweet potatoes', local:'Viazi vitamu', unit:'kg', price:90, cat:'root', img:U('photo-1596097635121-14b63b7a0c19'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Naturally sweet and filling.'},
-  {id:'cassava', name:'Cassava', local:'Muhogo', unit:'kg', price:70, cat:'root', img:U('photo-1518977676601-b53f82aba655'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Versatile root crop.'},
-  {id:'arrowroots', name:'Arrowroots', local:'Nduma', unit:'kg', price:100, cat:'root', img:U('photo-1518977676601-b53f82aba655'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Traditional boiled or mashed.'},
-  {id:'yams', name:'Yams', local:'Viazi vikuu', unit:'kg', price:120, cat:'root', img:U('photo-1596097635121-14b63b7a0c19'), seasons:[6,7,8,9,10,11], desc:'Starchy and satisfying.'},
+  {id:'potatoes', name:'Potatoes', local:'Viazi', unit:'kg', price:80, cat:'root', img:'images/potatoes.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Everyday viazi — the backbone of Kenyan stews, fries and mash. Waxy and floury types depending on supply.', varieties:['Waxy / stew (Viazi vya stew)','Floury / mash (Viazi vya puree)','Baby / small — when available'], nutrition:'Good carbohydrate energy, potassium and vitamin C (especially with the skin). Filling and versatile staple.', tips:'Waxy types hold shape in stews; floury types mash smoothly.', prep:'Scrub or peel; cut evenly for even cooking.', serve:'Boiled, mashed, roasted, or in stews.', with:'Stews, greens, eggs, and gravy.'},
+  {id:'sweetpotatoes', name:'Sweet potatoes', local:'Viazi vitamu', unit:'kg', price:90, cat:'root', img:'images/sweetpotatoes.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Naturally sweet viazi vitamu — boil, roast, or steam. A favourite snack with tea and a colourful plate staple.', varieties:['Red skin / orange flesh (Viazi vitamu nyekundu)','White / cream flesh — when available'], nutrition:'High in beta-carotene (vitamin A), fibre and complex carbs. Supports eye health and sustained energy.', tips:'Roasting concentrates sweetness; boiling is softer and milder.', prep:'Scrub; boil or roast whole, or cube first.', serve:'As a sweet, filling side or snack.', with:'Tea, beans, or a simple vegetable stew.'},
+  {id:'cassava', name:'Cassava', local:'Muhogo', unit:'kg', price:70, cat:'root', img:'images/cassava.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Versatile muhogo root. Boil, fry, or use in traditional dishes; always cook thoroughly.', nutrition:'Energy-dense carbohydrate root. Always cook thoroughly; pair with greens or beans for a more balanced plate.', tips:'Always cook thoroughly. Never eat raw cassava.', prep:'Peel thick skin, remove fibrous core if needed; cut and cook thoroughly.', serve:'Boiled, fried, or in traditional dishes.', with:'Beans, greens, or stew.', varieties:['Sweet cassava (Mhogo)','Local root — cook thoroughly']},
+  {id:'arrowroots', name:'Arrowroots', local:'Nduma', unit:'kg', price:100, cat:'root', img:U('photo-1518977676601-b53f82aba655'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Traditional nduma — mild and comforting. Boil or mash; popular as a soft, easy-to-digest side.', nutrition:'Gentle, easy-to-digest starch. Mild flavour; useful when you want a soft, soothing side.', tips:'Gentle, easy-to-digest option when you want a soft plate.', prep:'Wash and boil or steam until tender; peel after cooking if preferred.', serve:'Soft side dish or snack.', with:'Tea, light stews, or a pinch of salt.', varieties:['Arrowroot / nduma','Local small tubers']},
+  {id:'yams', name:'Yams', local:'Viazi vikuu', unit:'kg', price:120, cat:'root', img:'images/yams.jpg', seasons:[6,7,8,9,10,11], desc:'Starchy viazi vikuu, satisfying and filling. Boil or roast; a hearty alternative to potatoes.', nutrition:'Complex carbohydrates and fibre. Filling alternative to potatoes; supports steady energy.', tips:'Roast for a drier, sweeter finish; boil for a softer mash.', prep:'Peel, cube, and boil or roast until tender.', serve:'Hearty side instead of potatoes.', with:'Vegetable stew, beans, or greens.', varieties:['White yam','Yellow yam — when available']},
 
   /* ---- Legumes ---- */
-  {id:'beans', name:'Beans', local:'Maharagwe', unit:'kg', price:150, cat:'legume', img:U('photo-1551462147-ff29053bfc14'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Protein-rich kitchen staple.'},
-  {id:'greengrams', name:'Green grams', local:'Ndengu', unit:'kg', price:180, cat:'legume', img:U('photo-1515543904379-3d757afe72e4'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Quick-cooking and nutritious.'},
-  {id:'cowpeas', name:'Cowpeas', local:'Kunde (beans)', unit:'kg', price:160, cat:'legume', img:U('photo-1551462147-ff29053bfc14'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Drought-tolerant legume.'},
-  {id:'pigeonpeas', name:'Pigeon peas', local:'Mbaazi', unit:'kg', price:170, cat:'legume', img:U('photo-1515543904379-3d757afe72e4'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Great in stews and githeri.'},
-  {id:'groundnuts', name:'Groundnuts', local:'Njugu', unit:'kg', price:220, cat:'legume', img:U('photo-1551462147-ff29053bfc14'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Roasted or used in sauces.'},
-  {id:'lentils', name:'Lentils', local:'Dengu / lentils', unit:'kg', price:200, cat:'legume', img:U('photo-1586201375761-83865001e31c'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fast-cooking protein.'},
+  {id:'beans', name:'Beans', local:'Maharagwe', unit:'kg', price:150, cat:'legume', img:'images/beans.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Protein-rich maharagwe. Soak and simmer for stews, githeri, or a simple bean sauce with chapati.', nutrition:'High plant protein and fibre, plus iron and folate. Supports muscles, digestion and long-lasting fullness.', tips:'Season after beans soften. A tomato-onion base makes a classic sauce.', prep:'Soak dry beans overnight; boil until soft. Or use pre-boiled.', serve:'Stew, githeri, or bean sauce.', with:'Chapati, rice, ugali, and greens.', varieties:['Rose coco','Wairimu / red','Canadian wonder — when available']},
+  {id:'greengrams', name:'Green grams', local:'Ndengu', unit:'kg', price:180, cat:'legume', img:'images/greengrams.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Quick-cooking ndengu — nutritious and light. Make a spiced stew or pair with rice and chapati.', nutrition:'Quick-cooking plant protein, fibre and folate. Light but satisfying; good for everyday stews.', tips:'Faster than many beans — ideal for weeknight protein.', prep:'Wash; boil until soft (no long soak needed for small grams).', serve:'Spiced stew with chapati or rice.', with:'Chapati, rice, onions, tomatoes, and turmeric.', varieties:['Green gram (Ndengu)','Yellow gram — when available']},
+  {id:'cowpeas', name:'Cowpeas', local:'Kunde (beans)', unit:'kg', price:160, cat:'legume', img:'images/cowpeas.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Drought-tolerant kunde beans. Earthy flavour that works well in stews and traditional mixed dishes.', nutrition:'Plant protein, fibre and iron. Drought-tolerant legume that supports energy and healthy blood.', tips:'Holds flavour well in slow stews with onions and spices.', prep:'Soak if dry; boil until tender.', serve:'Stews and mixed traditional dishes.', with:'Maize, greens, and tomato sauce.', varieties:['Kunde beans','Black-eyed type — when available']},
+  {id:'pigeonpeas', name:'Pigeon peas', local:'Mbaazi', unit:'kg', price:170, cat:'legume', img:'images/pigeonpeas.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Mbaazi — excellent in stews and githeri. Hold their shape and add plant protein to one-pot meals.', nutrition:'Protein and fibre that hold shape in stews and githeri. Supports a balanced, filling meal.', tips:'Add to githeri once maize is partly cooked so peas do not go mushy.', prep:'Soak if dry; boil until just tender so they keep shape.', serve:'Stews and githeri.', with:'Maize, carrots, potatoes, and greens.', varieties:['Mbaazi (fresh / dry)','Local highland']},
+  {id:'groundnuts', name:'Groundnuts', local:'Njugu', unit:'kg', price:220, cat:'legume', img:'images/groundnuts.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Njugu for roasting or grinding into sauces. Rich, satisfying, and a favourite snack.', nutrition:'Healthy fats, protein and magnesium. Satisfying snack or sauce base; portion mindful because energy-dense.', tips:'Roast gently to avoid burning; grind with a little water for a smooth sauce.', prep:'Roast in a dry pan, or boil; grind for sauces.', serve:'Snack or sauce base.', with:'Kunde leaves, stews, or plain roasted with salt.', varieties:['Red skin njugu','Large / jumbo — when available']},
+  {id:'lentils', name:'Lentils', local:'Dengu / lentils', unit:'kg', price:200, cat:'legume', img:'images/lentils.jpg', seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fast-cooking protein. Soften quickly into soups and stews — ideal when time is short.', nutrition:'Fast-cooking protein, iron and fibre. Excellent when you need a nutritious meal in less time.', tips:'Red lentils cook fastest and break down into a thick sauce.', prep:'Rinse; simmer until soft (usually no soak).', serve:'Soups and quick stews.', with:'Rice, chapati, carrots, and spinach.', varieties:['Red lentils (fast cook)','Green / brown lentils']},
 
   /* ---- Grains ---- */
-  {id:'maize', name:'Maize', local:'Mahindi', unit:'kg', price:80, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh or dry for ugali & githeri.'},
-  {id:'rice', name:'Rice', local:'Mchele', unit:'kg', price:180, cat:'grain', img:U('photo-1586201375761-83865001e31c'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Local and imported grades.'},
-  {id:'wheat', name:'Wheat', local:'Ngano', unit:'kg', price:120, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'For chapati and baking.'},
-  {id:'sorghum', name:'Sorghum', local:'Mtama', unit:'kg', price:100, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Traditional drought-resistant grain.'},
-  {id:'millet', name:'Millet', local:'Uwele', unit:'kg', price:110, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Nutrient-dense ancient grain.'},
+  {id:'maize', name:'Maize', local:'Mahindi', unit:'kg', price:80, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Mahindi — fresh or dry for ugali, githeri, and roasting. The backbone of many Kenyan plates.', nutrition:'Carbohydrate energy staple for ugali and githeri. Pair with greens and legumes for a complete plate.', tips:'Ugali: add flour gradually to boiling water and steam until firm.', prep:'Dry maize: boil for ugali flour mix or githeri. Fresh: boil or roast cobs.', serve:'Ugali, githeri, or roasted maize.', with:'Sukuma, beans, nyama, and stew.', varieties:['White maize (ugali / githeri)','Yellow maize — when available','Fresh cobs — seasonal']},
+  {id:'rice', name:'Rice', local:'Mchele', unit:'kg', price:180, cat:'grain', img:U('photo-1586201375761-83865001e31c'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Mchele in local and imported grades. Everyday accompaniment to stews, beans, and vegetables.', nutrition:'Easily digested energy. Choose portion size to match activity; combine with vegetables and protein.', tips:'Rest off heat 5 minutes after cooking for fluffier grains.', prep:'Rinse until water runs clearer; cook in measured water or stock.', serve:'Plain or pilau-style alongside stews.', with:'Beans, chicken, fish, and vegetable stew.', varieties:['Pishori / aromatic','Basmati-style','Local white']},
+  {id:'wheat', name:'Wheat', local:'Ngano', unit:'kg', price:120, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Ngano flour for chapati, mandazi, and baking. Soft dough when handled with a light hand.', nutrition:'Base for chapati and baking. Provides energy and some B vitamins; wholemeal options add more fibre.', tips:'Resting dough makes softer, easier chapatis.', prep:'Knead with water and a little oil/salt for chapati dough; rest before rolling.', serve:'Chapati, mandazi, or baking.', with:'Bean stew, greens, and tea (for mandazi).', varieties:['All-purpose (chapati)','Wholemeal — when available']},
+  {id:'sorghum', name:'Sorghum', local:'Mtama', unit:'kg', price:100, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Traditional drought-resistant mtama. Use for ugali, porridge, or blending with other flours.', nutrition:'Traditional gluten-free grain with fibre and minerals. Useful for ugali or porridge with a nutty taste.', tips:'Blend with maize flour if you want a milder, familiar ugali texture.', prep:'Mill or use flour for ugali/porridge; cook like other firm porridges.', serve:'Ugali or porridge.', with:'Greens, fermented milk, or vegetable stew.', varieties:['White sorghum','Red sorghum — when available']},
+  {id:'millet', name:'Millet', local:'Uwele', unit:'kg', price:110, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Nutrient-dense ancient uwele grain. Great for porridge and as a wholesome ugali alternative.', nutrition:'Nutrient-dense ancient grain with fibre and minerals. Excellent for porridge and wholesome ugali blends.', tips:'Whisk flour into cool water first to reduce lumps in porridge.', prep:'Use flour for porridge or ugali blends.', serve:'Porridge for breakfast or a denser ugali.', with:'Milk, honey, or savoury greens and stew.', varieties:['Finger millet (wimbi)','Pearl millet — when available']},
 
   /* ---- Animal products ---- */
-  {id:'milk', name:'Milk', local:'Maziwa', unit:'litre', price:60, cat:'animal', img:U('photo-1563636619-e9143da7973b'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh farm milk.'},
-  {id:'eggs', name:'Eggs', local:'Mayai', unit:'tray', price:450, cat:'animal', img:U('photo-1582722872445-44dc5f7e3c8f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Farm-fresh eggs.'},
-  {id:'chicken', name:'Chicken', local:'Kuku', unit:'piece', price:800, cat:'animal', img:U('photo-1604503468506-a8da13d82791'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Local free-range or broiler.'},
-  {id:'beef', name:'Beef', local:'Nyama ya ng\'ombe', unit:'kg', price:550, cat:'animal', img:U('photo-1603048297172-c92544724d21'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh cut to order.'},
-  {id:'goat', name:'Goat meat', local:'Nyama ya mbuzi', unit:'kg', price:700, cat:'animal', img:U('photo-1603048297172-c92544724d21'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Popular for stews and nyama choma.'},
-  {id:'pork', name:'Pork', local:'Nyama ya nguruwe', unit:'kg', price:480, cat:'animal', img:U('photo-1604503468506-a8da13d82791'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh pork cuts.'},
-  {id:'fish', name:'Fish', local:'Samaki', unit:'kg', price:400, cat:'animal', img:U('photo-1519708227418-c8fd9a32b7a2'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Tilapia and other local fish.'},
-  {id:'honey', name:'Honey', local:'Asali', unit:'jar', price:600, cat:'animal', img:U('photo-1587049352846-4a222e784d38'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Pure local honey.'},
+  {id:'milk', name:'Milk', local:'Maziwa', unit:'litre', price:60, cat:'animal', img:U('photo-1563636619-e9143da7973b'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh farm maziwa, chilled the same day when possible. For tea, cooking, and drinking straight.', nutrition:'Protein, calcium and B vitamins. Supports bones, teeth and muscle repair — especially useful for growing children.', tips:'Store cold and use soon for best freshness.', prep:'Keep chilled; boil for tea if preferred.', serve:'Tea, drinking, cooking, and porridge.', with:'Tea, uji, baking, and creamy sauces.', varieties:['Fresh cow milk','Mala / fermented — when available']},
+  {id:'eggs', name:'Eggs', local:'Mayai', unit:'tray', price:450, cat:'animal', img:U('photo-1582722872445-44dc5f7e3c8f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Farm-fresh mayai. Reliable protein for breakfast, baking, and quick weekday meals.', nutrition:'Complete protein, choline and vitamins A and D. Supports muscles, brain health and everyday energy.', tips:'Low heat and gentle stirring keep scrambled eggs soft.', prep:'Crack into a bowl for scrambling; boil in water for hard/soft eggs.', serve:'Breakfast, salads, or with greens.', with:'Spinach, tomatoes, chapati, and avocado.', varieties:['Kienyeji / free-range','Layer / farm eggs']},
+  {id:'chicken', name:'Chicken', local:'Kuku', unit:'piece', price:800, cat:'animal', img:U('photo-1604503468506-a8da13d82791'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Local free-range or broiler kuku. Order whole or pieces — ideal for stews, fry, and roasting.', nutrition:'Lean protein and B vitamins. Supports muscle repair; remove excess skin if you want a lighter meal.', tips:'Simmer until juices run clear. Brown pieces first for deeper flavour.', prep:'Clean, cut into pieces; marinate if desired.', serve:'Stew, dry-fry, or roast.', with:'Rice, ugali, chapati, and kienyeji greens.', varieties:['Kienyeji / indigenous','Broiler — when available']},
+  {id:'beef', name:'Beef', local:'Nyama ya ng\'ombe', unit:'kg', price:550, cat:'animal', img:U('photo-1603048297172-c92544724d21'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh nyama ya ng\'ombe, cut to order. For stews, mince, and weekend nyama choma.', nutrition:'Protein, iron and B12. Supports blood health and strength; enjoy in balanced portions with plenty of vegetables.', tips:'Slow cooking on low heat makes tougher cuts tender.', prep:'Cut to order; brown before slow stewing if possible.', serve:'Stews, mince dishes, or nyama choma.', with:'Ugali, greens, potatoes, and kachumbari.', varieties:['Stewing beef','Mince','Nyama choma cuts — on request']},
+  {id:'goat', name:'Goat meat', local:'Nyama ya mbuzi', unit:'kg', price:700, cat:'animal', img:U('photo-1603048297172-c92544724d21'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Nyama ya mbuzi — popular for stews and nyama choma. Rich flavour that stands up to bold seasoning.', nutrition:'Protein and iron with a distinctive flavour. Popular in stews and nyama choma; pair with kienyeji greens.', tips:'Goat shines with bold seasoning and patient simmering.', prep:'Cut into stew or choma pieces; season simply.', serve:'Stew or nyama choma.', with:'Ugali, kachumbari, and kienyeji greens.', varieties:['Stewing goat','Nyama choma cuts']},
+  {id:'pork', name:'Pork', local:'Nyama ya nguruwe', unit:'kg', price:480, cat:'animal', img:U('photo-1604503468506-a8da13d82791'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh nyama ya nguruwe cuts. Suitable for stews, chops, and slow cooking.', tips:'Cook through completely; balance richness with fresh greens or lemon.', prep:'Cut into pieces; cook until fully done.', serve:'Stews or pan-fried cuts.', with:'Rice, chapati, and vegetable sides.', varieties:['Stewing pork','Chops — when available']},
+  {id:'fish', name:'Fish', local:'Samaki', unit:'kg', price:400, cat:'animal', img:U('photo-1519708227418-c8fd9a32b7a2'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Samaki — typically tilapia and other local catches. Fry, stew, or grill with lemon and dhania.', nutrition:'Protein and, in many local catches, beneficial fats. Supports heart and brain health when eaten regularly.', tips:'Do not overcook — flesh should flake easily. Finish with lemon and dhania.', prep:'Clean and scale if needed; score sides for even cooking.', serve:'Fried, stewed, or grilled.', with:'Ugali, greens, lemon, and tomato stew.', varieties:['Tilapia','Omena / dagaa — when available','Other local catch — seasonal']},
+  {id:'honey', name:'Honey', local:'Asali', unit:'jar', price:600, cat:'animal', img:U('photo-1587049352846-4a222e784d38'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Pure local asali. Spoon into tea, drizzle on porridge, or use as a natural sweetener.', nutrition:'Natural sugars with trace enzymes and antioxidants. Use as a gentle sweetener; still energy-dense so use sparingly.', tips:'Avoid boiling honey hard if you want to keep a milder flavour; stir into warm (not scalding) drinks.', prep:'Use as-is; spoon or drizzle.', serve:'In tea, on porridge, or as a natural sweetener.', with:'Uji, yoghurt, lemon tea, and roasted groundnuts.', varieties:['Raw local honey','Comb honey — when available']},
 
   /* ---- Herbs & spices ---- */
-  {id:'dhania', name:'Coriander', local:'Dhania', unit:'bunch', price:30, cat:'herb', img:U('photo-1512621776951-a57141f2eefd'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Essential for Kenyan flavour.'},
-  {id:'parsley', name:'Parsley', local:'Parsley', unit:'bunch', price:40, cat:'herb', img:U('photo-1594282486552-05b4d80fbb9f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh garnish and flavour.'},
-  {id:'mint', name:'Mint', local:'Mint', unit:'bunch', price:40, cat:'herb', img:U('photo-1512621776951-a57141f2eefd'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Cooling herb for drinks and salads.'},
-  {id:'ginger', name:'Ginger', local:'Tangawizi', unit:'250g', price:90, cat:'herb', img:U('photo-1599940824399-b87987ceb72a'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Warming and aromatic.'},
-  {id:'garlic', name:'Garlic', local:'Kitunguu saumu', unit:'250g', price:80, cat:'herb', img:U('photo-1599940824399-b87987ceb72a'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Flavour and immunity support.'},
-  {id:'turmeric', name:'Turmeric', local:'Manjano', unit:'250g', price:100, cat:'herb', img:U('photo-1615485290382-441e4d049cb5'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Golden root with anti-inflammatory properties.'},
-  {id:'chili', name:'Chili peppers', local:'Pilipili', unit:'kg', price:150, cat:'herb', img:U('photo-1563565375-f3fdfdbefa83'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Heat for every kitchen.'}
+  {id:'dhania', name:'Coriander', local:'Dhania', unit:'bunch', price:30, cat:'herb', img:U('photo-1512621776951-a57141f2eefd'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh coriander — essential Kenyan flavour. Chop over stews, salads, and grilled meats.', nutrition:'Fresh herb with vitamin K and plant compounds. Adds flavour so you can use less salt.', tips:'Add off heat — cooking dulls the aroma.', prep:'Wash and chop leaves and tender stems.', serve:'Fresh garnish at the end of cooking.', with:'Stews, grilled meats, eggs, and salads.', varieties:['Fresh coriander leaves','Roots for stock — on request']},
+  {id:'parsley', name:'Parsley', local:'Parsley', unit:'bunch', price:40, cat:'herb', img:U('photo-1594282486552-05b4d80fbb9f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh green garnish and mild herb flavour. Finish soups, eggs, and light sauces.', tips:'Add at the end for a clean, green finish.', prep:'Wash and finely chop.', serve:'Garnish for soups, eggs, and light sauces.', with:'Potatoes, fish, and tomato dishes.', varieties:['Curly parsley','Flat-leaf — when available']},
+  {id:'mint', name:'Mint', local:'Mint', unit:'bunch', price:40, cat:'herb', img:U('photo-1512621776951-a57141f2eefd'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Cooling leaves for drinks, fruit salads, and light sauces. A bright lift on hot days.', tips:'Bruise leaves lightly to release aroma in drinks.', prep:'Wash; tear or slice leaves.', serve:'Drinks, fruit salads, and light sauces.', with:'Pineapple, watermelon, lemon water, and yoghurt.', varieties:['Spearmint / garden mint']},
+  {id:'ginger', name:'Ginger', local:'Tangawizi', unit:'250g', price:90, cat:'herb', img:U('photo-1599940824399-b87987ceb72a'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Warming tangawizi root. Grate into tea, stews, and marinades for aroma and gentle heat.', nutrition:'Aromatic compounds that support comfortable digestion. Common in tea and stews for warmth and flavour.', tips:'Young ginger is milder; older roots are hotter and woodier.', prep:'Peel and grate, slice, or crush.', serve:'Tea, stews, and marinades.', with:'Lemon, garlic, chicken, and chai.', varieties:['Fresh root ginger','Young ginger — when available']},
+  {id:'garlic', name:'Garlic', local:'Kitunguu saumu', unit:'250g', price:80, cat:'herb', img:U('photo-1599940824399-b87987ceb72a'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Kitunguu saumu for flavour and everyday cooking. Crush into stews, greens, and marinades.', nutrition:'Flavour powerhouse with beneficial sulphur compounds. Supports everyday cooking and savoury depth.', tips:'Add early for sweetness, or later for a sharper bite.', prep:'Peel; crush, mince, or slice.', serve:'Flavour base for stews, greens, and marinades.', with:'Onions, tomatoes, chicken, and sukuma.', varieties:['Local garlic bulbs','Single-clove — when available']},
+  {id:'turmeric', name:'Turmeric', local:'Manjano', unit:'250g', price:100, cat:'herb', img:U('photo-1615485290382-441e4d049cb5'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Golden manjano root with a warm, earthy note. Colour and depth for rice, stews, and teas.', nutrition:'Curcumin and warm spice notes. Traditional in stews and teas; pair with a little black pepper and fat for absorption.', tips:'Pair with a little black pepper and fat to help the body use curcumin.', prep:'Peel fresh root and grate, or use dried powder.', serve:'In stews, rice, and teas.', with:'Ndengu, rice, chicken, and warm milk drinks.', varieties:['Fresh turmeric root','Dried powder — when available']},
+  {id:'chili', name:'Chili peppers', local:'Pilipili', unit:'kg', price:150, cat:'herb', img:U('photo-1563565375-f3fdfdbefa83'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh pilipili heat for every kitchen. Use sparingly in stews, sauces, and chutneys.', nutrition:'Capsaicin and vitamin C. Adds heat and flavour; use to taste.', tips:'Start small — heat builds. Wash hands after cutting.', prep:'Wash; slice or chop. Remove seeds for less heat.', serve:'In stews, sauces, and chutneys.', with:'Beans, meat stews, and kachumbari.', varieties:['Bird\'s eye / local hot','Cayenne-style','Mild green — when available']}
 ];
 
 var MIN_ORDER = 500;
@@ -2002,16 +2133,63 @@ var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','
 function fmt(n){ return 'KES ' + n.toLocaleString('en-KE', {maximumFractionDigits:0}); }
 function waLink(text){ return 'https://wa.me/254141773312?text=' + encodeURIComponent(text); }
 function isInSeason(p, month){ return p.seasons && p.seasons.indexOf(month) !== -1; }
+function normalizeVarieties(p){
+  if (!p || !p.varieties || !p.varieties.length) return [];
+  var fallback = productImg(p, 300);
+  return p.varieties.map(function(v){
+    if (typeof v === 'string'){
+      // Optional override: images/varieties/{id}-{slug}.jpg
+      var slug = v.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+      var specific = 'images/varieties/' + p.id + '-' + slug + '.jpg';
+      return { name: v, img: specific, fallback: fallback };
+    }
+    return {
+      name: v.name || v.label || 'Variety',
+      img: v.img || fallback,
+      fallback: fallback
+    };
+  });
+}
+function varietyNames(p){
+  return normalizeVarieties(p).map(function(v){ return v.name; });
+}
+function seasonLabel(p){
+  if (!p.seasons || !p.seasons.length) return 'Availability varies';
+  if (p.seasons.length >= 12) return 'Year-round';
+  var names = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var sorted = p.seasons.slice().sort(function(a,b){ return a-b; });
+  // Group consecutive months into ranges
+  var ranges = [];
+  var start = sorted[0], prev = sorted[0];
+  for (var i = 1; i < sorted.length; i++){
+    if (sorted[i] === prev + 1){ prev = sorted[i]; continue; }
+    ranges.push(start === prev ? names[start-1] : names[start-1] + '–' + names[prev-1]);
+    start = prev = sorted[i];
+  }
+  ranges.push(start === prev ? names[start-1] : names[start-1] + '–' + names[prev-1]);
+  return ranges.join(', ');
+}
+function seasonStatus(p){
+  if (!p.seasons || !p.seasons.length) return 'Availability varies';
+  if (isInSeason(p, currentMonth)){
+    return p.seasons.length >= 12 ? 'In season · Year-round' : 'In season now · Peak: ' + seasonLabel(p);
+  }
+  return 'Limited now · Best: ' + seasonLabel(p);
+}
 
 /* ---- Basket logic ---- */
 function setMode(mode){
-  document.getElementById('tab-tier').classList.toggle('active', mode==='tier');
-  document.getElementById('tab-custom').classList.toggle('active', mode==='custom');
+  var tabTier = document.getElementById('tab-tier');
+  var tabCustom = document.getElementById('tab-custom');
   var tabGift = document.getElementById('tab-gift');
-  if (tabGift) tabGift.classList.toggle('active', mode==='gift');
-  document.getElementById('panel-tier').classList.toggle('active', mode==='tier');
-  document.getElementById('panel-custom').classList.toggle('active', mode==='custom');
+  var panelTier = document.getElementById('panel-tier');
+  var panelCustom = document.getElementById('panel-custom');
   var panelGift = document.getElementById('panel-gift');
+  if (tabTier) tabTier.classList.toggle('active', mode==='tier');
+  if (tabCustom) tabCustom.classList.toggle('active', mode==='custom');
+  if (tabGift) tabGift.classList.toggle('active', mode==='gift');
+  if (panelTier) panelTier.classList.toggle('active', mode==='tier');
+  if (panelCustom) panelCustom.classList.toggle('active', mode==='custom');
   if (panelGift) panelGift.classList.toggle('active', mode==='gift');
   updateStickyCart();
 }
@@ -2096,7 +2274,7 @@ function buildProductList(){
   list.innerHTML = visible.map(function(p){
     var qty = cart[p.id] || 0;
     return '<div class="builder-row">'+
-      '<div class="picon"><img src="'+imgUrl(p.img, 96)+'" alt="'+p.name+'" width="44" height="44" loading="lazy" decoding="async"></div>'+
+      '<div class="picon"><img src="'+productImg(p, 96)+'" alt="'+p.name+'" width="44" height="44" loading="lazy" decoding="async"></div>'+
       '<div class="pinfo"><span class="pname">'+p.name+'</span><span class="plocal">'+p.local+' · '+fmt(p.price)+' / '+p.unit+'</span></div>'+
       '<div class="qty-control">'+
         '<button onclick="changeQty(\''+p.id+'\', -1)" aria-label="Decrease">−</button>'+
@@ -2176,7 +2354,9 @@ function renderCustom(){
 function updateStickyCart(subtotal, itemCount){
   var bar = document.getElementById('sticky-cart');
   var totalEl = document.getElementById('sticky-cart-total');
-  var onCustomTab = document.getElementById('panel-custom').classList.contains('active');
+  var panelCustom = document.getElementById('panel-custom');
+  if (!bar || !totalEl || !panelCustom) return;
+  var onCustomTab = panelCustom.classList.contains('active');
   if (!onCustomTab || !itemCount){
     bar.classList.remove('visible');
     return;
@@ -2194,7 +2374,9 @@ function buildCatalog(){
   }).join('');
   filterCatalog('all');
 }
+var catalogActiveCat = 'all';
 function filterCatalog(cat){
+  catalogActiveCat = cat;
   document.querySelectorAll('#cat-tabs .cat-tab').forEach(function(t){
     t.classList.toggle('active', t.getAttribute('data-cat') === cat);
   });
@@ -2202,11 +2384,17 @@ function filterCatalog(cat){
   var list = cat === 'all' ? PRODUCTS : PRODUCTS.filter(function(p){ return p.cat === cat; });
   grid.innerHTML = list.map(function(p){
     var inS = isInSeason(p, currentMonth);
-    return '<div class="product-card" onclick="openProductModal(\''+p.id+'\')">'+
-      (inS ? '<span class="season-badge">In season</span>' : '<span class="season-badge off">Limited</span>')+
-      '<div class="pic-wrap"><img src="'+imgUrl(p.img, 400)+'" alt="'+p.name+'" width="400" height="400" loading="lazy" decoding="async"></div>'+
+    var hasOverride = !!PHOTO_OVERRIDES[p.id];
+    return '<div class="product-card'+(hasOverride?' has-override':'')+'" onclick="openProductModal(\''+p.id+'\')">'+
+      (inS ? '<span class="season-badge" title="'+seasonLabel(p)+'">In season</span>' : '<span class="season-badge off" title="Best: '+seasonLabel(p)+'">Limited</span>')+
+      '<div class="pic-wrap">'+
+        '<img src="'+productImg(p, 400)+'" alt="'+p.name+'" width="400" height="400" loading="lazy" decoding="async">'+
+        '<button class="admin-photo-btn" title="Change photo" onclick="event.stopPropagation(); openPhotoUpload(\''+p.id+'\')">'+CAMERA_ICON+'</button>'+
+        '<button class="admin-photo-reset" title="Remove custom photo" onclick="event.stopPropagation(); resetPhoto(\''+p.id+'\')">×</button>'+
+      '</div>'+
       '<span class="pname">'+p.name+'</span>'+
       '<span class="plocal">'+p.local+'</span>'+
+      (p.varieties && p.varieties.length ? '<span class="pvars">'+varietyNames(p).join(' · ')+'</span>' : '')+
       '<div class="pprice">'+fmt(p.price)+' / '+p.unit+'</div>'+
       '<button class="add-btn" onclick="event.stopPropagation(); quickAdd(\''+p.id+'\')">+ Add</button>'+
     '</div>';
@@ -2228,15 +2416,63 @@ function openProductModal(id){
   if (!p) return;
   modalProduct = p;
   modalQty = 1;
-  document.getElementById('pm-img').src = imgUrl(p.img, 600);
+  document.getElementById('pm-img').src = productImg(p, 600);
   document.getElementById('pm-img').alt = p.name;
   document.getElementById('pm-name').textContent = p.name;
   document.getElementById('pm-local').textContent = p.local + ' · ' + fmt(p.price) + ' / ' + p.unit;
-  document.getElementById('pm-desc').textContent = p.desc;
+  var descHtml = p.desc || '';
+  descHtml += '\n\nSeasonal availability: ' + seasonStatus(p);
+  if (p.seasons && p.seasons.length && p.seasons.length < 12){
+    descHtml += ' (' + seasonLabel(p) + ')';
+  }
+  var vars = normalizeVarieties(p);
+  if (vars.length){
+    descHtml += '\n\nVarieties: ' + vars.map(function(v){ return v.name; }).join(' · ');
+  }
+  if (p.nutrition){
+    descHtml += '\n\nNutrition: ' + p.nutrition;
+  }
+  if (p.prep){
+    descHtml += '\n\nPreparation: ' + p.prep;
+  }
+  if (p.tips){
+    descHtml += '\n\nCooking tip: ' + p.tips;
+  }
+  if (p.serve){
+    descHtml += '\n\nHow to serve: ' + p.serve;
+  }
+  if (p.with){
+    descHtml += '\n\nGoes well with: ' + p.with;
+  }
+  document.getElementById('pm-desc').textContent = descHtml;
+  var varBox = document.getElementById('pm-varieties');
+  var varGrid = document.getElementById('pm-var-grid');
+  if (varBox && varGrid){
+    var vars = normalizeVarieties(p);
+    if (vars.length){
+      varGrid.innerHTML = vars.map(function(v){
+        var src = v.img || v.fallback;
+        return '<div class="pm-var-card"><img src="'+src+'" alt="'+v.name+'" loading="lazy" onerror="this.onerror=null;this.src=\''+v.fallback+'\';"><span>'+v.name+'</span></div>';
+      }).join('');
+      varBox.hidden = false;
+    } else {
+      varGrid.innerHTML = '';
+      varBox.hidden = true;
+    }
+  }
   var inS = isInSeason(p, currentMonth);
-  document.getElementById('pm-meta').innerHTML =
-    '<span>'+(inS?'In season now':'Limited season')+'</span>'+
+  var meta = '<span>'+seasonStatus(p)+'</span>'+
     '<span>'+(CAT_LABELS[p.cat]||p.cat)+'</span>';
+  if (p.varieties && p.varieties.length){
+    meta += '<span>'+p.varieties.length+' varieties</span>';
+  }
+  if (p.nutrition){
+    meta += '<span>Nutritious</span>';
+  }
+  if (p.tips){
+    meta += '<span>Cooking tip</span>';
+  }
+  document.getElementById('pm-meta').innerHTML = meta;
   document.getElementById('pm-qty').textContent = '1';
   document.getElementById('modal-backdrop').classList.add('open');
   document.getElementById('product-modal').classList.add('open');
@@ -2298,7 +2534,7 @@ function buildSlideshow(){
     var load = i === 0 ? 'eager' : 'lazy';
     var prio = i === 0 ? ' fetchpriority="high"' : '';
     return '<div class="slide">'+
-      '<div class="slide-icon"><img src="'+imgUrl(p.img, 400)+'" alt="'+p.name+'" width="160" height="160" loading="'+load+'" decoding="async"'+prio+'></div>'+
+      '<div class="slide-icon"><img src="'+productImg(p, 400)+'" alt="'+p.name+'" width="160" height="160" loading="'+load+'" decoding="async"'+prio+'></div>'+
       '<div class="slide-body">'+
         '<h3>'+p.name+'</h3>'+
         '<div class="local">'+p.local+' · '+fmt(p.price)+' / '+p.unit+'</div>'+
@@ -2342,6 +2578,35 @@ function buildCalendar(){
     return '<button class="'+cls+'" data-m="'+mon+'" onclick="setCalMonth('+mon+')">'+m+'</button>';
   }).join('');
   renderSeasonGrid();
+  buildHarvestTable();
+}
+function buildHarvestTable(){
+  var table = document.getElementById('harvest-table');
+  if (!table) return;
+  var thead = table.querySelector('thead');
+  var tbody = table.querySelector('tbody');
+  thead.innerHTML = '<tr><th>Produce</th>' + MONTH_NAMES.map(function(m, i){
+    var mon = i + 1;
+    var cls = mon === currentMonth ? ' class="h-now"' : '';
+    return '<th'+cls+'>'+m+'</th>';
+  }).join('') + '</tr>';
+  // Sort: category order then name
+  var catOrder = ['greens','veg','fruit','root','legume','grain','animal','herb'];
+  var list = PRODUCTS.slice().sort(function(a,b){
+    var ca = catOrder.indexOf(a.cat); var cb = catOrder.indexOf(b.cat);
+    if (ca !== cb) return ca - cb;
+    return a.name.localeCompare(b.name);
+  });
+  tbody.innerHTML = list.map(function(p){
+    var cells = '';
+    for (var m = 1; m <= 12; m++){
+      var on = isInSeason(p, m);
+      var cls = on ? 'h-on' : 'h-off';
+      if (m === currentMonth) cls += ' h-now';
+      cells += '<td class="h-cell '+cls+'">'+(on ? '●' : '·')+'</td>';
+    }
+    return '<tr><td><span class="h-name">'+p.name+'</span><span class="h-local">'+p.local+'</span></td>'+cells+'</tr>';
+  }).join('');
 }
 function setCalMonth(m){
   selectedCalMonth = m;
@@ -2359,7 +2624,7 @@ function renderSeasonGrid(){
   grid.innerHTML = sample.map(function(p){
     var inS = isInSeason(p, selectedCalMonth);
     return '<div class="season-item'+(inS?' in-season':'')+'">'+
-      '<div class="si"><img src="'+imgUrl(p.img, 280)+'" alt="'+p.name+'" width="280" height="280" loading="lazy" decoding="async"></div>'+
+      '<div class="si"><img src="'+productImg(p, 280)+'" alt="'+p.name+'" width="280" height="280" loading="lazy" decoding="async"></div>'+
       '<div class="sn">'+p.name+'</div>'+
       '<div class="sl">'+p.local+'</div>'+
     '</div>';
@@ -2400,6 +2665,7 @@ window.addEventListener('scroll', function(){
 });
 
 document.addEventListener('DOMContentLoaded', function(){
+  loadPhotoOverrides();
   buildProductList();
   buildCatalog();
   buildSlideshow();
@@ -2413,7 +2679,7 @@ document.addEventListener('DOMContentLoaded', function(){
       if (el) el.addEventListener('change', function(){ collectClient(prefix); });
     });
   });
-  var targets = document.querySelectorAll('.reveal, section, .tier-card, .seg-card, .recipe-card, .video-card, .testimonial-card');
+  var targets = document.querySelectorAll('.reveal, section:not(#products), .tier-card, .seg-card, .recipe-card, .video-card, .testimonial-card');
   targets.forEach(function(el){ if (!el.classList.contains('reveal')) el.classList.add('reveal'); });
   var observer = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
@@ -2537,338 +2803,6 @@ document.addEventListener('keydown', function(e){
   }
 });
 
-
-
-/* ---- Push / local notifications ---- */
-var NOTIF_PREFS_KEY = 'dfb_notif_prefs_v1';
-// Optional: replace with your real VAPID public key when you connect a push server
-var VAPID_PUBLIC_KEY = ''; // e.g. 'BNxxx...' from web-push or Firebase
-
-function loadNotifPrefs(){
-  try {
-    return JSON.parse(localStorage.getItem(NOTIF_PREFS_KEY) || '{}');
-  } catch(e){ return {}; }
-}
-function saveNotifPrefs(){
-  var prefs = {
-    enabled: !!(document.getElementById('notif-enable')||{}).checked,
-    orders: !!(document.getElementById('notif-orders')||{}).checked,
-    seasonal: !!(document.getElementById('notif-seasonal')||{}).checked,
-    delivery: !!(document.getElementById('notif-delivery')||{}).checked
-  };
-  try { localStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(prefs)); } catch(e){}
-  return prefs;
-}
-function applyNotifPrefsToUI(){
-  var prefs = loadNotifPrefs();
-  var en = document.getElementById('notif-enable');
-  var o = document.getElementById('notif-orders');
-  var s = document.getElementById('notif-seasonal');
-  var d = document.getElementById('notif-delivery');
-  if (en) en.checked = !!prefs.enabled && Notification.permission === 'granted';
-  if (o) o.checked = prefs.orders !== false;
-  if (s) s.checked = prefs.seasonal !== false;
-  if (d) d.checked = !!prefs.delivery;
-  updateNotifStatus();
-}
-function updateNotifStatus(){
-  var el = document.getElementById('notif-status');
-  var testBtn = document.getElementById('notif-test-btn');
-  if (!el) return;
-  if (!('Notification' in window)) {
-    el.textContent = 'Notifications not supported in this browser';
-    el.classList.remove('on');
-    if (testBtn) testBtn.style.display = 'none';
-    return;
-  }
-  var perm = Notification.permission;
-  var prefs = loadNotifPrefs();
-  if (perm === 'granted' && prefs.enabled) {
-    el.textContent = 'Notifications are on';
-    el.classList.add('on');
-    if (testBtn) testBtn.style.display = 'block';
-  } else if (perm === 'denied') {
-    el.textContent = 'Blocked in browser settings — allow notifications for this site';
-    el.classList.remove('on');
-    if (testBtn) testBtn.style.display = 'none';
-  } else {
-    el.textContent = 'Notifications are off';
-    el.classList.remove('on');
-    if (testBtn) testBtn.style.display = 'none';
-  }
-}
-
-async function toggleNotifications(wantOn){
-  if (!('Notification' in window)) {
-    showToast('Notifications not supported here');
-    applyNotifPrefsToUI();
-    return;
-  }
-  if (!wantOn) {
-    var prefs = loadNotifPrefs();
-    prefs.enabled = false;
-    try { localStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(prefs)); } catch(e){}
-    updateNotifStatus();
-    showToast('Notifications turned off');
-    return;
-  }
-  var perm = Notification.permission;
-  if (perm === 'default') {
-    perm = await Notification.requestPermission();
-  }
-  if (perm !== 'granted') {
-    showToast('Permission denied — enable in browser settings');
-    applyNotifPrefsToUI();
-    return;
-  }
-  var prefs = saveNotifPrefs();
-  prefs.enabled = true;
-  try { localStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(prefs)); } catch(e){}
-  // Try Web Push subscription if VAPID key is configured
-  await subscribePushIfPossible();
-  updateNotifStatus();
-  showToast('Notifications enabled');
-  // Welcome notification
-  setTimeout(function(){
-    showLocalNotification({
-      title: 'Dawn Fresh is ready',
-      body: 'You will get order & seasonal alerts here.',
-      tag: 'dfb-welcome',
-      url: './dawn-fresh-basket-expanded.html#baskets'
-    });
-  }, 600);
-}
-
-function urlBase64ToUint8Array(base64String){
-  var padding = '='.repeat((4 - base64String.length % 4) % 4);
-  var base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
-  var rawData = atob(base64);
-  var outputArray = new Uint8Array(rawData.length);
-  for (var i = 0; i < rawData.length; ++i) outputArray[i] = rawData.charCodeAt(i);
-  return outputArray;
-}
-
-async function subscribePushIfPossible(){
-  if (!VAPID_PUBLIC_KEY || !('serviceWorker' in navigator) || !('PushManager' in window)) {
-    return null;
-  }
-  try {
-    var reg = await navigator.serviceWorker.ready;
-    var sub = await reg.pushManager.getSubscription();
-    if (!sub) {
-      sub = await reg.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
-      });
-    }
-    // In production: POST sub.toJSON() to your backend
-    try { localStorage.setItem('dfb_push_sub_v1', JSON.stringify(sub.toJSON())); } catch(e){}
-    console.log('[DFB] Push subscription', sub.endpoint);
-    return sub;
-  } catch (err) {
-    console.warn('[DFB] Push subscribe failed', err);
-    return null;
-  }
-}
-
-function showLocalNotification(payload){
-  var prefs = loadNotifPrefs();
-  if (!prefs.enabled || Notification.permission !== 'granted') return;
-
-  // Prefer SW so it works when the tab is backgrounded
-  if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-    navigator.serviceWorker.controller.postMessage({
-      type: 'SHOW_NOTIFICATION',
-      payload: payload
-    });
-    return;
-  }
-  // Fallback: page Notification API
-  try {
-    var n = new Notification(payload.title || 'Dawn Fresh Basket', {
-      body: payload.body || '',
-      icon: payload.icon || './icon-192.png',
-      tag: payload.tag || 'dfb-local',
-      data: { url: payload.url || './dawn-fresh-basket-expanded.html' }
-    });
-    n.onclick = function(){
-      window.focus();
-      if (payload.url) location.href = payload.url;
-      n.close();
-    };
-  } catch(e){}
-}
-
-function sendTestNotification(){
-  showLocalNotification({
-    title: 'Test · Dawn Fresh Basket',
-    body: 'Notifications are working. Order fresh produce anytime.',
-    tag: 'dfb-test',
-    url: './dawn-fresh-basket-expanded.html#baskets'
-  });
-  showToast('Test notification sent');
-}
-
-function notifyOrderPlaced(ref, totalLabel){
-  var prefs = loadNotifPrefs();
-  if (!prefs.enabled || prefs.orders === false) return;
-  showLocalNotification({
-    title: 'Order ready to send',
-    body: (ref ? 'Ref ' + ref + ' · ' : '') + (totalLabel || 'Open WhatsApp to confirm') + '. Forward your M-Pesa SMS after paying.',
-    tag: 'dfb-order',
-    url: './dawn-fresh-basket-expanded.html#baskets'
-  });
-}
-
-function maybeSeasonalTip(){
-  var prefs = loadNotifPrefs();
-  if (!prefs.enabled || prefs.seasonal === false) return;
-  try {
-    var key = 'dfb_seasonal_tip_' + (new Date().getMonth());
-    if (localStorage.getItem(key) === '1') return;
-    localStorage.setItem(key, '1');
-  } catch(e){}
-  var tips = [
-    'Kales, spinach & tomatoes are strong year-round in Nakuru.',
-    'Ask for what is peak this week — we pack the freshest batch.',
-    'Kienyeji greens (managu, terere) are a nutrition powerhouse.'
-  ];
-  var tip = tips[new Date().getDate() % tips.length];
-  // Delay so it does not fight the install banner
-  setTimeout(function(){
-    showLocalNotification({
-      title: 'In season around Nakuru',
-      body: tip,
-      tag: 'dfb-seasonal',
-      url: './dawn-fresh-basket-expanded.html#seasonal'
-    });
-  }, 8000);
-}
-
-// Hook order buttons: fire local notif when user taps Order on WhatsApp
-function hookOrderNotifications(){
-  ['tier-order-btn', 'custom-order-btn'].forEach(function(id){
-    var btn = document.getElementById(id);
-    if (!btn || btn._dfbNotifHooked) return;
-    btn._dfbNotifHooked = true;
-    btn.addEventListener('click', function(){
-      var prefs = loadNotifPrefs();
-      if (!prefs.enabled || prefs.orders === false) return;
-      var text = btn.textContent || 'Order';
-      // Extract total from nearby summary if possible
-      var totalEl = document.querySelector('#' + (id.indexOf('tier')===0 ? 'tier' : 'custom') + '-totals .total span:last-child');
-      var totalLabel = totalEl ? totalEl.textContent : '';
-      setTimeout(function(){
-        notifyOrderPlaced('', totalLabel || 'Your basket');
-      }, 400);
-    });
-  });
-}
-
-// Enhance openAccount to refresh notif UI
-var _origOpenAccount = typeof openAccount === 'function' ? openAccount : null;
-openAccount = function(){
-  if (_origOpenAccount) _origOpenAccount();
-  else {
-    fillAccountSheet();
-    renderPendingOrders();
-    document.getElementById('account-sheet').classList.add('open');
-    document.getElementById('sheet-backdrop').classList.add('open');
-  }
-  applyNotifPrefsToUI();
-};
-
-document.addEventListener('DOMContentLoaded', function(){
-  applyNotifPrefsToUI();
-  hookOrderNotifications();
-  // Re-hook after mode switches (buttons may stay the same)
-  setTimeout(hookOrderNotifications, 1000);
-  maybeSeasonalTip();
-});
-
-/* ---- PWA: install + service worker ---- */
-var deferredPrompt = null;
-var INSTALL_DISMISS_KEY = 'dfb_install_dismissed_v1';
-
-function isStandalone(){
-  return window.matchMedia('(display-mode: standalone)').matches
-    || window.navigator.standalone === true;
-}
-
-function showInstallBanner(){
-  if (isStandalone()) return;
-  try {
-    if (localStorage.getItem(INSTALL_DISMISS_KEY) === '1') return;
-  } catch(e){}
-  var banner = document.getElementById('install-banner');
-  if (banner) banner.classList.add('show');
-}
-
-function hideInstallBanner(persist){
-  var banner = document.getElementById('install-banner');
-  if (banner) banner.classList.remove('show');
-  if (persist) {
-    try { localStorage.setItem(INSTALL_DISMISS_KEY, '1'); } catch(e){}
-  }
-}
-
-window.addEventListener('beforeinstallprompt', function(e){
-  e.preventDefault();
-  deferredPrompt = e;
-  showInstallBanner();
-});
-
-window.addEventListener('appinstalled', function(){
-  deferredPrompt = null;
-  hideInstallBanner(true);
-  showToast('Dawn Fresh installed — open from your home screen');
-});
-
-document.addEventListener('DOMContentLoaded', function(){
-  var btn = document.getElementById('install-btn');
-  var dismiss = document.getElementById('install-dismiss');
-  if (btn) {
-    btn.addEventListener('click', async function(){
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        var choice = await deferredPrompt.userChoice;
-        deferredPrompt = null;
-        hideInstallBanner(choice.outcome === 'accepted');
-        if (choice.outcome === 'accepted') showToast('Installing…');
-      } else {
-        // iOS / browsers without beforeinstallprompt
-        showIosInstallHelp();
-      }
-    });
-  }
-  if (dismiss) {
-    dismiss.addEventListener('click', function(){ hideInstallBanner(true); });
-  }
-  // Show help banner on iOS Safari (no beforeinstallprompt)
-  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  if (isIOS && !isStandalone()) {
-    setTimeout(showInstallBanner, 2500);
-  }
-});
-
-function showIosInstallHelp(){
-  var msg = 'To install on iPhone/iPad:\n1. Tap the Share button\n2. Scroll and tap "Add to Home Screen"\n3. Tap Add';
-  showToast('Tap Share → Add to Home Screen');
-  // Also open a simple alert for clarity
-  setTimeout(function(){ alert(msg); }, 400);
-}
-
-// Register service worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function(){
-    navigator.serviceWorker.register('./sw.js').then(function(reg){
-      console.log('[DFB] Service worker ready', reg.scope);
-    }).catch(function(err){
-      console.warn('[DFB] SW registration failed', err);
-    });
-  });
-}
-
 // Highlight nav on scroll
 window.addEventListener('scroll', function(){
   var sections = [
@@ -2900,6 +2834,10 @@ window.addEventListener('scroll', function(){
   <div class="pm-body">
     <h3 id="pm-name"></h3>
     <div class="pm-local" id="pm-local"></div>
+    <div class="pm-varieties" id="pm-varieties" hidden>
+      <div class="pm-varieties-label">Varieties</div>
+      <div class="pm-var-grid" id="pm-var-grid"></div>
+    </div>
     <p class="pm-desc" id="pm-desc"></p>
     <div class="pm-meta" id="pm-meta"></div>
     <div class="pm-actions">
@@ -2949,42 +2887,7 @@ window.addEventListener('scroll', function(){
   <div class="sheet-actions">
     <button class="btn btn-gold btn-sm" onclick="saveAccountFromSheet()">Save details</button>
     <a class="btn btn-ghost onDark btn-sm" href="https://wa.me/254141773312" target="_blank" rel="noopener">Chat on WhatsApp</a>
-    <button class="btn btn-ghost onDark btn-sm" id="acct-install-btn" onclick="document.getElementById('install-btn') && document.getElementById('install-btn').click()">Install app</button>
   </div>
-  <div class="notif-card" id="notif-card">
-    <h4>Notifications</h4>
-    <div class="notif-row">
-      <div class="nr-label">Enable alerts<small>Orders, seasons &amp; delivery updates</small></div>
-      <label class="toggle-switch">
-        <input type="checkbox" id="notif-enable" onchange="toggleNotifications(this.checked)">
-        <span class="slider"></span>
-      </label>
-    </div>
-    <div class="notif-row">
-      <div class="nr-label">Order confirmations<small>When you send an order on WhatsApp</small></div>
-      <label class="toggle-switch">
-        <input type="checkbox" id="notif-orders" checked onchange="saveNotifPrefs()">
-        <span class="slider"></span>
-      </label>
-    </div>
-    <div class="notif-row">
-      <div class="nr-label">Seasonal tips<small>What's peak this month in Nakuru</small></div>
-      <label class="toggle-switch">
-        <input type="checkbox" id="notif-seasonal" checked onchange="saveNotifPrefs()">
-        <span class="slider"></span>
-      </label>
-    </div>
-    <div class="notif-row">
-      <div class="nr-label">Delivery reminders<small>Gentle nudge on order days</small></div>
-      <label class="toggle-switch">
-        <input type="checkbox" id="notif-delivery" onchange="saveNotifPrefs()">
-        <span class="slider"></span>
-      </label>
-    </div>
-    <p class="notif-status" id="notif-status">Notifications are off</p>
-    <button class="btn btn-ghost onDark btn-sm notif-test-btn" id="notif-test-btn" onclick="sendTestNotification()" style="display:none">Send test notification</button>
-  </div>
-
   <div class="pending-list" id="pending-list">
     <h4>Recent orders on this device</h4>
     <p class="empty-note" style="text-align:left;color:rgba(243,240,227,0.4)">No recent orders yet — place one from Baskets.</p>
@@ -2992,20 +2895,6 @@ window.addEventListener('scroll', function(){
   <p style="font-size:12px;color:rgba(243,240,227,0.4);margin-top:16px;line-height:1.45">
     Tip: after M-Pesa, forward the confirmation SMS on WhatsApp and quote your order ref so we can reconcile and release airtime / priority delivery.
   </p>
-</div>
-
-
-<!-- PWA install banner -->
-<div class="install-banner" id="install-banner" role="dialog" aria-label="Install app">
-  <div class="ib-icon">🥬</div>
-  <div class="ib-text">
-    <strong>Install Dawn Fresh</strong>
-    <span>Add to your home screen — works offline, opens like an app</span>
-  </div>
-  <div class="ib-actions">
-    <button class="btn btn-gold btn-sm" id="install-btn">Install</button>
-    <button class="ib-dismiss" id="install-dismiss" aria-label="Dismiss">×</button>
-  </div>
 </div>
 
 <!-- App bottom navigation -->
@@ -3032,5 +2921,98 @@ window.addEventListener('scroll', function(){
   </a>
 </nav>
 
+<!-- PWA Install banner (Android Chrome / Edge / Samsung) -->
+<div class="pwa-install-banner" id="pwa-install-banner" role="dialog" aria-label="Install app">
+  <img class="pwa-icon" src="icons/icon-192.png" alt="" width="44" height="44">
+  <div class="pwa-text">
+    <strong>Install Dawn Fresh</strong>
+    <span>Add to home screen — open like an app</span>
+  </div>
+  <div class="pwa-actions">
+    <button class="pwa-btn-dismiss" type="button" id="pwa-dismiss">Not now</button>
+    <button class="pwa-btn-install" type="button" id="pwa-install">Install</button>
+  </div>
+</div>
+
+<script>
+/* ---- PWA: service worker + install prompt ---- */
+(function(){
+  // Register service worker (HTTPS or localhost required)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('./sw.js').then(function(reg){
+        console.log('[DFB] SW registered', reg.scope);
+      }).catch(function(err){
+        console.log('[DFB] SW registration failed', err);
+      });
+    });
+  }
+
+  var deferredPrompt = null;
+  var banner = document.getElementById('pwa-install-banner');
+  var installBtn = document.getElementById('pwa-install');
+  var dismissBtn = document.getElementById('pwa-dismiss');
+
+  function isStandalone(){
+    return window.matchMedia('(display-mode: standalone)').matches
+      || window.navigator.standalone === true;
+  }
+
+  function wasDismissed(){
+    try { return localStorage.getItem('dfb_pwa_dismiss') === '1'; } catch(e){ return false; }
+  }
+
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferredPrompt = e;
+    if (!isStandalone() && !wasDismissed() && banner) {
+      setTimeout(function(){ banner.classList.add('show'); }, 2500);
+    }
+  });
+
+  if (installBtn) {
+    installBtn.addEventListener('click', function(){
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function(choice){
+        if (choice.outcome === 'accepted') {
+          if (typeof showToast === 'function') showToast('Installing Dawn Fresh…');
+        }
+        deferredPrompt = null;
+        if (banner) banner.classList.remove('show');
+      });
+    });
+  }
+
+  if (dismissBtn) {
+    dismissBtn.addEventListener('click', function(){
+      if (banner) banner.classList.remove('show');
+      try { localStorage.setItem('dfb_pwa_dismiss', '1'); } catch(e){}
+    });
+  }
+
+  window.addEventListener('appinstalled', function(){
+    if (banner) banner.classList.remove('show');
+    deferredPrompt = null;
+    if (typeof showToast === 'function') showToast('Dawn Fresh installed on your phone');
+  });
+
+  // iOS Safari: show soft guidance (no beforeinstallprompt)
+  function isIos(){
+    return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+  }
+  if (isIos() && !isStandalone() && !wasDismissed() && banner) {
+    setTimeout(function(){
+      var text = banner.querySelector('.pwa-text span');
+      if (text) text.textContent = 'Tap Share → Add to Home Screen';
+      var install = document.getElementById('pwa-install');
+      if (install) install.style.display = 'none';
+      banner.classList.add('show');
+    }, 3000);
+  }
+})();
+</script>
+
 </body>
 </html>
+
