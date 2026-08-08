@@ -1,0 +1,3036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Dawn Fresh Basket — Farm-fresh produce, delivered in Nakuru</title>
+<meta name="description" content="Dawn Fresh Basket connects Nakuru smallholder farmers directly with households and institutions. Fresh vegetables, traditional greens (kienyeji), fruits, grains, legumes, roots, animal products & herbs — ordered on WhatsApp, paid by M-Pesa.">
+<meta name="theme-color" content="#1F3D2E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dawn Fresh">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=yes">
+<meta name="application-name" content="Dawn Fresh Basket">
+<meta name="msapplication-TileColor" content="#1F3D2E">
+<meta name="msapplication-TileImage" content="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link rel="dns-prefetch" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16281F; --forest:#1F3D2E; --forest-light:#2F5240; --forest-dark:#122019;
+    --paper:#F3F0E3; --paper-warm:#EDE8D6; --gold:#C9922B; --gold-light:#E8B94A; --gold-dark:#8A6013;
+    --tomato:#B23A2E; --line:rgba(22,40,31,0.12); --line-onDark:rgba(243,240,227,0.14);
+    --shadow:0 20px 50px rgba(18,32,25,0.12); --radius:14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:'Public Sans', system-ui, sans-serif; line-height:1.55;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  .wrap{max-width:1140px; margin:0 auto; padding:0 28px}
+  h1,h2,h3,h4{font-family:'Fraunces', Georgia, serif; font-weight:600; line-height:1.1; color:var(--forest)}
+  em{font-style:italic; font-family:'Fraunces', serif; color:var(--gold)}
+  a{color:inherit; text-decoration:none}
+  ul{list-style:none}
+  button{font-family:inherit}
+
+  .scroll-progress{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--gold), var(--gold-light));
+    z-index:100; transition:width 0.08s linear;
+  }
+
+  header{
+    padding:18px 0; border-bottom:1px solid var(--line);
+    position:sticky; top:0; background:rgba(243,240,227,0.92);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); z-index:40;
+    transition:box-shadow 0.3s;
+  }
+  header.scrolled{box-shadow:0 4px 24px rgba(18,32,25,0.08)}
+  header .wrap{display:flex; justify-content:space-between; align-items:center; gap:16px}
+  .brand{font-family:'Fraunces', serif; font-weight:700; font-size:20px; color:var(--forest); letter-spacing:-0.01em}
+  .brand span{color:var(--gold-dark)}
+  .hours{font-size:12.5px; color:var(--forest-light); font-weight:500; white-space:nowrap}
+  .hours .dot{display:inline-block; width:7px; height:7px; border-radius:50%; background:#2ecc71; margin-right:6px; animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1} 50%{opacity:0.45}}
+  nav.subnav{display:flex; gap:22px}
+  nav.subnav a{font-size:13px; font-weight:600; color:var(--forest-light); transition:color 0.2s}
+  nav.subnav a:hover{color:var(--forest)}
+  .header-cta{display:none}
+  @media(min-width:980px){.header-cta{display:inline-flex}}
+
+  .hero{padding:72px 0 20px; position:relative; overflow:hidden}
+  .hero::before{
+    content:""; position:absolute; top:-120px; right:-80px; width:420px; height:420px;
+    background:radial-gradient(circle, rgba(201,146,43,0.12) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:11.5px; font-weight:700;
+    letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-dark);
+    background:rgba(201,146,43,0.13); padding:7px 14px; border-radius:24px; margin-bottom:22px;
+  }
+  .eyebrow .live{width:6px; height:6px; border-radius:50%; background:var(--gold); animation:pulse 1.6s infinite}
+  .eyebrow.onDark{color:var(--gold-light); background:rgba(201,146,43,0.2)}
+  .hero h1{font-size:clamp(36px, 5.8vw, 56px); max-width:760px; letter-spacing:-0.02em}
+  .hero p.sub{font-size:17.5px; color:var(--forest-light); max-width:580px; margin:22px 0 34px; line-height:1.6}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
+  .btn{
+    display:inline-flex; align-items:center; gap:9px; padding:14px 26px; border-radius:10px;
+    font-weight:600; font-size:15px; border:1.5px solid transparent;
+    font-family:'Public Sans', sans-serif; cursor:pointer; transition:all 0.22s ease;
+  }
+  .btn-primary{background:var(--forest); color:var(--paper)}
+  .btn-primary:hover{background:var(--forest-light); transform:translateY(-2px); box-shadow:0 8px 24px rgba(31,61,46,0.25)}
+  .btn-gold{background:var(--gold); color:var(--ink)}
+  .btn-gold:hover{background:var(--gold-light); transform:translateY(-2px); box-shadow:0 8px 24px rgba(201,146,43,0.3)}
+  .btn-ghost{border-color:var(--forest); color:var(--forest); background:transparent}
+  .btn-ghost:hover{background:rgba(31,61,46,0.06); transform:translateY(-2px)}
+  .btn-ghost.onDark{border-color:rgba(243,240,227,0.45); color:var(--paper)}
+  .btn-ghost.onDark:hover{background:rgba(243,240,227,0.08)}
+  .btn-sm{padding:10px 18px; font-size:13.5px}
+
+  .tier-strip{display:flex; gap:0; margin-top:52px; border-top:1px solid var(--line); padding-top:26px}
+  .tier-strip a{flex:1; text-align:left; padding-right:20px; transition:opacity 0.2s}
+  .tier-strip a:hover{opacity:0.75}
+  .tier-strip h4{font-size:20px; color:var(--forest)}
+  .tier-strip span{font-size:11px; letter-spacing:0.09em; text-transform:uppercase; color:var(--gold-dark); font-weight:700}
+
+  .strip{background:var(--forest); color:var(--paper); padding:14px 0; font-size:13px; font-weight:500; margin-top:48px; overflow:hidden}
+  .strip-inner{display:flex; gap:40px; animation:marquee 32s linear infinite; white-space:nowrap}
+  .strip span::before{content:"·"; margin-right:40px; color:var(--gold); font-weight:700}
+  .strip span:first-child::before{display:none}
+  @keyframes marquee{0%{transform:translateX(0)} 100%{transform:translateX(-50%)}}
+
+  .section-head{max-width:680px; margin-bottom:44px}
+  .section-head .eyebrow{margin-bottom:14px}
+  .section-head h2{font-size:clamp(28px, 3.8vw, 40px)}
+  .section-head p{color:var(--forest-light); margin-top:14px; font-size:16px}
+  .section-head.onDark h2{color:var(--paper)}
+  .section-head.onDark p{color:rgba(243,240,227,0.7)}
+  section.light{padding:80px 0}
+  section.dark{background:var(--forest); color:var(--paper); padding:80px 0}
+  section.warm{background:var(--paper-warm); padding:80px 0}
+
+  .numbered-block{margin-bottom:48px}
+  .numbered-block .idx{font-family:'Fraunces', serif; font-style:italic; color:var(--gold); font-size:16px; display:block; margin-bottom:10px}
+  .numbered-block h3{font-size:26px; margin-bottom:14px}
+  .onDark .numbered-block h3{color:var(--paper)}
+  .numbered-block p{color:var(--forest-light); font-size:15.5px; max-width:660px; margin-bottom:10px}
+  .onDark .numbered-block p{color:rgba(243,240,227,0.72)}
+  .check-list{margin-top:18px}
+  .check-list li{font-size:14.5px; font-weight:500; padding:10px 0 10px 28px; position:relative; border-top:1px solid var(--line)}
+  .onDark .check-list li{border-top:1px solid var(--line-onDark)}
+  .check-list li::before{content:"✓"; position:absolute; left:0; color:var(--gold-dark); font-weight:700}
+  .onDark .check-list li::before{color:var(--gold-light)}
+
+  .journey{position:relative; margin-top:12px}
+  .journey::before{
+    content:""; position:absolute; left:19px; top:28px; bottom:28px; width:2px;
+    background:linear-gradient(to bottom, var(--gold), var(--line));
+  }
+  .step-row{display:flex; gap:22px; padding:26px 0; position:relative}
+  .step-num{font-family:'Fraunces', serif; font-style:italic; color:var(--gold-dark); font-size:15px; width:40px; flex-shrink:0; z-index:1}
+  .step-icon{
+    width:40px; height:40px; border-radius:50%; border:2px solid var(--forest);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    font-size:17px; color:var(--forest); background:var(--paper); z-index:1;
+    transition:all 0.3s;
+  }
+  .step-row:hover .step-icon{background:var(--gold); border-color:var(--gold); color:var(--ink); transform:scale(1.08)}
+  .step-body h3{font-size:18px; margin-bottom:5px}
+  .step-body p{font-size:14.5px; color:var(--forest-light); max-width:520px}
+  .step-tag{font-size:11px; font-weight:700; color:var(--gold-dark); letter-spacing:0.07em; text-transform:uppercase; margin-left:auto; align-self:center; white-space:nowrap}
+
+  .cta-band{background:var(--forest-dark); color:var(--paper); padding:64px 0; position:relative; overflow:hidden}
+  .cta-band::after{
+    content:""; position:absolute; bottom:-60px; left:-40px; width:280px; height:280px;
+    background:radial-gradient(circle, rgba(201,146,43,0.15) 0%, transparent 70%);
+  }
+  .cta-band .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:28px; position:relative; z-index:1}
+  .cta-band h2{color:var(--paper); font-size:clamp(24px, 3.2vw, 32px); max-width:500px}
+  .cta-band .eyebrow{margin-bottom:12px}
+
+  /* Basket */
+  .price-note{
+    background:rgba(201,146,43,0.1); border:1px dashed var(--gold-light); border-radius:12px;
+    padding:16px 20px; font-size:13.5px; color:rgba(243,240,227,0.85); margin-bottom:36px;
+    display:flex; gap:12px; align-items:flex-start;
+  }
+  .price-note strong{color:var(--paper)}
+  .mode-tabs{display:flex; gap:0; margin-bottom:40px; border:1.5px solid var(--line-onDark); border-radius:12px; overflow:hidden; width:fit-content}
+  .mode-tab{padding:12px 24px; font-size:14px; font-weight:600; color:rgba(243,240,227,0.6); background:none; border:none; cursor:pointer; transition:all 0.2s}
+  .mode-tab.active{background:var(--gold); color:var(--ink)}
+  .mode-panel{display:none}
+  .mode-panel.active{display:block}
+
+  .tier-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:18px}
+  .tier-card{
+    background:rgba(243,240,227,0.03); border:1.5px solid var(--line-onDark); border-radius:12px;
+    padding:28px 24px; position:relative; cursor:pointer; transition:all 0.28s ease;
+  }
+  .tier-card:hover{transform:translateY(-5px); box-shadow:0 18px 40px rgba(0,0,0,0.25)}
+  .tier-card.selected{border-color:var(--gold); background:rgba(201,146,43,0.1); box-shadow:0 0 0 1px var(--gold)}
+  .tier-icon{width:36px; height:36px; border-bottom:2.5px solid var(--gold); display:flex; align-items:center; font-size:22px; margin-bottom:16px}
+  .tier-card h3{color:var(--paper); font-size:22px; margin-bottom:4px}
+  .tier-tag{font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-light); display:block; margin-bottom:14px}
+  .tier-card p{font-size:14px; color:rgba(243,240,227,0.7); margin-bottom:14px; line-height:1.5}
+  .tier-freq{font-size:12.5px; color:rgba(243,240,227,0.55); margin-bottom:18px}
+  .tier-freq b{color:var(--paper); font-weight:600}
+  .tier-price{color:var(--gold-light); font-family:'Fraunces',serif; font-size:28px; font-weight:600; margin-bottom:16px}
+  .tier-price small{font-family:'Public Sans',sans-serif; font-size:12.5px; color:rgba(243,240,227,0.5); font-weight:500}
+  .tier-select-btn{width:100%; text-align:center; justify-content:center; border:none; cursor:pointer}
+  .badge-recommended{
+    position:absolute; top:0; right:20px; background:var(--gold); color:var(--ink);
+    font-size:10px; font-weight:800; letter-spacing:0.07em; text-transform:uppercase;
+    padding:6px 12px; border-radius:0 0 8px 8px;
+  }
+
+  .builder-layout{display:grid; grid-template-columns:1.55fr 1fr; gap:28px; align-items:start}
+  @media (max-width:900px){.builder-layout{grid-template-columns:1fr}}
+
+  .builder-filters{display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap; align-items:center}
+  .filter-chip{
+    padding:8px 14px; border-radius:22px; border:1.5px solid var(--line-onDark);
+    background:none; color:rgba(243,240,227,0.6); font-size:12.5px; font-weight:600; cursor:pointer;
+    transition:all 0.2s;
+  }
+  .filter-chip.active{background:var(--gold); color:var(--ink); border-color:var(--gold)}
+  .filter-chip:hover:not(.active){border-color:var(--gold-light); color:var(--gold-light)}
+  .builder-search{
+    flex:1; min-width:140px; padding:9px 14px; border-radius:22px;
+    border:1.5px solid var(--line-onDark); background:rgba(243,240,227,0.05);
+    color:var(--paper); font-size:13.5px;
+  }
+  .builder-search::placeholder{color:rgba(243,240,227,0.35)}
+  .builder-search:focus{outline:none; border-color:var(--gold)}
+
+  .builder-list{display:flex; flex-direction:column; gap:1px; background:var(--line-onDark); border:1.5px solid var(--line-onDark); border-radius:12px; overflow:hidden; max-height:560px; overflow-y:auto}
+  .builder-row{
+    background:var(--forest-dark); display:flex; align-items:center; gap:12px; padding:10px 14px;
+    transition:background 0.2s;
+  }
+  .builder-row:hover{background:rgba(31,61,46,0.9)}
+  .builder-row .picon{
+    width:44px; height:44px; border-radius:8px; overflow:hidden; flex-shrink:0; background:rgba(243,240,227,0.08);
+  }
+  .builder-row .picon img{width:100%; height:100%; object-fit:cover; display:block}
+  .builder-row .pinfo{flex:1; min-width:0}
+  .builder-row .pname{color:var(--paper); font-size:14px; font-weight:600; display:block}
+  .builder-row .plocal{color:rgba(243,240,227,0.45); font-size:11.5px}
+  .builder-row .pprice{color:rgba(243,240,227,0.5); font-size:12px}
+  .qty-control{display:flex; align-items:center; gap:6px; background:rgba(243,240,227,0.06); border-radius:9px; padding:3px}
+  .qty-control button{
+    width:26px; height:26px; border-radius:7px; border:none;
+    background:rgba(243,240,227,0.1); color:var(--paper); font-size:15px; cursor:pointer; line-height:1;
+    transition:all 0.15s;
+  }
+  .qty-control button:hover{background:var(--gold); color:var(--ink)}
+  .qty-control span{color:var(--paper); font-size:13.5px; font-weight:700; min-width:16px; text-align:center}
+
+  .order-summary{
+    background:var(--forest-dark); border:1.5px solid var(--line-onDark); border-radius:14px;
+    padding:26px; position:sticky; top:88px;
+  }
+  .order-summary h3{color:var(--paper); font-size:18px; margin-bottom:16px}
+  .summary-line{display:flex; justify-content:space-between; font-size:13.5px; color:rgba(243,240,227,0.72); padding:8px 0; border-top:1px solid var(--line-onDark)}
+  .summary-line:first-of-type{border-top:none}
+  .summary-line.total{color:var(--paper); font-weight:700; font-size:16px; border-top:1.5px solid var(--gold); margin-top:8px; padding-top:14px}
+  .area-select{
+    width:100%; margin:14px 0; padding:12px 14px; border-radius:9px;
+    border:1.5px solid var(--line-onDark); background:rgba(243,240,227,0.05);
+    color:var(--paper); font-size:13.5px; cursor:pointer;
+  }
+  .area-select option{color:var(--ink); background:var(--paper)}
+  .empty-note{font-size:13.5px; color:rgba(243,240,227,0.45); text-align:center; padding:16px 0}
+  .min-order-warning{font-size:12.5px; color:var(--gold-light); text-align:center; padding-top:10px; font-weight:500}
+  .client-extras{margin-top:16px; padding-top:14px; border-top:1px solid var(--line-onDark)}
+  .extras-title{font-size:11.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-light); margin-bottom:10px}
+  .client-input{
+    width:100%; margin-bottom:8px; padding:11px 12px; border-radius:9px;
+    border:1.5px solid var(--line-onDark); background:rgba(243,240,227,0.05);
+    color:var(--paper); font-size:13.5px; font-family:inherit;
+  }
+  .client-input::placeholder{color:rgba(243,240,227,0.35)}
+  .client-input:focus{outline:none; border-color:var(--gold)}
+  .check-row{
+    display:flex; align-items:flex-start; gap:10px; font-size:13px; color:rgba(243,240,227,0.8);
+    margin:10px 0; cursor:pointer; line-height:1.4;
+  }
+  .check-row input{margin-top:3px; accent-color:var(--gold); width:16px; height:16px; flex-shrink:0}
+  .check-row strong{color:var(--gold-light)}
+  .airtime-box{margin:8px 0 4px; padding:12px; border-radius:10px; background:rgba(243,240,227,0.04); border:1px solid var(--line-onDark)}
+  .mpesa-note{font-size:12px; color:rgba(243,240,227,0.55); margin-top:12px; line-height:1.45}
+  .mpesa-note strong{color:var(--gold-light)}
+
+  .freq-select{display:flex; gap:8px; margin:12px 0 4px; flex-wrap:wrap}
+  .freq-chip{
+    padding:7px 14px; border-radius:8px; border:1.5px solid var(--line-onDark);
+    background:none; color:rgba(243,240,227,0.55); font-size:12.5px; font-weight:600; cursor:pointer;
+  }
+  .freq-chip.active{background:rgba(201,146,43,0.2); border-color:var(--gold); color:var(--gold-light)}
+
+  .sticky-cart{
+    position:fixed; left:0; right:0; bottom:0; background:var(--forest-dark);
+    border-top:2px solid var(--gold); padding:14px 22px;
+    display:none; align-items:center; justify-content:space-between; gap:16px; z-index:50;
+    box-shadow:0 -10px 30px rgba(0,0,0,0.35); transform:translateY(100%);
+    transition:transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  }
+  .sticky-cart.visible{display:flex; transform:translateY(0)}
+  .sticky-cart .info{color:var(--paper); font-size:13.5px}
+  .sticky-cart .info strong{color:var(--gold-light); font-family:'Fraunces',serif; font-size:19px; margin-left:8px}
+
+  .values-list li{display:flex; gap:18px; align-items:center; padding:18px 0; border-top:1px solid var(--line)}
+  .values-list li:last-child{border-bottom:1px solid var(--line)}
+  .values-list .idx{font-family:'Fraunces', serif; font-style:italic; color:var(--gold-dark); font-size:16px; width:30px}
+  .values-list h3{font-size:18.5px}
+
+  .stat-list li{padding:28px 0; border-top:1px solid var(--line-onDark)}
+  .stat-list li:last-child{border-bottom:1px solid var(--line-onDark)}
+  .stat-list h3{color:var(--paper); font-size:28px; margin-bottom:3px}
+  .stat-tag{font-size:11px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--gold-light)}
+  .stat-list p{font-size:14.5px; color:rgba(243,240,227,0.68); margin-top:8px; max-width:580px}
+
+  /* Product catalog */
+  .cat-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px}
+  .cat-tab{
+    padding:10px 18px; border-radius:24px; border:1.5px solid var(--line);
+    background:var(--paper); color:var(--forest-light); font-size:13.5px; font-weight:600; cursor:pointer;
+    transition:all 0.2s;
+  }
+  .cat-tab.active{background:var(--forest); color:var(--paper); border-color:var(--forest)}
+  .cat-tab:hover:not(.active){border-color:var(--gold); color:var(--forest)}
+
+  .product-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:14px}
+  .product-card{
+    background:var(--paper); border:1.5px solid var(--line); border-radius:14px;
+    padding:0 0 16px; text-align:center; transition:all 0.28s; position:relative; overflow:hidden;
+  }
+  .product-card:hover{transform:translateY(-5px); box-shadow:var(--shadow); border-color:var(--gold)}
+  .product-card .pic-wrap{
+    width:100%; aspect-ratio:1; overflow:hidden; background:var(--paper-warm);
+  }
+  .product-card .pic-wrap img{
+    width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease;
+  }
+  .product-card:hover .pic-wrap img{transform:scale(1.06)}
+  .product-card .pname{font-family:'Fraunces', serif; font-weight:600; font-size:15px; color:var(--forest); display:block; margin-top:12px; padding:0 10px}
+  .product-card .plocal{font-size:11.5px; color:var(--forest-light); margin-top:2px; display:block; padding:0 10px}
+  .product-card .pprice{font-size:13px; font-weight:600; color:var(--gold-dark); margin-top:8px; padding:0 10px}
+  .product-card .season-badge{
+    position:absolute; top:10px; right:10px; font-size:10px; font-weight:700; z-index:2;
+    background:rgba(46,204,113,0.92); color:#fff; padding:4px 9px; border-radius:10px;
+  }
+  .product-card .season-badge.off{background:rgba(178,58,46,0.85); color:#fff}
+  /* Image performance: prevent CLS, smooth decode */
+  .product-card .pic-wrap img,
+  .builder-row .picon img,
+  .season-item .si img,
+  .slide .slide-icon img{
+    content-visibility: auto;
+    background: var(--paper-warm);
+  }
+
+
+  /* Slideshow */
+  .slideshow{position:relative; overflow:hidden; border-radius:16px; margin-top:28px; background:var(--forest-dark)}
+  .slides{display:flex; transition:transform 0.5s cubic-bezier(0.22,1,0.36,1)}
+  .slide{
+    min-width:100%; padding:36px 36px; display:flex; align-items:center; gap:32px; flex-wrap:wrap;
+  }
+  .slide .slide-icon{
+    width:160px; height:160px; border-radius:16px; overflow:hidden; flex-shrink:0;
+    box-shadow:0 12px 32px rgba(0,0,0,0.3);
+  }
+  .slide .slide-icon img{width:100%; height:100%; object-fit:cover; display:block}
+  .slide .slide-body{flex:1; min-width:200px}
+  .slide h3{color:var(--paper); font-size:28px; margin-bottom:8px}
+  .slide .local{color:var(--gold-light); font-size:14px; font-weight:600; margin-bottom:12px}
+  .slide p{color:rgba(243,240,227,0.75); font-size:15px; max-width:420px}
+  .slide-nav{position:absolute; bottom:18px; right:24px; display:flex; gap:8px}
+  .slide-dot{
+    width:10px; height:10px; border-radius:50%; background:rgba(243,240,227,0.3); border:none; cursor:pointer;
+  }
+  .slide-dot.active{background:var(--gold)}
+  .slide-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%;
+    background:rgba(243,240,227,0.12); border:none; color:var(--paper); font-size:20px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:background 0.2s;
+  }
+  .slide-arrow:hover{background:var(--gold); color:var(--ink)}
+  .slide-arrow.prev{left:14px}
+  .slide-arrow.next{right:14px}
+
+  /* Seasonal calendar */
+  .calendar-wrap{margin-top:36px}
+  .month-tabs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:22px}
+  .month-tab{
+    padding:8px 14px; border-radius:8px; border:1.5px solid var(--line); background:var(--paper);
+    font-size:12.5px; font-weight:600; color:var(--forest-light); cursor:pointer; transition:all 0.2s;
+  }
+  .month-tab.active{background:var(--forest); color:var(--paper); border-color:var(--forest)}
+  .month-tab.current{box-shadow:0 0 0 2px var(--gold)}
+  .season-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:12px}
+  .season-item{
+    background:var(--paper); border:1.5px solid var(--line); border-radius:12px; padding:0 0 12px; text-align:center; overflow:hidden;
+  }
+  .season-item .si{width:100%; aspect-ratio:1.1; overflow:hidden; background:var(--paper-warm)}
+  .season-item .si img{width:100%; height:100%; object-fit:cover; display:block}
+  .season-item .sn{font-size:13.5px; font-weight:600; color:var(--forest); margin-top:10px; padding:0 8px}
+  .season-item .sl{font-size:11px; color:var(--forest-light); padding:0 8px}
+  .season-item.in-season{border-color:var(--gold); background:rgba(201,146,43,0.06)}
+  .season-legend{display:flex; gap:18px; margin-top:18px; font-size:13px; color:var(--forest-light)}
+  .season-legend span::before{content:""; display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:middle}
+  .season-legend .in::before{background:rgba(201,146,43,0.4); border:1px solid var(--gold)}
+  .season-legend .out::before{background:var(--paper); border:1px solid var(--line)}
+
+  /* Farm stories / videos */
+  .video-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-top:28px}
+  .video-card{
+    background:var(--paper); border:1.5px solid var(--line); border-radius:14px; overflow:hidden; transition:all 0.28s;
+  }
+  .video-card:hover{transform:translateY(-4px); box-shadow:var(--shadow)}
+  .video-thumb{
+    aspect-ratio:16/9; background:var(--forest-dark); display:flex; align-items:center; justify-content:center;
+    position:relative; cursor:pointer;
+  }
+  .video-thumb .play{
+    width:56px; height:56px; border-radius:50%; background:var(--gold); color:var(--ink);
+    display:flex; align-items:center; justify-content:center; font-size:22px;
+    box-shadow:0 8px 24px rgba(201,146,43,0.4); transition:transform 0.2s;
+  }
+  .video-thumb:hover .play{transform:scale(1.1)}
+  .video-thumb .thumb-icon{position:absolute; font-size:48px; opacity:0.3}
+  .video-body{padding:18px 20px}
+  .video-body h3{font-size:17px; margin-bottom:6px}
+  .video-body p{font-size:13.5px; color:var(--forest-light)}
+
+  /* Recipes */
+  .recipe-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px}
+  .recipe-card{
+    background:var(--paper); border:1.5px solid var(--line); border-radius:14px; padding:24px 22px;
+    transition:all 0.28s; position:relative;
+  }
+  .recipe-card:hover{transform:translateY(-4px); box-shadow:var(--shadow)}
+  .recipe-card .r-icon{font-size:32px; margin-bottom:12px}
+  .recipe-card h3{font-size:19px; margin-bottom:8px}
+  .recipe-card .r-meta{font-size:12px; color:var(--gold-dark); font-weight:600; margin-bottom:10px}
+  .recipe-card p{font-size:14px; color:var(--forest-light); margin-bottom:14px}
+  .recipe-ings{display:flex; flex-wrap:wrap; gap:6px}
+  .recipe-ings span{
+    font-size:11.5px; background:rgba(201,146,43,0.12); color:var(--forest); padding:4px 10px;
+    border-radius:12px; font-weight:500;
+  }
+
+  .seg-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px}
+  .seg-card{
+    background:var(--paper); border:1.5px solid var(--line); border-radius:14px;
+    padding:26px 22px; position:relative; overflow:hidden; transition:all 0.28s;
+  }
+  .seg-card::before{content:""; position:absolute; top:0; left:0; width:5px; height:100%; background:var(--gold)}
+  .seg-card:hover{transform:translateY(-4px); box-shadow:var(--shadow)}
+  .seg-tag{font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:10px; display:block}
+  .seg-card h3{font-size:19px; margin-bottom:8px}
+  .seg-card p{font-size:14.5px; color:var(--forest-light)}
+
+  .who-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:1px; background:var(--line); border:1.5px solid var(--line); margin-top:40px; border-radius:12px; overflow:hidden}
+  .audience-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-top:12px}
+  .audience-card{
+    background:var(--paper); border:1.5px solid var(--line); border-radius:14px; padding:24px 22px;
+    transition:all 0.28s;
+  }
+  .audience-card:hover{transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--gold)}
+  .audience-card .aud-icon{font-size:28px; margin-bottom:12px}
+  .audience-card h3{font-size:18px; margin-bottom:8px; color:var(--forest)}
+  .audience-card .aud-desc{font-size:13.5px; color:var(--forest-light); margin-bottom:14px; line-height:1.5}
+  .audience-card .aud-rec{
+    font-size:12.5px; color:var(--forest); background:rgba(201,146,43,0.12);
+    padding:8px 12px; border-radius:8px; margin-bottom:12px; font-weight:500;
+  }
+  .audience-card .aud-rec strong{color:var(--gold-dark)}
+  .audience-card .aud-products{display:flex; flex-wrap:wrap; gap:6px}
+  .audience-card .aud-products span{
+    font-size:11.5px; background:var(--paper-warm); color:var(--forest); padding:4px 10px;
+    border-radius:12px; font-weight:500; border:1px solid var(--line);
+  }
+  .audience-cta{
+    margin-top:36px; padding:24px 26px; background:var(--paper); border:1.5px solid var(--line);
+    border-radius:14px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px;
+  }
+  .audience-cta p{font-size:14.5px; color:var(--forest-light); max-width:520px; margin:0}
+
+  .who-item{background:var(--paper); padding:28px 12px; text-align:center; transition:all 0.25s}
+  .who-item:hover{background:var(--paper-warm); transform:scale(1.03)}
+  .who-item .ic{font-size:26px; margin-bottom:10px; display:block}
+  .who-item span.lbl{font-size:13px; font-weight:600}
+
+  .produce-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:12px; margin-top:36px}
+  .produce-item{
+    background:var(--paper); border:1.5px solid var(--line); border-radius:12px;
+    padding:18px 14px; text-align:center; transition:all 0.25s;
+  }
+  .produce-item:hover{border-color:var(--gold); transform:translateY(-3px); box-shadow:0 8px 20px rgba(22,40,31,0.08)}
+  .produce-item .name{font-family:'Fraunces', serif; font-weight:500; font-size:15.5px; color:var(--forest)}
+
+  .pin-box{
+    display:flex; gap:22px; align-items:center; flex-wrap:wrap; background:var(--paper);
+    border:1.5px solid var(--line); border-radius:16px; padding:24px 26px; margin-top:32px;
+  }
+  .pin-box .ic{font-size:28px}
+  .pin-box .txt{flex:1; min-width:220px}
+  .pin-box h4{font-size:17px; margin-bottom:5px}
+  .pin-box p{font-size:14px; color:var(--forest-light)}
+  #pin-status{font-size:13px; color:var(--gold-dark); margin-top:8px; display:none; font-weight:500}
+
+  .testimonial-card{background:var(--paper); border:1.5px solid var(--line); border-radius:14px; padding:26px 22px}
+  .testimonial-card .stars{color:var(--gold); font-size:18px; letter-spacing:2px; margin-bottom:12px}
+  .testimonial-card p{font-size:15px; color:var(--forest-light); font-style:italic; margin-bottom:14px; line-height:1.55}
+  .testimonial-card strong{font-size:13.5px; color:var(--forest)}
+
+  .faq-list{display:flex; flex-direction:column; gap:10px}
+  .faq-item{border:1.5px solid var(--line); border-radius:12px; overflow:hidden; background:var(--paper)}
+  .faq-q{
+    width:100%; text-align:left; padding:18px 22px; font-size:15.5px; font-weight:600;
+    color:var(--forest); background:none; border:none; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+  }
+  .faq-q:hover{background:rgba(201,146,43,0.06)}
+  .faq-q .chev{transition:transform 0.3s; font-size:18px; color:var(--gold-dark)}
+  .faq-item.open .faq-q .chev{transform:rotate(180deg)}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height 0.35s ease, padding 0.3s}
+  .faq-item.open .faq-a{max-height:200px; padding:0 22px 18px}
+  .faq-a p{font-size:14.5px; color:var(--forest-light); line-height:1.55}
+
+  .trust{padding:44px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .trust .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px}
+  .trust-item{font-size:13.5px; color:var(--forest-light); font-weight:500}
+  .trust-item strong{color:var(--forest); font-family:'Fraunces', serif; font-weight:600; display:block; font-size:24px; margin-bottom:3px}
+
+  footer{padding:48px 0 36px; font-size:13.5px; color:var(--forest-light)}
+  .footer-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:28px; padding-bottom:28px; border-bottom:1px solid var(--line); margin-bottom:22px}
+  .footer-nav a{display:block; font-size:14px; color:var(--forest); margin-bottom:10px; font-weight:500; transition:color 0.2s}
+  .footer-nav a:hover{color:var(--gold-dark)}
+  footer .bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px}
+
+  .fab-wa{
+    position:fixed; bottom:28px; right:28px; width:60px; height:60px; border-radius:50%;
+    background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center;
+    font-size:28px; box-shadow:0 8px 28px rgba(37,211,102,0.4); z-index:60;
+    transition:all 0.25s; border:none; cursor:pointer;
+  }
+  .fab-wa:hover{transform:scale(1.1); box-shadow:0 12px 32px rgba(37,211,102,0.5)}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease}
+  .reveal.visible{opacity:1; transform:translateY(0)}
+
+  .photo-note{
+    background:var(--paper-warm); border:1.5px dashed var(--gold-dark); border-radius:12px;
+    padding:18px 20px; font-size:13.5px; color:var(--forest-light); margin-top:28px;
+  }
+  .photo-note strong{color:var(--forest)}
+
+  @media (max-width:720px){
+    .tier-strip{flex-direction:column; gap:18px}
+    header .wrap{flex-wrap:wrap; gap:8px}
+    nav.subnav{display:none}
+    .hours{font-size:11.5px}
+    .fab-wa{bottom:90px; right:18px; width:54px; height:54px; font-size:24px}
+    .slide{padding:28px 20px}
+    .slide .slide-icon{font-size:56px}
+  }
+
+  
+  .lang-toggle{
+    font-size:12px; font-weight:700; padding:6px 12px; border-radius:20px;
+    border:1.5px solid var(--line); background:var(--paper); color:var(--forest);
+    cursor:pointer; transition:all 0.2s;
+  }
+  .lang-toggle:hover{border-color:var(--gold); color:var(--gold-dark)}
+  .product-card .add-btn{
+    margin:10px 12px 0; width:calc(100% - 24px); padding:8px; border-radius:8px;
+    border:1.5px solid var(--forest); background:transparent; color:var(--forest);
+    font-size:12.5px; font-weight:600; cursor:pointer; transition:all 0.2s;
+  }
+  .product-card .add-btn:hover{background:var(--forest); color:var(--paper)}
+  .product-card{cursor:pointer}
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:90;
+    opacity:0; pointer-events:none; transition:opacity 0.3s;
+  }
+  .modal-backdrop.open{opacity:1; pointer-events:auto}
+  .product-modal{
+    position:fixed; left:50%; top:50%; transform:translate(-50%,-48%) scale(0.96);
+    width:min(520px, 94vw); max-height:88vh; overflow-y:auto;
+    background:var(--paper); border-radius:18px; z-index:95;
+    opacity:0; pointer-events:none; transition:all 0.3s cubic-bezier(0.22,1,0.36,1);
+    box-shadow:0 24px 60px rgba(0,0,0,0.3);
+  }
+  .product-modal.open{opacity:1; pointer-events:auto; transform:translate(-50%,-50%) scale(1)}
+  .product-modal .pm-img{width:100%; aspect-ratio:16/10; object-fit:cover; border-radius:18px 18px 0 0}
+  .product-modal .pm-body{padding:22px 24px 28px}
+  .product-modal h3{font-size:24px; margin-bottom:4px}
+  .product-modal .pm-local{color:var(--gold-dark); font-weight:600; font-size:14px; margin-bottom:12px}
+  .product-modal .pm-desc{font-size:14.5px; color:var(--forest-light); margin-bottom:16px; line-height:1.55}
+  .product-modal .pm-meta{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:18px; font-size:13px}
+  .product-modal .pm-meta span{background:var(--paper-warm); padding:6px 12px; border-radius:8px; font-weight:500}
+  .product-modal .pm-actions{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+  .product-modal .close-btn{
+    position:absolute; top:12px; right:12px; width:36px; height:36px; border-radius:50%;
+    background:rgba(243,240,227,0.9); border:none; font-size:18px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; color:var(--forest);
+  }
+  .farmer-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-top:28px}
+  .farmer-card{
+    background:var(--paper); border:1.5px solid var(--line); border-radius:16px; overflow:hidden;
+    transition:all 0.28s;
+  }
+  .farmer-card:hover{transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--gold)}
+  .farmer-card .fc-img{width:100%; aspect-ratio:16/10; object-fit:cover; background:var(--paper-warm)}
+  .farmer-card .fc-body{padding:20px 22px}
+  .farmer-card h3{font-size:18px; margin-bottom:4px}
+  .farmer-card .fc-loc{font-size:12.5px; color:var(--gold-dark); font-weight:600; margin-bottom:10px}
+  .farmer-card p{font-size:13.5px; color:var(--forest-light); line-height:1.5; margin-bottom:12px}
+  .farmer-card .fc-tags{display:flex; flex-wrap:wrap; gap:6px}
+  .farmer-card .fc-tags span{
+    font-size:11px; background:rgba(201,146,43,0.12); color:var(--forest); padding:4px 10px;
+    border-radius:12px; font-weight:500;
+  }
+  .impact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:18px; margin-top:28px}
+  .impact-card{
+    background:var(--paper); border:1.5px solid var(--line); border-radius:14px; padding:24px 20px; text-align:center;
+    transition:all 0.28s;
+  }
+  .impact-card:hover{border-color:var(--gold); transform:translateY(-3px)}
+  .impact-card .ic-num{font-family:'Fraunces',serif; font-size:36px; color:var(--forest); font-weight:600; margin-bottom:6px}
+  .impact-card .ic-label{font-size:13.5px; color:var(--forest-light); font-weight:500}
+  .impact-note{font-size:13px; color:var(--forest-light); margin-top:20px; text-align:center; font-style:italic}
+  .gift-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px}
+  .gift-card{
+    background:var(--paper); border:1.5px solid var(--line); border-radius:14px; padding:24px;
+    transition:all 0.28s; position:relative;
+  }
+  .gift-card:hover{border-color:var(--gold); transform:translateY(-4px); box-shadow:var(--shadow)}
+  .gift-card .g-icon{font-size:32px; margin-bottom:12px}
+  .gift-card h3{font-size:18px; margin-bottom:6px}
+  .gift-card p{font-size:13.5px; color:var(--forest-light); margin-bottom:14px}
+  .gift-card .g-price{font-family:'Fraunces',serif; font-size:22px; color:var(--gold-dark); margin-bottom:14px}
+  .suggest-row{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 18px}
+  .suggest-chip{
+    padding:8px 14px; border-radius:20px; border:1.5px solid var(--line-onDark);
+    background:rgba(201,146,43,0.12); color:var(--gold-light); font-size:12.5px; font-weight:600;
+    cursor:pointer; transition:all 0.2s;
+  }
+  .suggest-chip:hover{background:var(--gold); color:var(--ink)}
+  .loyalty-box{
+    background:linear-gradient(135deg, var(--forest-dark), var(--forest));
+    border-radius:16px; padding:28px 26px; color:var(--paper); margin-top:28px;
+    display:flex; flex-wrap:wrap; gap:24px; align-items:center; justify-content:space-between;
+  }
+  .loyalty-box h3{color:var(--paper); font-size:22px; margin-bottom:8px}
+  .loyalty-box p{font-size:14px; color:rgba(243,240,227,0.7); max-width:420px}
+  .recipe-steps{margin-top:16px}
+  .recipe-steps li{font-size:14px; color:var(--forest-light); padding:10px 0 10px 28px; position:relative; border-top:1px solid var(--line); list-style:none}
+  .recipe-steps li::before{content:attr(data-n); position:absolute; left:0; color:var(--gold-dark); font-weight:700; font-family:'Fraunces',serif}
+  .recipe-card{cursor:pointer}
+
+  
+  
+  /* Notification settings */
+  .notif-card{
+    background:rgba(243,240,227,0.06); border:1px solid var(--line-onDark);
+    border-radius:12px; padding:14px 16px; margin-top:16px;
+  }
+  .notif-card h4{font-size:13px; color:var(--gold-light); margin-bottom:10px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase}
+  .notif-row{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:10px 0; border-top:1px solid var(--line-onDark); font-size:13.5px; color:rgba(243,240,227,0.85);
+  }
+  .notif-row:first-of-type{border-top:none}
+  .notif-row .nr-label{flex:1}
+  .notif-row .nr-label small{display:block; font-size:11.5px; color:rgba(243,240,227,0.45); margin-top:2px}
+  .toggle-switch{
+    position:relative; width:44px; height:26px; flex-shrink:0;
+  }
+  .toggle-switch input{opacity:0; width:0; height:0}
+  .toggle-switch .slider{
+    position:absolute; cursor:pointer; inset:0; background:rgba(243,240,227,0.15);
+    border-radius:26px; transition:0.25s;
+  }
+  .toggle-switch .slider::before{
+    content:""; position:absolute; height:20px; width:20px; left:3px; bottom:3px;
+    background:var(--paper); border-radius:50%; transition:0.25s;
+  }
+  .toggle-switch input:checked + .slider{background:var(--gold)}
+  .toggle-switch input:checked + .slider::before{transform:translateX(18px)}
+  .notif-status{font-size:12px; color:rgba(243,240,227,0.5); margin-top:8px}
+  .notif-status.on{color:var(--gold-light)}
+  .notif-test-btn{margin-top:10px; width:100%}
+
+  /* PWA install banner */
+  .install-banner{
+    position:fixed; left:16px; right:16px; bottom:calc(88px + env(safe-area-inset-bottom));
+    z-index:85; background:var(--forest-dark); color:var(--paper);
+    border:1.5px solid var(--gold); border-radius:16px; padding:16px 18px;
+    display:none; align-items:center; gap:14px; flex-wrap:wrap;
+    box-shadow:0 12px 40px rgba(0,0,0,0.35);
+    animation:slideUp 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .install-banner.show{display:flex}
+  @keyframes slideUp{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .install-banner .ib-icon{
+    width:48px; height:48px; border-radius:12px; background:var(--gold);
+    display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0;
+  }
+  .install-banner .ib-text{flex:1; min-width:140px}
+  .install-banner .ib-text strong{display:block; font-size:15px; margin-bottom:2px}
+  .install-banner .ib-text span{font-size:12.5px; color:rgba(243,240,227,0.6)}
+  .install-banner .ib-actions{display:flex; gap:8px; align-items:center}
+  .install-banner .ib-dismiss{
+    background:none; border:none; color:rgba(243,240,227,0.5); font-size:20px;
+    cursor:pointer; padding:4px 8px; line-height:1;
+  }
+  .install-banner .ib-dismiss:hover{color:var(--paper)}
+  /* Standalone mode tweaks */
+  @media all and (display-mode: standalone){
+    .install-banner{display:none !important}
+    body{padding-top: env(safe-area-inset-top)}
+  }
+
+  /* ---- App shell ---- */
+  body{padding-bottom:88px}
+  .app-nav{
+    position:fixed; left:0; right:0; bottom:0; z-index:70;
+    background:rgba(18,32,25,0.96); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border-top:1px solid rgba(201,146,43,0.35);
+    display:flex; justify-content:space-around; align-items:center;
+    padding:8px 6px calc(8px + env(safe-area-inset-bottom));
+    box-shadow:0 -8px 28px rgba(0,0,0,0.25);
+  }
+  .app-nav a{
+    flex:1; display:flex; flex-direction:column; align-items:center; gap:3px;
+    color:rgba(243,240,227,0.5); font-size:10.5px; font-weight:600; text-decoration:none;
+    padding:6px 4px; border-radius:10px; transition:color 0.2s, background 0.2s;
+  }
+  .app-nav a .nav-ic{font-size:20px; line-height:1}
+  .app-nav a.active, .app-nav a:hover{color:var(--gold-light); background:rgba(201,146,43,0.12)}
+  .app-nav a.nav-order{
+    color:var(--ink); background:var(--gold); border-radius:14px; margin-top:-18px;
+    padding:12px 14px; box-shadow:0 6px 20px rgba(201,146,43,0.4); font-size:11px;
+  }
+  .app-nav a.nav-order .nav-ic{font-size:22px}
+  .app-nav a.nav-order:hover{background:var(--gold-light); color:var(--ink)}
+
+  .account-sheet{
+    position:fixed; left:0; right:0; bottom:0; z-index:80;
+    background:var(--forest-dark); color:var(--paper);
+    border-radius:20px 20px 0 0; padding:20px 22px calc(100px + env(safe-area-inset-bottom));
+    transform:translateY(110%); transition:transform 0.35s cubic-bezier(0.22,1,0.36,1);
+    max-height:85vh; overflow-y:auto; box-shadow:0 -12px 40px rgba(0,0,0,0.4);
+  }
+  .account-sheet.open{transform:translateY(0)}
+  .account-sheet .sheet-handle{
+    width:40px; height:4px; background:rgba(243,240,227,0.25); border-radius:4px;
+    margin:0 auto 16px;
+  }
+  .account-sheet h3{color:var(--paper); font-size:20px; margin-bottom:6px}
+  .account-sheet .sheet-sub{font-size:13px; color:rgba(243,240,227,0.55); margin-bottom:18px}
+  .account-field{margin-bottom:12px}
+  .account-field label{display:block; font-size:11px; color:var(--gold-light); margin-bottom:4px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase}
+  .pending-list{margin-top:18px}
+  .pending-list h4{font-size:13px; color:var(--gold-light); margin-bottom:10px; font-weight:600}
+  .pending-item{
+    background:rgba(243,240,227,0.06); border:1px solid var(--line-onDark);
+    border-radius:10px; padding:12px 14px; margin-bottom:8px; font-size:13px;
+  }
+  .pending-item .ref{color:var(--gold-light); font-weight:700; font-family:monospace}
+  .pending-item .meta{color:rgba(243,240,227,0.5); font-size:12px; margin-top:4px}
+  .sheet-actions{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap}
+  .sheet-backdrop{
+    position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:75;
+    opacity:0; pointer-events:none; transition:opacity 0.3s;
+  }
+  .sheet-backdrop.open{opacity:1; pointer-events:auto}
+  .fab-wa{bottom:100px}
+  @media(max-width:720px){.fab-wa{bottom:100px}}
+  .sticky-cart{bottom:72px}
+  .app-toast{
+    position:fixed; top:70px; left:50%; transform:translateX(-50%) translateY(-20px);
+    background:var(--forest); color:var(--paper); padding:12px 20px; border-radius:12px;
+    font-size:13.5px; font-weight:500; z-index:90; opacity:0; pointer-events:none;
+    transition:opacity 0.3s, transform 0.3s; box-shadow:0 8px 24px rgba(0,0,0,0.25);
+    border:1px solid var(--gold);
+  }
+  .app-toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header id="site-header">
+  <div class="wrap">
+    <div class="brand">Dawn Fresh <span>Basket</span></div>
+    <nav class="subnav">
+      <a href="#story">About</a>
+      <a href="#baskets">Baskets</a>
+      <a href="#products">Products</a>
+      <a href="#farmers">Farmers</a>
+      <a href="#seasonal">Seasonal</a>
+      <a href="#recipes">Recipes</a>
+      <a href="#gifts">Gifts</a>
+      <a href="#areas">Delivery</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="lang-toggle" id="lang-toggle" onclick="toggleLang()" title="Switch language">EN / SW</button>
+      <div class="hours"><span class="dot"></span>Open now · 8:30am – 9:00pm</div>
+    </div>
+    <a class="btn btn-primary btn-sm header-cta" href="https://wa.me/254141773312" target="_blank" rel="noopener">Order now</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="live"></span> Rooted in Nakuru · Delivered fresh</span>
+    <h1>Farm-fresh produce, traditional greens &amp; more — straight to your door in <em>Nakuru</em>.</h1>
+    <p class="sub">We connect local smallholder farmers directly with households, gated communities, and institutions — vegetables, kienyeji greens, fruits, grains, legumes, roots, dairy, meat, fish, honey &amp; herbs. Ordered on WhatsApp. Paid by M-Pesa.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://wa.me/254141773312" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Order on WhatsApp
+      </a>
+      <a class="btn btn-ghost" href="#baskets">Build your basket</a>
+    </div>
+    <div class="tier-strip">
+      <a href="#baskets"><span>Basket tier</span><h4>Household</h4></a>
+      <a href="#baskets"><span>Basket tier</span><h4>Premium</h4></a>
+      <a href="#baskets"><span>Basket tier</span><h4>Institutional</h4></a>
+      <a href="#gifts"><span>Special</span><h4>Gift baskets</h4></a>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-inner">
+    <span>Nakuru-wide delivery</span>
+    <span>WhatsApp ordering</span>
+    <span>M-Pesa payment</span>
+    <span>8:30am – 9pm daily</span>
+    <span>Kienyeji greens</span>
+    <span>Fruits · Grains · Dairy · Meat · Fish · Honey</span>
+    <span>Direct from local farmers</span>
+    <span>Nakuru-wide delivery</span>
+    <span>WhatsApp ordering</span>
+    <span>M-Pesa payment</span>
+    <span>8:30am – 9pm daily</span>
+    <span>Kienyeji greens</span>
+    <span>Fruits · Grains · Dairy · Meat · Fish · Honey</span>
+    <span>Direct from local farmers</span>
+  </div>
+</div>
+
+<section class="light" id="story">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The challenge &amp; our response</span>
+      <h2>Good food shouldn’t be this hard to find.</h2>
+    </div>
+    <div class="numbered-block reveal">
+      <span class="idx">01</span>
+      <h3>The problem</h3>
+      <p>Busy households and institutions across Nakuru want fresh, safe, convenient produce — but market runs eat into time nobody has. Meanwhile, local smallholder farmers face unreliable markets and low returns on what they grow.</p>
+      <ul class="check-list">
+        <li>Time-consuming market trips for busy families and offices</li>
+        <li>Inconsistent supply for institutions that need to plan ahead</li>
+        <li>Farmers with good produce but unstable, unfair markets</li>
+      </ul>
+    </div>
+    <div class="numbered-block reveal">
+      <span class="idx">02</span>
+      <h3>Our solution</h3>
+      <p>Dawn Fresh Basket sources directly from local farmers, checks every batch for quality, and delivers on a schedule that fits your household or institution — ordered over WhatsApp, paid by M-Pesa, no app required.</p>
+    </div>
+  </div>
+</section>
+
+<section class="light">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>From the farm gate to your basket.</h2>
+      <p>A simple, transparent process that puts fresh produce on your table and fair income in farmers’ hands.</p>
+    </div>
+    <div class="journey">
+      <div class="step-row reveal">
+        <span class="step-num">01</span>
+        <div class="step-icon">🌱</div>
+        <div class="step-body">
+          <h3>Local farmers</h3>
+          <p>We source directly from smallholder farmers around Nakuru growing vegetables, kienyeji greens, fruits, grains and more.</p>
+        </div>
+        <span class="step-tag">Step 01</span>
+      </div>
+      <div class="step-row reveal">
+        <span class="step-num">02</span>
+        <div class="step-icon">✓</div>
+        <div class="step-body">
+          <h3>Collection &amp; quality check</h3>
+          <p>Every harvest is inspected for freshness before it’s packed for delivery.</p>
+        </div>
+        <span class="step-tag">Step 02</span>
+      </div>
+      <div class="step-row reveal">
+        <span class="step-num">03</span>
+        <div class="step-icon">📦</div>
+        <div class="step-body">
+          <h3>Sorting &amp; packing</h3>
+          <p>Produce is sorted and packed into Dawn Fresh Basket bags, ready for household, premium, or institutional orders.</p>
+        </div>
+        <span class="step-tag">Step 03</span>
+      </div>
+      <div class="step-row reveal">
+        <span class="step-num">04</span>
+        <div class="step-icon">🚚</div>
+        <div class="step-body">
+          <h3>Delivery, on schedule</h3>
+          <p>Orders go out daily between 8:30am and 9:00pm, straight to your door, gate, or kitchen.</p>
+        </div>
+        <span class="step-tag">Step 04</span>
+      </div>
+      <div class="step-row reveal">
+        <span class="step-num">05</span>
+        <div class="step-icon">💳</div>
+        <div class="step-body">
+          <h3>Simple M-Pesa payment</h3>
+          <p>Pay on order or on delivery — no cards, no accounts, no hassle.</p>
+        </div>
+        <span class="step-tag">Step 05</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow onDark">Ready to get started?</span>
+      <h2>Subscribe to a basket, or ask about supplying your institution.</h2>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="https://wa.me/254141773312" target="_blank" rel="noopener">Order on WhatsApp</a>
+      <a class="btn btn-ghost onDark" href="#baskets">View baskets</a>
+    </div>
+  </div>
+</div>
+
+<section class="dark" id="baskets">
+  <div class="wrap">
+    <div class="section-head onDark">
+      <span class="eyebrow onDark">Basket subscriptions</span>
+      <h2>A basket for every table — or build your own.</h2>
+      <p>Pick a ready-made tier, or choose exactly what goes in. Every price is shown upfront, including delivery.</p>
+    </div>
+
+    <div class="price-note">
+      <span style="font-size:20px">💡</span>
+      <div><strong>Note on prices:</strong> sample figures so you can see how the calculator works. Send real per-item and per-tier prices and these will be swapped. Delivery bands are estimates.</div>
+    </div>
+
+    <div class="mode-tabs">
+      <button class="mode-tab" id="tab-tier" onclick="setMode('tier')">Choose a tier</button>
+      <button class="mode-tab active" id="tab-custom" onclick="setMode('custom')">Build your own</button>
+      <button class="mode-tab" id="tab-gift" onclick="setMode('gift')">Gift basket</button>
+    </div>
+
+    <div class="mode-panel" id="panel-tier">
+      <div class="builder-layout">
+        <div class="tier-grid" id="tier-cards">
+          <div class="tier-card" data-tier="household" data-price="1500" onclick="selectTier('household')">
+            <div class="tier-icon">🏠</div>
+            <h3>Household basket</h3>
+            <span class="tier-tag">For families and homes</span>
+            <div class="tier-price">KES 1,500 <small>/ basket</small></div>
+            <p>Fresh vegetables, kienyeji greens and staples sized for everyday family cooking.</p>
+            <div class="tier-freq">Frequency: <b>Weekly · Fortnightly · Monthly</b></div>
+            <button class="btn btn-gold tier-select-btn">Select this basket</button>
+          </div>
+          <div class="tier-card" data-tier="premium" data-price="2800" onclick="selectTier('premium')">
+            <span class="badge-recommended">Most popular</span>
+            <div class="tier-icon">✨</div>
+            <h3>Premium basket</h3>
+            <span class="tier-tag">For elevated everyday eating</span>
+            <div class="tier-price">KES 2,800 <small>/ basket</small></div>
+            <p>Wider selection with seasonal fruits, specialty produce and larger quantities.</p>
+            <div class="tier-freq">Frequency: <b>Weekly · Fortnightly · Monthly</b></div>
+            <button class="btn btn-gold tier-select-btn">Select this basket</button>
+          </div>
+          <div class="tier-card" data-tier="institutional" data-price="0" onclick="selectTier('institutional')">
+            <div class="tier-icon">🏢</div>
+            <h3>Institutional basket</h3>
+            <span class="tier-tag">Hospitals, schools, restaurants &amp; offices</span>
+            <div class="tier-price">Custom quote</div>
+            <p>Bulk-volume baskets — consistent supply, quality, and simple invoicing.</p>
+            <div class="tier-freq">Frequency: <b>Weekly · Fortnightly · Monthly</b></div>
+            <button class="btn btn-gold tier-select-btn">Request quote</button>
+          </div>
+        </div>
+
+        <div class="order-summary">
+          <h3>Your order</h3>
+          <div id="tier-summary-body"><p class="empty-note">Select a basket to see the full price breakdown.</p></div>
+          <div id="tier-freq-wrap" style="display:none">
+            <label style="display:block; font-size:12px; color:rgba(243,240,227,0.55); margin-top:8px">Frequency</label>
+            <div class="freq-select" id="tier-freq">
+              <button class="freq-chip active" data-f="Weekly" onclick="setFreq(this)">Weekly</button>
+              <button class="freq-chip" data-f="Fortnightly" onclick="setFreq(this)">Fortnightly</button>
+              <button class="freq-chip" data-f="Monthly" onclick="setFreq(this)">Monthly</button>
+            </div>
+          </div>
+          <label style="display:block; font-size:12px; color:rgba(243,240,227,0.55); margin-top:14px">Delivery area</label>
+          <select class="area-select" id="tier-area" onchange="renderTier()">
+            <option value="0.30">Nakuru CBD, Milimani, Section 58, Racecourse — 30%</option>
+            <option value="0.40">London Estate, Free Area, Kiamunyi — 40%</option>
+            <option value="0.50">Naka, Lanet, Bahati — 50%</option>
+          </select>
+          <div id="tier-totals"></div>
+
+          <div class="client-extras">
+            <div class="extras-title">Your details (remembered on this device)</div>
+            <input class="client-input" id="tier-client-name" type="text" placeholder="Your name" autocomplete="name">
+            <input class="client-input" id="tier-client-phone" type="tel" placeholder="Phone (07… or 01…)" autocomplete="tel">
+            <label class="check-row">
+              <input type="checkbox" id="tier-deposit" onchange="renderTier()">
+              <span><strong>50% deposit</strong> on basket + delivery only (for faster delivery). Airtime stays full amount.</span>
+            </label>
+            <div class="airtime-box">
+              <label class="check-row" style="margin-bottom:8px">
+                <input type="checkbox" id="tier-airtime" onchange="toggleAirtime('tier'); renderTier()">
+                <span>Add <strong>airtime</strong> (full custom amount — paid upfront before top-up)</span>
+              </label>
+              <div id="tier-airtime-wrap" style="display:none">
+                <input class="client-input" id="tier-airtime-amt" type="number" min="10" step="10" placeholder="Amount in KES (e.g. 100)" oninput="renderTier()">
+                <input class="client-input" id="tier-airtime-num" type="tel" placeholder="Number to top up (optional)" oninput="renderTier()">
+              </div>
+            </div>
+            <p class="mpesa-note">
+              <strong>Payment timing:</strong> Basket deposit (if selected) and <em>full airtime</em> are paid now via M-Pesa. Balance of basket + delivery is paid on delivery.<br>
+              After you pay, <strong>forward the M-Pesa confirmation SMS</strong> on this WhatsApp chat (include your order reference) so we can reconcile and release your order / airtime.
+            </p>
+          </div>
+
+          <a class="btn btn-gold" id="tier-order-btn" style="width:100%; text-align:center; justify-content:center; margin-top:16px; opacity:0.4; pointer-events:none" href="#" target="_blank" rel="noopener">Order on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mode-panel active" id="panel-custom">
+      <div class="builder-layout">
+        <div>
+          <div class="builder-filters" id="builder-filters">
+            <button class="filter-chip active" data-filter="all" onclick="setFilter('all')">All</button>
+            <button class="filter-chip" data-filter="greens" onclick="setFilter('greens')">Kienyeji greens</button>
+            <button class="filter-chip" data-filter="veg" onclick="setFilter('veg')">Vegetables</button>
+            <button class="filter-chip" data-filter="fruit" onclick="setFilter('fruit')">Fruits</button>
+            <button class="filter-chip" data-filter="root" onclick="setFilter('root')">Roots &amp; tubers</button>
+            <button class="filter-chip" data-filter="legume" onclick="setFilter('legume')">Legumes</button>
+            <button class="filter-chip" data-filter="grain" onclick="setFilter('grain')">Grains</button>
+            <button class="filter-chip" data-filter="animal" onclick="setFilter('animal')">Animal products</button>
+            <button class="filter-chip" data-filter="herb" onclick="setFilter('herb')">Herbs &amp; spices</button>
+            <input class="builder-search" id="builder-search" type="text" placeholder="Search produce…" oninput="buildProductList()">
+          </div>
+          <div class="suggest-row" id="suggest-row">
+            <button class="suggest-chip" onclick="applySuggestion('family')">Family weekly staples</button>
+            <button class="suggest-chip" onclick="applySuggestion('kienyeji')">Kienyeji greens pack</button>
+            <button class="suggest-chip" onclick="applySuggestion('fruit')">Fruit box</button>
+            <button class="suggest-chip" onclick="applySuggestion('protein')">Protein boost</button>
+          </div>
+          <div class="builder-list" id="builder-list"></div>
+        </div>
+
+        <div class="order-summary">
+          <h3>Your order</h3>
+          <div id="custom-summary-body"><p class="empty-note">Add items to see your price breakdown.</p></div>
+          <label style="display:block; font-size:12px; color:rgba(243,240,227,0.55); margin-top:14px">Delivery area</label>
+          <select class="area-select" id="custom-area" onchange="renderCustom()">
+            <option value="0.30">Nakuru CBD, Milimani, Section 58, Racecourse — 30%</option>
+            <option value="0.40">London Estate, Free Area, Kiamunyi — 40%</option>
+            <option value="0.50">Naka, Lanet, Bahati — 50%</option>
+          </select>
+          <div id="custom-totals"></div>
+          <div id="impact-preview" style="font-size:12.5px;color:var(--gold-light);margin-top:10px;text-align:center;display:none"></div>
+
+          <div class="client-extras">
+            <div class="extras-title">Your details (remembered on this device)</div>
+            <input class="client-input" id="custom-client-name" type="text" placeholder="Your name" autocomplete="name">
+            <input class="client-input" id="custom-client-phone" type="tel" placeholder="Phone (07… or 01…)" autocomplete="tel">
+            <label class="check-row">
+              <input type="checkbox" id="custom-deposit" onchange="renderCustom()">
+              <span><strong>50% deposit</strong> on basket + delivery only (for faster delivery). Airtime stays full amount.</span>
+            </label>
+            <div class="airtime-box">
+              <label class="check-row" style="margin-bottom:8px">
+                <input type="checkbox" id="custom-airtime" onchange="toggleAirtime('custom'); renderCustom()">
+                <span>Add <strong>airtime</strong> (full custom amount — paid upfront before top-up)</span>
+              </label>
+              <div id="custom-airtime-wrap" style="display:none">
+                <input class="client-input" id="custom-airtime-amt" type="number" min="10" step="10" placeholder="Amount in KES (e.g. 100)" oninput="renderCustom()">
+                <input class="client-input" id="custom-airtime-num" type="tel" placeholder="Number to top up (optional)" oninput="renderCustom()">
+              </div>
+            </div>
+            <p class="mpesa-note">
+              <strong>Payment timing:</strong> Basket deposit (if selected) and <em>full airtime</em> are paid now via M-Pesa. Balance of basket + delivery is paid on delivery.<br>
+              After you pay, <strong>forward the M-Pesa confirmation SMS</strong> on this WhatsApp chat (include your order reference) so we can reconcile and release your order / airtime.
+            </p>
+          </div>
+
+          <a class="btn btn-gold" id="custom-order-btn" style="width:100%; text-align:center; justify-content:center; margin-top:16px; opacity:0.4; pointer-events:none" href="#" target="_blank" rel="noopener">Order on WhatsApp</a>
+          <div class="min-order-warning" id="min-order-warning" style="display:none">Minimum order for delivery is KES 500 — add a bit more to check out.</div>
+        </div>
+      </div>
+
+    <div class="mode-panel" id="panel-gift">
+      <div class="gift-grid">
+        <div class="gift-card reveal">
+          <div class="g-icon">🎁</div>
+          <h3>Welcome home</h3>
+          <p>A warm mix of greens, fruits and staples — perfect for a new neighbour or returning family.</p>
+          <div class="g-price">KES 2,200</div>
+          <button class="btn btn-gold btn-sm" onclick="orderGift('Welcome home', 2200)">Send this gift</button>
+        </div>
+        <div class="gift-card reveal">
+          <div class="g-icon">💚</div>
+          <h3>Kienyeji care pack</h3>
+          <p>Traditional greens, honey and herbs — for someone who values indigenous nutrition.</p>
+          <div class="g-price">KES 1,800</div>
+          <button class="btn btn-gold btn-sm" onclick="orderGift('Kienyeji care pack', 1800)">Send this gift</button>
+        </div>
+        <div class="gift-card reveal">
+          <div class="g-icon">🍊</div>
+          <h3>Seasonal fruit box</h3>
+          <p>A colourful selection of what's best right now — mangoes, passion, pawpaw and more.</p>
+          <div class="g-price">KES 1,500</div>
+          <button class="btn btn-gold btn-sm" onclick="orderGift('Seasonal fruit box', 1500)">Send this gift</button>
+        </div>
+        <div class="gift-card reveal">
+          <div class="g-icon">🏢</div>
+          <h3>Office thank-you</h3>
+          <p>Shareable fruit &amp; snack pack for teams — easy to drop at reception.</p>
+          <div class="g-price">KES 3,500</div>
+          <button class="btn btn-gold btn-sm" onclick="orderGift('Office thank-you', 3500)">Send this gift</button>
+        </div>
+      </div>
+      <p style="margin-top:24px;font-size:14px;color:rgba(243,240,227,0.65);text-align:center">Add a personal note on WhatsApp. We'll deliver with care and a simple card.</p>
+    </div>
+    </div>
+  </div>
+</section>
+
+<div class="sticky-cart" id="sticky-cart">
+  <div class="info">Your basket<strong id="sticky-cart-total">KES 0</strong></div>
+  <a class="btn btn-gold btn-sm" id="sticky-cart-btn" href="#baskets">Review order</a>
+</div>
+
+<!-- PRODUCTS CATALOG + SLIDESHOW -->
+<section class="light" id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Our full range</span>
+      <h2>From the farm to your table.</h2>
+      <p>Traditional kienyeji greens, vegetables, fruits, grains, legumes, roots, animal products and herbs — with local names. Sample prices shown; real photos of your produce can replace the icons.</p>
+    </div>
+
+    <!-- Product slideshow -->
+    <div class="slideshow" id="slideshow">
+      <div class="slides" id="slides"></div>
+      <button class="slide-arrow prev" onclick="slideMove(-1)" aria-label="Previous">‹</button>
+      <button class="slide-arrow next" onclick="slideMove(1)" aria-label="Next">›</button>
+      <div class="slide-nav" id="slide-dots"></div>
+    </div>
+
+    <div class="cat-tabs" id="cat-tabs" style="margin-top:40px"></div>
+    <div class="product-grid" id="product-grid"></div>
+
+    <div class="photo-note">
+      <strong>About product photos:</strong> High-quality free stock photos (Unsplash — free for commercial use) are shown. Send your own real farm/produce photos and they can replace these for full authenticity.
+    </div>
+  </div>
+</section>
+
+
+<!-- FARMERS -->
+<section class="warm" id="farmers">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Our partners</span>
+      <h2>Meet the people behind your basket.</h2>
+      <p>Real smallholder farmers around Nakuru who grow what lands in your bag. Profiles are illustrative — replace with your actual partners and photos.</p>
+    </div>
+    <div class="farmer-grid">
+      <div class="farmer-card reveal">
+        <img class="fc-img" src="https://images.unsplash.com/photo-1500937386664-56d1dfef6924?w=600&h=400&fit=crop&q=70&auto=format" alt="Farmer in field" loading="lazy">
+        <div class="fc-body">
+          <h3>Mama Wanjiku</h3>
+          <div class="fc-loc">📍 Bahati · Kale &amp; managu beds</div>
+          <p>Third-generation grower supplying sukuma wiki and African nightshade. Her family has worked with Dawn Fresh since the first season.</p>
+          <div class="fc-tags"><span>Kales</span><span>Managu</span><span>Terere</span></div>
+        </div>
+      </div>
+      <div class="farmer-card reveal">
+        <img class="fc-img" src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop&q=70&auto=format" alt="Greenhouse" loading="lazy">
+        <div class="fc-body">
+          <h3>David &amp; Grace</h3>
+          <div class="fc-loc">📍 Lanet · Greenhouse tomatoes</div>
+          <p>Protected cultivation keeps tomatoes and capsicum flowing year-round. From greenhouse to your door often in under 24 hours.</p>
+          <div class="fc-tags"><span>Tomatoes</span><span>Hoho</span><span>Cucumbers</span></div>
+        </div>
+      </div>
+      <div class="farmer-card reveal">
+        <img class="fc-img" src="https://images.unsplash.com/photo-1516467501853-1efeaa1c9c0d?w=600&h=400&fit=crop&q=70&auto=format" alt="Dairy farm" loading="lazy">
+        <div class="fc-body">
+          <h3>Kamau Dairy</h3>
+          <div class="fc-loc">📍 Kiamunyi · Fresh milk &amp; eggs</div>
+          <p>Morning milk and farm eggs, chilled and delivered the same day. Clean, consistent, and trusted by households and institutions.</p>
+          <div class="fc-tags"><span>Milk</span><span>Eggs</span><span>Honey</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="impact-grid" style="margin-top:48px">
+      <div class="impact-card reveal">
+        <div class="ic-num">40+</div>
+        <div class="ic-label">Partner farmers</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="ic-num">~65%</div>
+        <div class="ic-label">Of order value returns to farmers</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="ic-num">&lt;24h</div>
+        <div class="ic-label">Farm to door target</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="ic-num">10</div>
+        <div class="ic-label">Estates &amp; areas served</div>
+      </div>
+    </div>
+    <p class="impact-note">Illustrative impact figures — update with your real numbers as the network grows.</p>
+  </div>
+</section>
+
+<!-- SEASONAL CALENDAR -->
+<section class="warm" id="seasonal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Seasonal availability</span>
+      <h2>What’s in season right now.</h2>
+      <p>Interactive calendar based on typical Nakuru / Rift Valley seasons. Highlighted items are currently at their best. Click a month to explore.</p>
+    </div>
+    <div class="calendar-wrap">
+      <div class="month-tabs" id="month-tabs"></div>
+      <div class="season-grid" id="season-grid"></div>
+      <div class="season-legend">
+        <span class="in">In season / peak</span>
+        <span class="out">Limited or out of peak</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FARM STORIES / VIDEOS -->
+<section class="light" id="stories">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Farm stories</span>
+      <h2>Meet the people behind your basket.</h2>
+      <p>Short stories from the smallholder farms we work with around Nakuru. Replace the placeholders with your real farm videos (YouTube or WhatsApp-shared clips).</p>
+    </div>
+    <div class="video-grid">
+      <div class="video-card reveal">
+        <div class="video-thumb" onclick="alert('Replace this with your real farm video link (YouTube embed or direct).')">
+          <span class="thumb-icon">🌾</span>
+          <div class="play">▶</div>
+        </div>
+        <div class="video-body">
+          <h3>Sunrise on the kale beds</h3>
+          <p>A day with a smallholder family in Bahati growing sukuma wiki and managu for Dawn Fresh Basket.</p>
+        </div>
+      </div>
+      <div class="video-card reveal">
+        <div class="video-thumb" onclick="alert('Replace this with your real farm video link (YouTube embed or direct).')">
+          <span class="thumb-icon">🍅</span>
+          <div class="play">▶</div>
+        </div>
+        <div class="video-body">
+          <h3>From the greenhouse to the basket</h3>
+          <p>How tomatoes and capsicum move from protected beds to your door in under 24 hours.</p>
+        </div>
+      </div>
+      <div class="video-card reveal">
+        <div class="video-thumb" onclick="alert('Replace this with your real farm video link (YouTube embed or direct).')">
+          <span class="thumb-icon">🥛</span>
+          <div class="play">▶</div>
+        </div>
+        <div class="video-body">
+          <h3>Fresh milk &amp; eggs, every morning</h3>
+          <p>Partner dairy and poultry farmers supplying clean, chilled milk and farm eggs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECIPES -->
+<section class="warm" id="recipes">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Cooking ideas</span>
+      <h2>Turn your basket into a meal.</h2>
+      <p>Simple Kenyan-inspired recipes using produce from Dawn Fresh Basket. Swap ingredients based on what’s in season.</p>
+    </div>
+    <div class="recipe-grid">
+      <div class="recipe-card reveal" onclick="openRecipe('sukuma')">
+        <div class="r-icon">🍲</div>
+        <h3>Sukuma Wiki &amp; Ugali</h3>
+        <div class="r-meta">15 min · Everyday staple</div>
+        <p>Classic Kenyan greens stir-fried with onions and tomatoes, served with soft ugali.</p>
+        <div class="recipe-ings">
+          <span>Sukuma wiki</span><span>Onions</span><span>Tomatoes</span><span>Garlic</span><span>Maize flour</span>
+        </div>
+      </div>
+      <div class="recipe-card reveal" onclick="openRecipe('managu')">
+        <div class="r-icon">🥘</div>
+        <h3>Managu &amp; Terere Mix</h3>
+        <div class="r-meta">20 min · Kienyeji favourite</div>
+        <p>Traditional African nightshade and amaranth greens, lightly cooked with a touch of dhania.</p>
+        <div class="recipe-ings">
+          <span>Managu</span><span>Terere</span><span>Dhania</span><span>Onions</span><span>Tomatoes</span>
+        </div>
+      </div>
+      <div class="recipe-card reveal" onclick="openRecipe('githeri')">
+        <div class="r-icon">🍛</div>
+        <h3>Githeri (Beans &amp; Maize)</h3>
+        <div class="r-meta">45 min · Hearty one-pot</div>
+        <p>Boiled maize and beans simmered with carrots, potatoes and a light tomato base.</p>
+        <div class="recipe-ings">
+          <span>Maize</span><span>Beans</span><span>Carrots</span><span>Potatoes</span><span>Onions</span>
+        </div>
+      </div>
+      <div class="recipe-card reveal" onclick="openRecipe('fruit')">
+        <div class="r-icon">🥗</div>
+        <h3>Fresh Fruit Salad</h3>
+        <div class="r-meta">10 min · Light &amp; bright</div>
+        <p>Seasonal mango, pineapple, pawpaw and passion fruit with a squeeze of lemon.</p>
+        <div class="recipe-ings">
+          <span>Mangoes</span><span>Pineapples</span><span>Pawpaw</span><span>Passion fruit</span><span>Lemon</span>
+        </div>
+      </div>
+      <div class="recipe-card reveal" onclick="openRecipe('ndengu')">
+        <div class="r-icon">🍜</div>
+        <h3>Ndengu Stew</h3>
+        <div class="r-meta">35 min · Protein-rich</div>
+        <p>Green grams cooked with onions, tomatoes, garlic and a hint of turmeric and chili.</p>
+        <div class="recipe-ings">
+          <span>Green grams</span><span>Onions</span><span>Tomatoes</span><span>Garlic</span><span>Turmeric</span><span>Chili</span>
+        </div>
+      </div>
+      <div class="recipe-card reveal" onclick="openRecipe('eggs')">
+        <div class="r-icon">🍳</div>
+        <h3>Farm Egg &amp; Veggie Scramble</h3>
+        <div class="r-meta">12 min · Quick breakfast</div>
+        <p>Farm eggs scrambled with spinach, tomatoes, onions and a sprinkle of dhania.</p>
+        <div class="recipe-ings">
+          <span>Eggs</span><span>Spinach</span><span>Tomatoes</span><span>Onions</span><span>Dhania</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- GIFTS -->
+<section class="warm" id="gifts">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Give fresh</span>
+      <h2>Gift baskets for every occasion.</h2>
+      <p>Send a thoughtful, useful gift — no plastic, no guesswork. We deliver with a note from you.</p>
+    </div>
+    <div class="gift-grid">
+      <div class="gift-card reveal">
+        <div class="g-icon">🎁</div>
+        <h3>Welcome home</h3>
+        <p>Greens, fruits and staples for a new neighbour or returning family member.</p>
+        <div class="g-price">KES 2,200</div>
+        <button class="btn btn-primary btn-sm" onclick="orderGift('Welcome home', 2200)">Order gift</button>
+      </div>
+      <div class="gift-card reveal">
+        <div class="g-icon">💚</div>
+        <h3>Kienyeji care pack</h3>
+        <p>Traditional greens, honey and herbs for someone who values indigenous nutrition.</p>
+        <div class="g-price">KES 1,800</div>
+        <button class="btn btn-primary btn-sm" onclick="orderGift('Kienyeji care pack', 1800)">Order gift</button>
+      </div>
+      <div class="gift-card reveal">
+        <div class="g-icon">🍊</div>
+        <h3>Seasonal fruit box</h3>
+        <p>What's best right now — mangoes, passion, pawpaw and more.</p>
+        <div class="g-price">KES 1,500</div>
+        <button class="btn btn-primary btn-sm" onclick="orderGift('Seasonal fruit box', 1500)">Order gift</button>
+      </div>
+      <div class="gift-card reveal">
+        <div class="g-icon">🏢</div>
+        <h3>Office thank-you</h3>
+        <p>Shareable fruit &amp; snack pack for teams — easy drop at reception.</p>
+        <div class="g-price">KES 3,500</div>
+        <button class="btn btn-primary btn-sm" onclick="orderGift('Office thank-you', 3500)">Order gift</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="warm">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Our values</span>
+      <h2>What we stand for.</h2>
+    </div>
+    <ul class="values-list">
+      <li class="reveal"><span class="idx">01</span><h3>Freshness</h3></li>
+      <li class="reveal"><span class="idx">02</span><h3>Fair pricing for farmers and customers</h3></li>
+      <li class="reveal"><span class="idx">03</span><h3>Reliability</h3></li>
+      <li class="reveal"><span class="idx">04</span><h3>Community, across every estate we serve</h3></li>
+      <li class="reveal"><span class="idx">05</span><h3>Food safety &amp; quality checks</h3></li>
+      <li class="reveal"><span class="idx">06</span><h3>Honest, simple ordering</h3></li>
+    </ul>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="section-head onDark">
+      <span class="eyebrow onDark">Why it matters</span>
+      <h2>Growing more than a delivery.</h2>
+    </div>
+    <ul class="stat-list">
+      <li class="reveal"><span class="stat-tag">Farmers</span><h3>Fair &amp; stable incomes</h3><p>Direct market access means Nakuru farmers earn predictable, fair returns for what they grow.</p></li>
+      <li class="reveal"><span class="stat-tag">Households</span><h3>Better nutrition</h3><p>Fresh vegetables, kienyeji greens, fruits and proteins — made convenient for busy families.</p></li>
+      <li class="reveal"><span class="stat-tag">Supply chain</span><h3>Less food waste</h3><p>A direct farm-to-basket model cuts post-harvest losses and gets produce to your table faster.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="light">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Beyond the basket</span>
+      <h2>What makes every order dependable.</h2>
+    </div>
+    <div class="seg-grid">
+      <div class="seg-card reveal">
+        <span class="seg-tag">Sourcing</span>
+        <h3>Direct from local farmers</h3>
+        <p>No unnecessary middlemen — better prices for you, fairer income for the farmer.</p>
+      </div>
+      <div class="seg-card reveal">
+        <span class="seg-tag">Quality</span>
+        <h3>Checked before it’s packed</h3>
+        <p>Every batch is looked over for freshness before it goes into your basket.</p>
+      </div>
+      <div class="seg-card reveal">
+        <span class="seg-tag">Flexibility</span>
+        <h3>Order your way</h3>
+        <p>One-off orders, standing weekly baskets, or bulk institutional supply — your call.</p>
+      </div>
+      <div class="seg-card reveal">
+        <span class="seg-tag">Simplicity</span>
+        <h3>WhatsApp &amp; M-Pesa only</h3>
+        <p>No app to download, no account to create — just a message and a payment.</p>
+      </div>
+    </div>
+
+    <div class="loyalty-box reveal">
+      <div>
+        <h3>Repeat orders, remembered</h3>
+        <p>Your name and phone stay on this device. On WhatsApp we keep notes of preferred areas and past baskets so the next order is faster.</p>
+      </div>
+      <a class="btn btn-gold" href="https://wa.me/254141773312" target="_blank" rel="noopener">Message us to set a standing order</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="warm" id="who">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Who we serve</span>
+      <h2>Fresh food for everyone in Nakuru.</h2>
+      <p>Every group has different needs. Here’s how we match baskets and products to the people we deliver to — so you get the right mix, the right size, and the right frequency.</p>
+    </div>
+
+    <div class="audience-grid">
+
+      <div class="audience-card reveal">
+        <div class="aud-icon">👪</div>
+        <h3>Busy families</h3>
+        <p class="aud-desc">Parents juggling work, school runs and dinner. They want reliable weekly greens and staples without a market trip.</p>
+        <div class="aud-rec"><strong>Suggested tier:</strong> Household basket · Weekly</div>
+        <div class="aud-products">
+          <span>Sukuma wiki</span><span>Tomatoes</span><span>Onions</span><span>Carrots</span><span>Potatoes</span><span>Eggs</span><span>Bananas</span>
+        </div>
+      </div>
+
+      <div class="audience-card reveal">
+        <div class="aud-icon">💼</div>
+        <h3>Professionals</h3>
+        <p class="aud-desc">Office workers and freelancers who cook a few times a week and value convenience, quality and clean ingredients.</p>
+        <div class="aud-rec"><strong>Suggested tier:</strong> Premium basket · Fortnightly</div>
+        <div class="aud-products">
+          <span>Avocados</span><span>Spinach</span><span>Capsicum</span><span>Chicken</span><span>Yoghurt-friendly fruits</span><span>Dhania</span>
+        </div>
+      </div>
+
+      <div class="audience-card reveal">
+        <div class="aud-icon">🏘️</div>
+        <h3>Gated communities</h3>
+        <p class="aud-desc">Estates and compounds that want bulk or shared orders, consistent delivery windows and easy WhatsApp coordination.</p>
+        <div class="aud-rec"><strong>Suggested tier:</strong> Household or Premium · Group orders welcome</div>
+        <div class="aud-products">
+          <span>Mixed greens</span><span>Fruits pack</span><span>Roots &amp; tubers</span><span>Eggs</span><span>Milk</span>
+        </div>
+      </div>
+
+      <div class="audience-card reveal">
+        <div class="aud-icon">🏥</div>
+        <h3>Hospitals</h3>
+        <p class="aud-desc">Kitchens and catering units that need safe, consistent supply of vegetables, fruits and proteins for patient and staff meals.</p>
+        <div class="aud-rec"><strong>Suggested tier:</strong> Institutional · Custom volume &amp; invoice</div>
+        <div class="aud-products">
+          <span>Kales</span><span>Cabbage</span><span>Carrots</span><span>Potatoes</span><span>Bananas</span><span>Eggs</span><span>Chicken</span>
+        </div>
+      </div>
+
+      <div class="audience-card reveal">
+        <div class="aud-icon">🏫</div>
+        <h3>Schools</h3>
+        <p class="aud-desc">Boarding and day schools needing reliable bulk produce for dining halls — cost-effective, nutritious and delivered on schedule.</p>
+        <div class="aud-rec"><strong>Suggested tier:</strong> Institutional · Weekly or term contracts</div>
+        <div class="aud-products">
+          <span>Maize</span><span>Beans</span><span>Sukuma</span><span>Cabbage</span><span>Potatoes</span><span>Carrots</span><span>Bananas</span>
+        </div>
+      </div>
+
+      <div class="audience-card reveal">
+        <div class="aud-icon">🥗</div>
+        <h3>Health-conscious individuals</h3>
+        <p class="aud-desc">People prioritising kienyeji greens, fresh fruits and clean proteins — often smaller, more frequent orders with seasonal focus.</p>
+        <div class="aud-rec"><strong>Suggested tier:</strong> Build your own · or Premium</div>
+        <div class="aud-products">
+          <span>Managu</span><span>Terere</span><span>Spinach</span><span>Avocado</span><span>Passion fruit</span><span>Ginger</span><span>Garlic</span>
+        </div>
+      </div>
+
+      <div class="audience-card reveal">
+        <div class="aud-icon">🍽️</div>
+        <h3>Restaurants</h3>
+        <p class="aud-desc">Cafés, hotels and eateries that need consistent quality, bulk quantities and flexible ordering for daily menus.</p>
+        <div class="aud-rec"><strong>Suggested tier:</strong> Institutional · Daily / weekly supply</div>
+        <div class="aud-products">
+          <span>Tomatoes</span><span>Onions</span><span>Hoho</span><span>Dhania</span><span>Chicken</span><span>Fish</span><span>Herbs</span>
+        </div>
+      </div>
+
+      <div class="audience-card reveal">
+        <div class="aud-icon">🏢</div>
+        <h3>Institutions &amp; offices</h3>
+        <p class="aud-desc">Offices, NGOs and facilities running canteens or staff kitchens — they value simple invoicing and dependable delivery.</p>
+        <div class="aud-rec"><strong>Suggested tier:</strong> Institutional · Custom quote</div>
+        <div class="aud-products">
+          <span>Mixed vegetables</span><span>Fruits</span><span>Eggs</span><span>Milk</span><span>Staples</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="audience-cta">
+      <p>Not sure which basket fits? Message us on WhatsApp with your household size or institution needs — we’ll recommend a mix and frequency.</p>
+      <a class="btn btn-primary" href="https://wa.me/254141773312" target="_blank" rel="noopener">Get a recommendation</a>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="areas">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Delivery areas</span>
+      <h2>We deliver across Nakuru.</h2>
+      <p>Currently reaching these areas and expanding — message us to confirm delivery to your exact estate.</p>
+    </div>
+    <div class="produce-grid">
+      <div class="produce-item"><span class="name">Nakuru Town CBD</span></div>
+      <div class="produce-item"><span class="name">Milimani</span></div>
+      <div class="produce-item"><span class="name">Section 58</span></div>
+      <div class="produce-item"><span class="name">Racecourse</span></div>
+      <div class="produce-item"><span class="name">London Estate</span></div>
+      <div class="produce-item"><span class="name">Free Area</span></div>
+      <div class="produce-item"><span class="name">Kiamunyi</span></div>
+      <div class="produce-item"><span class="name">Naka</span></div>
+      <div class="produce-item"><span class="name">Lanet</span></div>
+      <div class="produce-item"><span class="name">Bahati</span></div>
+    </div>
+    <div class="pin-box reveal">
+      <span class="ic">📍</span>
+      <div class="txt">
+        <h4>Pin your location for faster, more accurate delivery</h4>
+        <p>Share your exact pin with us on WhatsApp when you order. Delivery fees run 30%–50% of order value depending on distance.</p>
+        <div id="pin-status"></div>
+      </div>
+      <button class="btn btn-primary" id="pin-btn" onclick="sharePin()">Share my location</button>
+    </div>
+  </div>
+</section>
+
+<section class="warm">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Testimonials</span>
+      <h2>Customers love ordering from us.</h2>
+      <p>Replace these placeholders with real customer quotes (with permission).</p>
+    </div>
+    <div class="seg-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>“[Add a real customer quote here]”</p>
+        <strong>— Customer name, estate</strong>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>“[Add a real customer quote here]”</p>
+        <strong>— Customer name, estate</strong>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>“[Add a real customer quote here]”</p>
+        <strong>— Customer name, estate</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Questions</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you deliver every day? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>Yes. We deliver daily from 8:30am to 9:00pm.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I pay? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>We accept M-Pesa, on order or before dispatch.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I place bulk orders? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>Yes — we supply restaurants, schools, hospitals, and other institutions. Message us for a custom quote.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I order? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>Message us on WhatsApp with your shopping list, or subscribe to a basket using the builder above.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you deliver outside Nakuru town? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>We’re expanding estate by estate — message us to confirm your area.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How much is delivery? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>Delivery is 30%–50% of your order value, based on distance. We’ll confirm the exact fee on WhatsApp once we have your location.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I change my basket contents? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>Yes, tell us your preferences on WhatsApp and we’ll tailor future baskets.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is the 50% deposit for faster delivery? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>Pay 50% of the basket + delivery only via M-Pesa to secure priority dispatch. Airtime is never part of the deposit — you always pay the full custom airtime amount upfront. The remaining 50% of basket + delivery is paid on delivery. Forward your M-Pesa confirmation on WhatsApp.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I buy airtime with my order? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>Yes. Tick “Add airtime”, enter any amount (e.g. KES 50, 100, 200) and optionally the number to top up. <strong>Airtime is always paid in full upfront</strong> (it is never part of the 50% deposit). We top up only after we receive and match your M-Pesa confirmation to your order reference.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Why do you ask for my M-Pesa confirmation message? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>Forward the M-Pesa SMS (or screenshot) on the same WhatsApp thread and include your <strong>order reference</strong> (e.g. DFB-260804-AB12). We match the amount + reference to your order, then release priority delivery and/or airtime top-up. This is how payments are reconciled quickly.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you remember my details for next time? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>On this device, your name and phone are saved in the browser so the order form fills itself next time. For a full client record (repeat orders, preferred area, history), we keep notes from your WhatsApp conversations.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">When is airtime paid and when is it topped up? <span class="chev">▾</span></button>
+        <div class="faq-a"><p><strong>Paid:</strong> in full with your M-Pesa payment now (together with any 50% deposit on basket + delivery). <strong>Topped up:</strong> only after we confirm your M-Pesa message matches the order reference and airtime amount. Airtime is never held as a deposit or paid on delivery.</p></div>
+      </div>
+
+
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you send push notifications? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>Yes — if you allow them. Open <strong>Account</strong> and turn on Notifications. You can choose order confirmations, seasonal tips, and delivery reminders. On Android Chrome these work even when the app is closed (after you install it). On iPhone, notifications work best once the site is added to your Home Screen and permission is granted in Safari/Settings.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I install this like an app? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>Yes. On Android Chrome, tap <strong>Install</strong> when the banner appears (or use the menu → Install app). On iPhone Safari, tap the Share button → <strong>Add to Home Screen</strong>. Once installed it opens full-screen, keeps your details on this device, and works even with a weak connection.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I send a gift basket? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>Yes. Use the Gift basket mode or the Gifts section, choose a pack, and tell us the recipient's name, phone and delivery pin on WhatsApp. We'll include a short note from you.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do you reconcile M-Pesa payments to orders? <span class="chev">▾</span></button>
+        <div class="faq-a"><p>Every order gets a unique reference (e.g. DFB-260804-AB12) in the WhatsApp message. You pay via M-Pesa, then forward the confirmation SMS quoting that reference. We match: (1) amount, (2) reference, (3) phone. Once matched, deposit/airtime is marked paid and priority dispatch or top-up is released. Full bank-level automation (Daraja C2B) can be connected later for auto-matching.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="light" id="payments">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Payments &amp; reconciliation</span>
+      <h2>Clear timing. Easy matching.</h2>
+      <p>How money moves — and how we match M-Pesa to your order.</p>
+    </div>
+    <div class="seg-grid">
+      <div class="seg-card reveal">
+        <span class="seg-tag">Airtime</span>
+        <h3>Paid in full now</h3>
+        <p>Your custom airtime amount is paid entirely upfront with M-Pesa. We top up the number only after the confirmation SMS is matched to your order reference. Never part of the 50% deposit.</p>
+      </div>
+      <div class="seg-card reveal">
+        <span class="seg-tag">Basket deposit</span>
+        <h3>50% now · 50% on delivery</h3>
+        <p>If you choose priority delivery, pay half of basket + delivery now. The rest is collected on delivery. Deposit never applies to airtime.</p>
+      </div>
+      <div class="seg-card reveal">
+        <span class="seg-tag">Order reference</span>
+        <h3>DFB-YYMMDD-XXXX</h3>
+        <p>Every WhatsApp order includes a unique reference. Quote it when you forward your M-Pesa SMS so we can reconcile in seconds.</p>
+      </div>
+      <div class="seg-card reveal">
+        <span class="seg-tag">Reconciliation</span>
+        <h3>Match → release</h3>
+        <p>We match amount + reference + phone. Then: mark paid, release priority dispatch, and process airtime top-up. Automated Daraja matching can be added when you connect a backend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div class="trust-item"><strong>8:30–9pm</strong>Ordering window, every day</div>
+    <div class="trust-item"><strong>WhatsApp</strong>Simple ordering, no app needed</div>
+    <div class="trust-item"><strong>M-Pesa</strong>Fast, familiar payment</div>
+    <div class="trust-item"><strong>Bulk-ready</strong>Pricing for institutions &amp; restaurants</div>
+  </div>
+</div>
+
+<div class="cta-band">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow onDark">Start nourishing your table</span>
+      <h2>Ready to stop thinking about the market run?</h2>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="https://wa.me/254141773312" target="_blank" rel="noopener">Order on WhatsApp</a>
+      <a class="btn btn-ghost onDark" href="#story">Our story</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand">Dawn Fresh <span>Basket</span></div>
+        <p style="margin-top:10px; max-width:300px; line-height:1.5">Connecting Nakuru’s smallholder farmers to households and institutions, one basket at a time.</p>
+      </div>
+      <div class="footer-nav">
+        <a href="#story">About</a>
+        <a href="#baskets">Baskets</a>
+        <a href="#products">Products</a>
+        <a href="#farmers">Farmers</a>
+        <a href="#seasonal">Seasonal</a>
+        <a href="#recipes">Recipes</a>
+        <a href="#gifts">Gifts</a>
+        <a href="#areas">Delivery</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>Customer care: 0712 255 550 · WhatsApp: 0141 773 312</span>
+      <span>Ordering daily, 8:30am – 9:00pm · Nakuru, Kenya</span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab-wa" href="https://wa.me/254141773312" target="_blank" rel="noopener" title="Chat on WhatsApp" aria-label="Order on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+/* ===================== FULL PRODUCT CATALOG ===================== */
+/* seasons: array of month numbers 1-12 when item is typically in peak/good supply in Nakuru region */
+/* Real produce photos — free commercial use (Unsplash License). Optimized sizes + modern format. */
+function imgUrl(id, size){
+  size = size || 400;
+  // auto=format serves WebP/AVIF when supported; q=70 balances quality & weight
+  return 'https://images.unsplash.com/'+id+'?w='+size+'&h='+size+'&fit=crop&q=70&auto=format';
+}
+var U = function(id){ return id; }; // store photo id only; build URLs at render time
+var PRODUCTS = [
+  /* ---- Kienyeji greens ---- */
+  {id:'kales', name:'Kales', local:'Sukuma wiki', unit:'bunch', price:50, cat:'greens', img:U('photo-1540420773420-3366772f4999'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Daily staple — rich in vitamin A and iron.'},
+  {id:'spinach', name:'Spinach', local:'Spinach', unit:'bunch', price:60, cat:'greens', img:U('photo-1576045057995-568f588f82fb'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Soft-leaved, high in folate and iron.'},
+  {id:'managu', name:'Managu', local:'African nightshade', unit:'bunch', price:70, cat:'greens', img:U('photo-1540420773420-3366772f4999'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Indigenous green packed with vitamins A & C.'},
+  {id:'terere', name:'Terere', local:'Amaranth / mchicha', unit:'bunch', price:70, cat:'greens', img:U('photo-1512621776951-a57141f2eefd'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'High in calcium and plant protein.'},
+  {id:'kunde', name:'Kunde', local:'Cowpea leaves', unit:'bunch', price:65, cat:'greens', img:U('photo-1557844352-761f2565b576'), seasons:[3,4,5,6,7,8,9,10], desc:'Tender leaves of the cowpea plant.'},
+  {id:'saga', name:'Saga', local:'Spider plant', unit:'bunch', price:75, cat:'greens', img:U('photo-1622206151226-18ca2c96fe25'), seasons:[4,5,6,7,8,9,10], desc:'Traditional bitter-leaf green, highly nutritious.'},
+
+  /* ---- Vegetables ---- */
+  {id:'tomatoes', name:'Tomatoes', local:'Nyanya', unit:'kg', price:120, cat:'veg', img:U('photo-1563565375-f3fdfdbefa83'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Base of every Kenyan stew.'},
+  {id:'onions', name:'Onions', local:'Vitunguu', unit:'kg', price:100, cat:'veg', img:U('photo-1518977676601-b53f82aba655'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Red & white kitchen essentials.'},
+  {id:'cabbage', name:'Cabbage', local:'Kabichi', unit:'head', price:80, cat:'veg', img:U('photo-1594282486552-05b4d80fbb9f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Crisp and versatile.'},
+  {id:'carrots', name:'Carrots', local:'Karoti', unit:'kg', price:90, cat:'veg', img:U('photo-1598170845058-32b9d6a5da37'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Naturally sweet, rich in beta-carotene.'},
+  {id:'capsicum', name:'Green peppers', local:'Hoho', unit:'kg', price:150, cat:'veg', img:U('photo-1563565375-f3fdfdbefa83'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Crunchy and high in vitamin C.'},
+  {id:'cucumbers', name:'Cucumbers', local:'Tango', unit:'kg', price:80, cat:'veg', img:U('photo-1594282486552-05b4d80fbb9f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Cool and hydrating.'},
+  {id:'eggplant', name:'Eggplants', local:'Biringanya', unit:'kg', price:100, cat:'veg', img:U('photo-1563565375-f3fdfdbefa83'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Mild and versatile.'},
+  {id:'okra', name:'Okra', local:'Bamia', unit:'kg', price:110, cat:'veg', img:U('photo-1594282486552-05b4d80fbb9f'), seasons:[3,4,5,6,7,8,9,10], desc:'Great in stews and soups.'},
+  {id:'courgettes', name:'Courgettes', local:'Zucchini', unit:'kg', price:100, cat:'veg', img:U('photo-1594282486552-05b4d80fbb9f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Mild, low-calorie vegetable.'},
+
+  /* ---- Fruits ---- */
+  {id:'bananas', name:'Bananas', local:'Ndizi', unit:'bunch', price:200, cat:'fruit', img:U('photo-1571771894821-ce9b6c11b08e'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Sweet and energy-rich.'},
+  {id:'mangoes', name:'Mangoes', local:'Maembe', unit:'kg', price:150, cat:'fruit', img:U('photo-1553279768-865429fa0078'), seasons:[11,12,1,2,3,4], desc:'Peak tropical sweetness.'},
+  {id:'oranges', name:'Oranges', local:'Machungwa', unit:'kg', price:120, cat:'fruit', img:U('photo-1547514701-42782101795e'), seasons:[5,6,7,8,9,10], desc:'Juicy and vitamin-C packed.'},
+  {id:'avocados', name:'Avocados', local:'Parachichi', unit:'kg', price:180, cat:'fruit', img:U('photo-1523049673857-eb18f1d7b578'), seasons:[3,4,5,6,7,8,9], desc:'Creamy and nutrient-dense.'},
+  {id:'pineapples', name:'Pineapples', local:'Nanasi', unit:'piece', price:150, cat:'fruit', img:U('photo-1550258987-190a2d41a8ba'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Tangy and refreshing.'},
+  {id:'watermelons', name:'Watermelons', local:'Tikiti maji', unit:'piece', price:250, cat:'fruit', img:U('photo-1587049352846-4a222e784d38'), seasons:[10,11,12,1,2,3], desc:'Hydrating summer favourite.'},
+  {id:'pawpaws', name:'Pawpaws', local:'Papai', unit:'piece', price:120, cat:'fruit', img:U('photo-1550258987-190a2d41a8ba'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Soft, sweet and digestive-friendly.'},
+  {id:'lemons', name:'Lemons', local:'Ndimu', unit:'kg', price:100, cat:'fruit', img:U('photo-1582284540020-8acbeba4bb3e'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Bright acidity for cooking and drinks.'},
+  {id:'passion', name:'Passion fruits', local:'Passion', unit:'kg', price:200, cat:'fruit', img:U('photo-1553279768-865429fa0078'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Aromatic and tart.'},
+  {id:'apples', name:'Apples', local:'Tufaha', unit:'kg', price:250, cat:'fruit', img:U('photo-1560806887-1e4cd0b6cbd6'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Crisp imported & highland varieties.'},
+
+  /* ---- Roots & tubers ---- */
+  {id:'potatoes', name:'Potatoes', local:'Viazi', unit:'kg', price:80, cat:'root', img:U('photo-1518977676601-b53f82aba655'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Everyday staple.'},
+  {id:'sweetpotatoes', name:'Sweet potatoes', local:'Viazi vitamu', unit:'kg', price:90, cat:'root', img:U('photo-1596097635121-14b63b7a0c19'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Naturally sweet and filling.'},
+  {id:'cassava', name:'Cassava', local:'Muhogo', unit:'kg', price:70, cat:'root', img:U('photo-1518977676601-b53f82aba655'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Versatile root crop.'},
+  {id:'arrowroots', name:'Arrowroots', local:'Nduma', unit:'kg', price:100, cat:'root', img:U('photo-1518977676601-b53f82aba655'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Traditional boiled or mashed.'},
+  {id:'yams', name:'Yams', local:'Viazi vikuu', unit:'kg', price:120, cat:'root', img:U('photo-1596097635121-14b63b7a0c19'), seasons:[6,7,8,9,10,11], desc:'Starchy and satisfying.'},
+
+  /* ---- Legumes ---- */
+  {id:'beans', name:'Beans', local:'Maharagwe', unit:'kg', price:150, cat:'legume', img:U('photo-1551462147-ff29053bfc14'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Protein-rich kitchen staple.'},
+  {id:'greengrams', name:'Green grams', local:'Ndengu', unit:'kg', price:180, cat:'legume', img:U('photo-1515543904379-3d757afe72e4'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Quick-cooking and nutritious.'},
+  {id:'cowpeas', name:'Cowpeas', local:'Kunde (beans)', unit:'kg', price:160, cat:'legume', img:U('photo-1551462147-ff29053bfc14'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Drought-tolerant legume.'},
+  {id:'pigeonpeas', name:'Pigeon peas', local:'Mbaazi', unit:'kg', price:170, cat:'legume', img:U('photo-1515543904379-3d757afe72e4'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Great in stews and githeri.'},
+  {id:'groundnuts', name:'Groundnuts', local:'Njugu', unit:'kg', price:220, cat:'legume', img:U('photo-1551462147-ff29053bfc14'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Roasted or used in sauces.'},
+  {id:'lentils', name:'Lentils', local:'Dengu / lentils', unit:'kg', price:200, cat:'legume', img:U('photo-1586201375761-83865001e31c'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fast-cooking protein.'},
+
+  /* ---- Grains ---- */
+  {id:'maize', name:'Maize', local:'Mahindi', unit:'kg', price:80, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh or dry for ugali & githeri.'},
+  {id:'rice', name:'Rice', local:'Mchele', unit:'kg', price:180, cat:'grain', img:U('photo-1586201375761-83865001e31c'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Local and imported grades.'},
+  {id:'wheat', name:'Wheat', local:'Ngano', unit:'kg', price:120, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'For chapati and baking.'},
+  {id:'sorghum', name:'Sorghum', local:'Mtama', unit:'kg', price:100, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Traditional drought-resistant grain.'},
+  {id:'millet', name:'Millet', local:'Uwele', unit:'kg', price:110, cat:'grain', img:U('photo-1551754655-cd27e38d2076'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Nutrient-dense ancient grain.'},
+
+  /* ---- Animal products ---- */
+  {id:'milk', name:'Milk', local:'Maziwa', unit:'litre', price:60, cat:'animal', img:U('photo-1563636619-e9143da7973b'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh farm milk.'},
+  {id:'eggs', name:'Eggs', local:'Mayai', unit:'tray', price:450, cat:'animal', img:U('photo-1582722872445-44dc5f7e3c8f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Farm-fresh eggs.'},
+  {id:'chicken', name:'Chicken', local:'Kuku', unit:'piece', price:800, cat:'animal', img:U('photo-1604503468506-a8da13d82791'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Local free-range or broiler.'},
+  {id:'beef', name:'Beef', local:'Nyama ya ng\'ombe', unit:'kg', price:550, cat:'animal', img:U('photo-1603048297172-c92544724d21'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh cut to order.'},
+  {id:'goat', name:'Goat meat', local:'Nyama ya mbuzi', unit:'kg', price:700, cat:'animal', img:U('photo-1603048297172-c92544724d21'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Popular for stews and nyama choma.'},
+  {id:'pork', name:'Pork', local:'Nyama ya nguruwe', unit:'kg', price:480, cat:'animal', img:U('photo-1604503468506-a8da13d82791'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh pork cuts.'},
+  {id:'fish', name:'Fish', local:'Samaki', unit:'kg', price:400, cat:'animal', img:U('photo-1519708227418-c8fd9a32b7a2'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Tilapia and other local fish.'},
+  {id:'honey', name:'Honey', local:'Asali', unit:'jar', price:600, cat:'animal', img:U('photo-1587049352846-4a222e784d38'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Pure local honey.'},
+
+  /* ---- Herbs & spices ---- */
+  {id:'dhania', name:'Coriander', local:'Dhania', unit:'bunch', price:30, cat:'herb', img:U('photo-1512621776951-a57141f2eefd'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Essential for Kenyan flavour.'},
+  {id:'parsley', name:'Parsley', local:'Parsley', unit:'bunch', price:40, cat:'herb', img:U('photo-1594282486552-05b4d80fbb9f'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Fresh garnish and flavour.'},
+  {id:'mint', name:'Mint', local:'Mint', unit:'bunch', price:40, cat:'herb', img:U('photo-1512621776951-a57141f2eefd'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Cooling herb for drinks and salads.'},
+  {id:'ginger', name:'Ginger', local:'Tangawizi', unit:'250g', price:90, cat:'herb', img:U('photo-1599940824399-b87987ceb72a'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Warming and aromatic.'},
+  {id:'garlic', name:'Garlic', local:'Kitunguu saumu', unit:'250g', price:80, cat:'herb', img:U('photo-1599940824399-b87987ceb72a'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Flavour and immunity support.'},
+  {id:'turmeric', name:'Turmeric', local:'Manjano', unit:'250g', price:100, cat:'herb', img:U('photo-1615485290382-441e4d049cb5'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Golden root with anti-inflammatory properties.'},
+  {id:'chili', name:'Chili peppers', local:'Pilipili', unit:'kg', price:150, cat:'herb', img:U('photo-1563565375-f3fdfdbefa83'), seasons:[1,2,3,4,5,6,7,8,9,10,11,12], desc:'Heat for every kitchen.'}
+];
+
+var MIN_ORDER = 500;
+var cart = {};
+var selectedTier = null;
+var activeFilter = 'all';
+var selectedFreq = 'Weekly';
+var currentMonth = new Date().getMonth() + 1; // 1-12
+var selectedCalMonth = currentMonth;
+var slideIndex = 0;
+var slideInterval = null;
+
+/* ---- Client memory (this device) + deposit + airtime ---- */
+var CLIENT_KEY = 'dfb_client_v1';
+function loadClient(){
+  try { return JSON.parse(localStorage.getItem(CLIENT_KEY) || '{}'); } catch(e){ return {}; }
+}
+function saveClient(data){
+  try { localStorage.setItem(CLIENT_KEY, JSON.stringify(data)); } catch(e){}
+}
+function fillClientFields(prefix){
+  var d = loadClient();
+  var n = document.getElementById(prefix+'-client-name');
+  var p = document.getElementById(prefix+'-client-phone');
+  if (n && d.name) n.value = d.name;
+  if (p && d.phone) p.value = d.phone;
+  var an = document.getElementById(prefix+'-airtime-num');
+  if (an && d.phone) an.placeholder = 'Number to top up (default: '+d.phone+')';
+}
+function collectClient(prefix){
+  var name = (document.getElementById(prefix+'-client-name')||{}).value || '';
+  var phone = (document.getElementById(prefix+'-client-phone')||{}).value || '';
+  var deposit = !!(document.getElementById(prefix+'-deposit')||{}).checked;
+  var airOn = !!(document.getElementById(prefix+'-airtime')||{}).checked;
+  var airAmt = parseInt((document.getElementById(prefix+'-airtime-amt')||{}).value, 10) || 0;
+  var airNum = (document.getElementById(prefix+'-airtime-num')||{}).value || phone;
+  if (name || phone) saveClient({name:name, phone:phone});
+  return {name:name, phone:phone, deposit:deposit, airOn:airOn, airAmt:airAmt, airNum:airNum};
+}
+function toggleAirtime(prefix){
+  var on = document.getElementById(prefix+'-airtime').checked;
+  document.getElementById(prefix+'-airtime-wrap').style.display = on ? 'block' : 'none';
+}
+function clientWaBlock(c){
+  var lines = [];
+  if (c.name) lines.push('Name: '+c.name);
+  if (c.phone) lines.push('Phone: '+c.phone);
+  if (c.deposit) lines.push('Priority delivery: YES — 50% deposit on basket + delivery only (airtime is not included in the deposit).');
+  if (c.airOn && c.airAmt > 0) lines.push('Airtime top-up (full amount): KES '+c.airAmt+(c.airNum ? ' to '+c.airNum : '')+' — paid in full now.');
+  lines.push('I will forward my M-Pesa confirmation message after payment.');
+  return lines.length ? '\n\n— Client —\n'+lines.join('\n') : '\n\nI will forward my M-Pesa confirmation message after payment.';
+}
+function depositLine(c, productTotal, airAmt){
+  airAmt = airAmt || 0;
+  if (!c.deposit) return '';
+  // 50% applies ONLY to basket + delivery — never to airtime
+  var halfBasket = Math.round(productTotal * 0.5);
+  var payNow = halfBasket + airAmt; // airtime always paid in full upfront
+  var balance = productTotal - halfBasket;
+  var html = '<div class="summary-line"><span>50% deposit (basket + delivery only)</span><span>'+fmt(halfBasket)+'</span></div>';
+  if (airAmt > 0) {
+    html += '<div class="summary-line"><span>Airtime (full amount, paid now)</span><span>'+fmt(airAmt)+'</span></div>';
+  }
+  html += '<div class="summary-line" style="font-size:12px;color:var(--gold-light)"><span>Pay now (deposit'+(airAmt>0?' + airtime':'')+')</span><span>'+fmt(payNow)+'</span></div>';
+  html += '<div class="summary-line" style="font-size:12px;color:rgba(243,240,227,0.5)"><span>Balance on delivery</span><span>'+fmt(balance)+'</span></div>';
+  return html;
+}
+function airtimeLine(c){
+  // Standalone airtime line only when deposit is OFF (when ON, airtime is inside depositLine)
+  if (!c.airOn || c.airAmt <= 0 || c.deposit) return '';
+  return '<div class="summary-line"><span>Airtime top-up (full amount, pay now)</span><span>'+fmt(c.airAmt)+'</span></div>';
+}
+
+/* ---- Order reference + payment reconciliation helpers ---- */
+function makeOrderRef(){
+  // DFB-YYMMDD-XXXX  (easy to match against M-Pesa SMS)
+  var d = new Date();
+  var y = String(d.getFullYear()).slice(2);
+  var m = String(d.getMonth()+1).padStart(2,'0');
+  var day = String(d.getDate()).padStart(2,'0');
+  var rand = Math.random().toString(36).substring(2,6).toUpperCase();
+  return 'DFB-'+y+m+day+'-'+rand;
+}
+function paymentInstructions(c, total, productPlusDel, air, ref){
+  var lines = [];
+  lines.push('Order ref: '+ref);
+  if (c.deposit){
+    var half = Math.round(productPlusDel * 0.5);
+    var payNow = half + air;
+    lines.push('Pay NOW (M-Pesa): '+fmt(payNow)+'  →  50% deposit '+fmt(half)+(air?(' + airtime '+fmt(air)):'') );
+    lines.push('Pay on DELIVERY: '+fmt(productPlusDel - half)+'  (remaining basket + delivery)');
+  } else {
+    lines.push('Pay NOW (M-Pesa): '+fmt(total)+(air?'  (includes full airtime '+fmt(air)+')':''));
+  }
+  if (c.airOn && air > 0){
+    lines.push('Airtime: full amount '+fmt(air)+' paid upfront — topped up after we confirm M-Pesa.');
+  }
+  lines.push('After paying, FORWARD the M-Pesa confirmation SMS here and quote ref '+ref+'.');
+  return lines.join('\n');
+}
+function logPendingOrder(entry){
+  // Lightweight client-side log (this device) to help the business match payments
+  try {
+    var key = 'dfb_pending_orders_v1';
+    var list = JSON.parse(localStorage.getItem(key) || '[]');
+    list.unshift(entry);
+    if (list.length > 30) list = list.slice(0, 30);
+    localStorage.setItem(key, JSON.stringify(list));
+  } catch(e){}
+}
+
+
+
+var CAT_LABELS = {
+  all: 'All',
+  greens: 'Kienyeji greens',
+  veg: 'Vegetables',
+  fruit: 'Fruits',
+  root: 'Roots & tubers',
+  legume: 'Legumes',
+  grain: 'Grains',
+  animal: 'Animal products',
+  herb: 'Herbs & spices'
+};
+
+var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function fmt(n){ return 'KES ' + n.toLocaleString('en-KE', {maximumFractionDigits:0}); }
+function waLink(text){ return 'https://wa.me/254141773312?text=' + encodeURIComponent(text); }
+function isInSeason(p, month){ return p.seasons && p.seasons.indexOf(month) !== -1; }
+
+/* ---- Basket logic ---- */
+function setMode(mode){
+  document.getElementById('tab-tier').classList.toggle('active', mode==='tier');
+  document.getElementById('tab-custom').classList.toggle('active', mode==='custom');
+  var tabGift = document.getElementById('tab-gift');
+  if (tabGift) tabGift.classList.toggle('active', mode==='gift');
+  document.getElementById('panel-tier').classList.toggle('active', mode==='tier');
+  document.getElementById('panel-custom').classList.toggle('active', mode==='custom');
+  var panelGift = document.getElementById('panel-gift');
+  if (panelGift) panelGift.classList.toggle('active', mode==='gift');
+  updateStickyCart();
+}
+function setFilter(filter){
+  activeFilter = filter;
+  document.querySelectorAll('#builder-filters .filter-chip').forEach(function(c){
+    c.classList.toggle('active', c.getAttribute('data-filter') === filter);
+  });
+  buildProductList();
+}
+function setFreq(btn){
+  selectedFreq = btn.getAttribute('data-f');
+  document.querySelectorAll('#tier-freq .freq-chip').forEach(function(c){ c.classList.remove('active'); });
+  btn.classList.add('active');
+  renderTier();
+}
+function selectTier(tier){
+  selectedTier = tier;
+  document.querySelectorAll('#tier-cards .tier-card').forEach(function(c){
+    c.classList.toggle('selected', c.getAttribute('data-tier') === tier);
+  });
+  document.getElementById('tier-freq-wrap').style.display = (tier === 'institutional') ? 'none' : 'block';
+  renderTier();
+}
+function renderTier(){
+  var body = document.getElementById('tier-summary-body');
+  var totals = document.getElementById('tier-totals');
+  var orderBtn = document.getElementById('tier-order-btn');
+  if (!selectedTier){
+    body.innerHTML = '<p class="empty-note">Select a basket to see the full price breakdown.</p>';
+    totals.innerHTML = '';
+    orderBtn.style.opacity = '0.4'; orderBtn.style.pointerEvents = 'none';
+    return;
+  }
+  var card = document.querySelector('#tier-cards .tier-card[data-tier="'+selectedTier+'"]');
+  var name = card.querySelector('h3').textContent;
+  var price = parseFloat(card.getAttribute('data-price'));
+  if (selectedTier === 'institutional'){
+    body.innerHTML = '<div class="summary-line"><span>'+name+'</span><span>Custom quote</span></div>';
+    totals.innerHTML = '<p class="empty-note" style="text-align:left; padding-top:10px">Institutional pricing depends on volume and frequency — message us for a quote.</p>';
+    var c = collectClient('tier');
+    var msg = 'Hi Dawn Fresh Basket, I would like a quote for an Institutional Basket. Frequency: ' + selectedFreq + '.';
+    msg += clientWaBlock(c);
+    orderBtn.href = waLink(msg);
+    orderBtn.style.opacity = '1'; orderBtn.style.pointerEvents = 'auto';
+    return;
+  }
+  var pct = parseFloat(document.getElementById('tier-area').value);
+  var delivery = Math.round(price * pct);
+  var c = collectClient('tier');
+  var air = (c.airOn && c.airAmt > 0) ? c.airAmt : 0;
+  var productPlusDel = price + delivery;
+  var total = productPlusDel + air;
+  body.innerHTML = '<div class="summary-line"><span>'+name+'</span><span>'+fmt(price)+'</span></div>' +
+    '<div class="summary-line"><span>Frequency</span><span>'+selectedFreq+'</span></div>';
+  totals.innerHTML =
+    '<div class="summary-line"><span>Delivery ('+Math.round(pct*100)+'%)</span><span>'+fmt(delivery)+'</span></div>'+
+    depositLine(c, productPlusDel, air)+
+    airtimeLine(c)+
+    '<div class="summary-line total"><span>Total</span><span>'+fmt(total)+'</span></div>';
+  var ref = makeOrderRef();
+  var msg = 'Hi Dawn Fresh Basket, I would like to order a '+name+' ('+selectedFreq+') — total '+fmt(total)+' (product '+fmt(price)+' + delivery '+fmt(delivery)+(air?(' + airtime '+fmt(air)):'')+').';
+  msg += clientWaBlock(c);
+  msg += '\n\n— Payment —\n' + paymentInstructions(c, total, productPlusDel, air, ref);
+  logPendingOrder({ref:ref, type:'tier', name:name, total:total, air:air, deposit:!!c.deposit, client:c.name||'', phone:c.phone||'', at:new Date().toISOString()});
+  orderBtn.href = waLink(msg);
+  orderBtn.style.opacity = '1'; orderBtn.style.pointerEvents = 'auto';
+}
+function buildProductList(){
+  var list = document.getElementById('builder-list');
+  var search = (document.getElementById('builder-search') || {}).value || '';
+  search = search.toLowerCase();
+  var visible = PRODUCTS.filter(function(p){
+    var matchesFilter = activeFilter === 'all' || p.cat === activeFilter;
+    var matchesSearch = p.name.toLowerCase().indexOf(search) !== -1 || (p.local && p.local.toLowerCase().indexOf(search) !== -1);
+    return matchesFilter && matchesSearch;
+  });
+  if (visible.length === 0){
+    list.innerHTML = '<p class="empty-note" style="padding:28px 0">No produce matches your search.</p>';
+    return;
+  }
+  list.innerHTML = visible.map(function(p){
+    var qty = cart[p.id] || 0;
+    return '<div class="builder-row">'+
+      '<div class="picon"><img src="'+imgUrl(p.img, 96)+'" alt="'+p.name+'" width="44" height="44" loading="lazy" decoding="async"></div>'+
+      '<div class="pinfo"><span class="pname">'+p.name+'</span><span class="plocal">'+p.local+' · '+fmt(p.price)+' / '+p.unit+'</span></div>'+
+      '<div class="qty-control">'+
+        '<button onclick="changeQty(\''+p.id+'\', -1)" aria-label="Decrease">−</button>'+
+        '<span id="qty-'+p.id+'">'+qty+'</span>'+
+        '<button onclick="changeQty(\''+p.id+'\', 1)" aria-label="Increase">+</button>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+function changeQty(id, delta){
+  var current = cart[id] || 0;
+  var next = Math.max(0, current + delta);
+  cart[id] = next;
+  var el = document.getElementById('qty-'+id);
+  if (el) el.textContent = next;
+  renderCustom();
+}
+function renderCustom(){
+  var body = document.getElementById('custom-summary-body');
+  var totals = document.getElementById('custom-totals');
+  var orderBtn = document.getElementById('custom-order-btn');
+  var warning = document.getElementById('min-order-warning');
+  var items = PRODUCTS.filter(function(p){ return (cart[p.id]||0) > 0; });
+  if (items.length === 0){
+    body.innerHTML = '<p class="empty-note">Add items to see your price breakdown.</p>';
+    totals.innerHTML = '';
+    orderBtn.style.opacity = '0.4'; orderBtn.style.pointerEvents = 'none';
+    warning.style.display = 'none';
+    var impactEl = document.getElementById('impact-preview');
+    if (impactEl) impactEl.style.display = 'none';
+    updateStickyCart();
+    return;
+  }
+  var subtotal = 0;
+  var lines = items.map(function(p){
+    var qty = cart[p.id];
+    var lineTotal = qty * p.price;
+    subtotal += lineTotal;
+    return '<div class="summary-line"><span>'+p.name+' × '+qty+'</span><span>'+fmt(lineTotal)+'</span></div>';
+  }).join('');
+  var pct = parseFloat(document.getElementById('custom-area').value);
+  var delivery = Math.round(subtotal * pct);
+  var c = collectClient('custom');
+  var air = (c.airOn && c.airAmt > 0) ? c.airAmt : 0;
+  var productPlusDel = subtotal + delivery;
+  var total = productPlusDel + air;
+  body.innerHTML = lines;
+  totals.innerHTML =
+    '<div class="summary-line"><span>Subtotal</span><span>'+fmt(subtotal)+'</span></div>'+
+    '<div class="summary-line"><span>Delivery ('+Math.round(pct*100)+'%)</span><span>'+fmt(delivery)+'</span></div>'+
+    depositLine(c, productPlusDel, air)+
+    airtimeLine(c)+
+    '<div class="summary-line total"><span>Total</span><span>'+fmt(total)+'</span></div>';
+  var impactEl = document.getElementById('impact-preview');
+  if (impactEl){
+    var farmerShare = Math.round(subtotal * 0.65);
+    impactEl.style.display = 'block';
+    impactEl.textContent = '~' + fmt(farmerShare) + ' of this order supports local farmers directly';
+  }
+  if (subtotal < MIN_ORDER){
+    warning.style.display = 'block';
+    orderBtn.style.opacity = '0.4'; orderBtn.style.pointerEvents = 'none';
+  } else {
+    warning.style.display = 'none';
+    var ref = makeOrderRef();
+    var orderText = 'Hi Dawn Fresh Basket, I would like to order:\n' + items.map(function(p){
+      return '• '+p.name+' ('+p.local+') x'+cart[p.id]+' ('+fmt(cart[p.id]*p.price)+')';
+    }).join('\n') + '\n\nSubtotal: '+fmt(subtotal)+'\nDelivery: '+fmt(delivery)+(air?('\nAirtime: '+fmt(air)):'')+'\nTotal: '+fmt(total);
+    orderText += clientWaBlock(c);
+    orderText += '\n\n— Payment —\n' + paymentInstructions(c, total, productPlusDel, air, ref);
+    logPendingOrder({ref:ref, type:'custom', total:total, air:air, deposit:!!c.deposit, client:c.name||'', phone:c.phone||'', at:new Date().toISOString()});
+    orderBtn.href = waLink(orderText);
+    orderBtn.style.opacity = '1'; orderBtn.style.pointerEvents = 'auto';
+  }
+  updateStickyCart(subtotal, items.length);
+}
+function updateStickyCart(subtotal, itemCount){
+  var bar = document.getElementById('sticky-cart');
+  var totalEl = document.getElementById('sticky-cart-total');
+  var onCustomTab = document.getElementById('panel-custom').classList.contains('active');
+  if (!onCustomTab || !itemCount){
+    bar.classList.remove('visible');
+    return;
+  }
+  totalEl.textContent = fmt(subtotal) + ' · ' + itemCount + (itemCount===1?' item':' items');
+  bar.classList.add('visible');
+}
+
+/* ---- Catalog + tabs ---- */
+function buildCatalog(){
+  var tabs = document.getElementById('cat-tabs');
+  var cats = ['all','greens','veg','fruit','root','legume','grain','animal','herb'];
+  tabs.innerHTML = cats.map(function(c){
+    return '<button class="cat-tab'+(c==='all'?' active':'')+'" data-cat="'+c+'" onclick="filterCatalog(\''+c+'\')">'+CAT_LABELS[c]+'</button>';
+  }).join('');
+  filterCatalog('all');
+}
+function filterCatalog(cat){
+  document.querySelectorAll('#cat-tabs .cat-tab').forEach(function(t){
+    t.classList.toggle('active', t.getAttribute('data-cat') === cat);
+  });
+  var grid = document.getElementById('product-grid');
+  var list = cat === 'all' ? PRODUCTS : PRODUCTS.filter(function(p){ return p.cat === cat; });
+  grid.innerHTML = list.map(function(p){
+    var inS = isInSeason(p, currentMonth);
+    return '<div class="product-card" onclick="openProductModal(\''+p.id+'\')">'+
+      (inS ? '<span class="season-badge">In season</span>' : '<span class="season-badge off">Limited</span>')+
+      '<div class="pic-wrap"><img src="'+imgUrl(p.img, 400)+'" alt="'+p.name+'" width="400" height="400" loading="lazy" decoding="async"></div>'+
+      '<span class="pname">'+p.name+'</span>'+
+      '<span class="plocal">'+p.local+'</span>'+
+      '<div class="pprice">'+fmt(p.price)+' / '+p.unit+'</div>'+
+      '<button class="add-btn" onclick="event.stopPropagation(); quickAdd(\''+p.id+'\')">+ Add</button>'+
+    '</div>';
+  }).join('');
+}
+function quickAdd(id){
+  cart[id] = (cart[id]||0) + 1;
+  buildProductList();
+  renderCustom();
+  var p = PRODUCTS.find(function(x){ return x.id === id; });
+  showToast((p?p.name:id) + ' added');
+}
+function findProduct(id){ return PRODUCTS.find(function(p){ return p.id === id; }); }
+var modalProduct = null;
+var modalQty = 1;
+var currentRecipe = null;
+function openProductModal(id){
+  var p = findProduct(id);
+  if (!p) return;
+  modalProduct = p;
+  modalQty = 1;
+  document.getElementById('pm-img').src = imgUrl(p.img, 600);
+  document.getElementById('pm-img').alt = p.name;
+  document.getElementById('pm-name').textContent = p.name;
+  document.getElementById('pm-local').textContent = p.local + ' · ' + fmt(p.price) + ' / ' + p.unit;
+  document.getElementById('pm-desc').textContent = p.desc;
+  var inS = isInSeason(p, currentMonth);
+  document.getElementById('pm-meta').innerHTML =
+    '<span>'+(inS?'In season now':'Limited season')+'</span>'+
+    '<span>'+(CAT_LABELS[p.cat]||p.cat)+'</span>';
+  document.getElementById('pm-qty').textContent = '1';
+  document.getElementById('modal-backdrop').classList.add('open');
+  document.getElementById('product-modal').classList.add('open');
+}
+function closeProductModal(){
+  var bd = document.getElementById('modal-backdrop');
+  var pm = document.getElementById('product-modal');
+  if (bd) bd.classList.remove('open');
+  if (pm) pm.classList.remove('open');
+  modalProduct = null;
+}
+function modalChangeQty(d){
+  modalQty = Math.max(1, modalQty + d);
+  document.getElementById('pm-qty').textContent = modalQty;
+}
+function addFromModal(){
+  if (!modalProduct) return;
+  cart[modalProduct.id] = (cart[modalProduct.id]||0) + modalQty;
+  buildProductList();
+  renderCustom();
+  closeProductModal();
+  showToast(modalProduct.name + ' × ' + modalQty + ' added');
+  setMode('custom');
+}
+function orderGift(name, price){
+  var ref = makeOrderRef();
+  var msg = 'Hi Dawn Fresh Basket, I would like to send a gift: '+name+' ('+fmt(price)+').\n\nPlease confirm delivery details and any personal note.\n\nOrder ref: '+ref;
+  logPendingOrder({ref:ref, type:'gift', name:name, total:price, at:new Date().toISOString()});
+  window.open(waLink(msg), '_blank');
+}
+function applySuggestion(type){
+  var packs = {
+    family: {kales:2, tomatoes:1, onions:1, carrots:1, potatoes:2, bananas:1, eggs:1},
+    kienyeji: {managu:2, terere:2, kunde:1, saga:1, dhania:1},
+    fruit: {bananas:1, mangoes:1, avocados:1, passion:1, pineapples:1},
+    protein: {eggs:1, beans:1, greengrams:1, chicken:1, milk:2}
+  };
+  var pack = packs[type];
+  if (!pack) return;
+  Object.keys(pack).forEach(function(id){ cart[id] = (cart[id]||0) + pack[id]; });
+  buildProductList();
+  renderCustom();
+  setMode('custom');
+  showToast('Suggestion added to basket');
+}
+function toggleLang(){
+  var isSw = document.documentElement.classList.toggle('sw');
+  document.getElementById('lang-toggle').textContent = isSw ? 'SW / EN' : 'EN / SW';
+}
+
+
+/* ---- Slideshow ---- */
+function buildSlideshow(){
+  var featured = PRODUCTS.filter(function(p){ return isInSeason(p, currentMonth); }).slice(0, 8);
+  if (featured.length < 4) featured = PRODUCTS.slice(0, 8);
+  var slidesEl = document.getElementById('slides');
+  var dotsEl = document.getElementById('slide-dots');
+  slidesEl.innerHTML = featured.map(function(p, i){
+    var load = i === 0 ? 'eager' : 'lazy';
+    var prio = i === 0 ? ' fetchpriority="high"' : '';
+    return '<div class="slide">'+
+      '<div class="slide-icon"><img src="'+imgUrl(p.img, 400)+'" alt="'+p.name+'" width="160" height="160" loading="'+load+'" decoding="async"'+prio+'></div>'+
+      '<div class="slide-body">'+
+        '<h3>'+p.name+'</h3>'+
+        '<div class="local">'+p.local+' · '+fmt(p.price)+' / '+p.unit+'</div>'+
+        '<p>'+p.desc+' Currently in good supply around Nakuru.</p>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+  dotsEl.innerHTML = featured.map(function(_,i){
+    return '<button class="slide-dot'+(i===0?' active':'')+'" onclick="goSlide('+i+')"></button>';
+  }).join('');
+  slideIndex = 0;
+  startSlideAuto();
+}
+function goSlide(i){
+  slideIndex = i;
+  var slides = document.getElementById('slides');
+  slides.style.transform = 'translateX(-'+(slideIndex*100)+'%)';
+  document.querySelectorAll('#slide-dots .slide-dot').forEach(function(d,idx){
+    d.classList.toggle('active', idx === slideIndex);
+  });
+}
+function slideMove(dir){
+  var total = document.querySelectorAll('#slides .slide').length;
+  slideIndex = (slideIndex + dir + total) % total;
+  goSlide(slideIndex);
+  startSlideAuto();
+}
+function startSlideAuto(){
+  clearInterval(slideInterval);
+  slideInterval = setInterval(function(){ slideMove(1); }, 5000);
+}
+
+/* ---- Seasonal calendar ---- */
+function buildCalendar(){
+  var tabs = document.getElementById('month-tabs');
+  tabs.innerHTML = MONTH_NAMES.map(function(m, i){
+    var mon = i + 1;
+    var cls = 'month-tab';
+    if (mon === selectedCalMonth) cls += ' active';
+    if (mon === currentMonth) cls += ' current';
+    return '<button class="'+cls+'" data-m="'+mon+'" onclick="setCalMonth('+mon+')">'+m+'</button>';
+  }).join('');
+  renderSeasonGrid();
+}
+function setCalMonth(m){
+  selectedCalMonth = m;
+  document.querySelectorAll('#month-tabs .month-tab').forEach(function(t){
+    var mon = parseInt(t.getAttribute('data-m'));
+    t.classList.toggle('active', mon === m);
+    t.classList.toggle('current', mon === currentMonth);
+  });
+  renderSeasonGrid();
+}
+function renderSeasonGrid(){
+  var grid = document.getElementById('season-grid');
+  // show a balanced selection across categories
+  var sample = PRODUCTS.filter(function(p, idx){ return idx % 2 === 0 || isInSeason(p, selectedCalMonth); }).slice(0, 24);
+  grid.innerHTML = sample.map(function(p){
+    var inS = isInSeason(p, selectedCalMonth);
+    return '<div class="season-item'+(inS?' in-season':'')+'">'+
+      '<div class="si"><img src="'+imgUrl(p.img, 280)+'" alt="'+p.name+'" width="280" height="280" loading="lazy" decoding="async"></div>'+
+      '<div class="sn">'+p.name+'</div>'+
+      '<div class="sl">'+p.local+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+function toggleFaq(btn){
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+  if (!wasOpen) item.classList.add('open');
+}
+function sharePin(){
+  var statusEl = document.getElementById('pin-status');
+  statusEl.style.display = 'block';
+  if (!navigator.geolocation){
+    statusEl.textContent = 'Location sharing not supported — send a pin from WhatsApp instead.';
+    return;
+  }
+  statusEl.textContent = 'Getting your location…';
+  navigator.geolocation.getCurrentPosition(function(pos){
+    var lat = pos.coords.latitude.toFixed(6);
+    var lng = pos.coords.longitude.toFixed(6);
+    var mapsUrl = 'https://maps.google.com/?q=' + lat + ',' + lng;
+    var msg = encodeURIComponent('Hi Dawn Fresh Basket, here is my delivery pin: ' + mapsUrl);
+    statusEl.textContent = 'Location found — opening WhatsApp…';
+    window.open('https://wa.me/254141773312?text=' + msg, '_blank');
+  }, function(err){
+    statusEl.textContent = 'Could not get location (' + err.message + '). Share your pin from WhatsApp.';
+  });
+}
+
+window.addEventListener('scroll', function(){
+  var h = document.documentElement;
+  var scrolled = (h.scrollTop || document.body.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+  document.getElementById('scroll-progress').style.width = scrolled + '%';
+  document.getElementById('site-header').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+document.addEventListener('DOMContentLoaded', function(){
+  buildProductList();
+  buildCatalog();
+  buildSlideshow();
+  buildCalendar();
+  fillClientFields('tier');
+  fillClientFields('custom');
+  // Save name/phone as user types
+  ['tier','custom'].forEach(function(prefix){
+    ['client-name','client-phone'].forEach(function(field){
+      var el = document.getElementById(prefix+'-'+field);
+      if (el) el.addEventListener('change', function(){ collectClient(prefix); });
+    });
+  });
+  var targets = document.querySelectorAll('.reveal, section, .tier-card, .seg-card, .recipe-card, .video-card, .testimonial-card');
+  targets.forEach(function(el){ if (!el.classList.contains('reveal')) el.classList.add('reveal'); });
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+  targets.forEach(function(el){ observer.observe(el); });
+});
+
+/* ---- App shell: nav, account, toast ---- */
+function setNav(el){
+  document.querySelectorAll('.app-nav a').forEach(function(a){ a.classList.remove('active'); });
+  if (el) el.classList.add('active');
+}
+function showToast(msg){
+  var t = document.getElementById('app-toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2800);
+}
+function openAccount(){
+  fillAccountSheet();
+  renderPendingOrders();
+  document.getElementById('account-sheet').classList.add('open');
+  document.getElementById('sheet-backdrop').classList.add('open');
+  document.querySelectorAll('.app-nav a').forEach(function(a){ a.classList.remove('active'); });
+  var acct = document.querySelector('.app-nav a[data-nav="account"]');
+  if (acct) acct.classList.add('active');
+}
+function closeAccount(){
+  document.getElementById('account-sheet').classList.remove('open');
+  document.getElementById('sheet-backdrop').classList.remove('open');
+}
+function fillAccountSheet(){
+  var d = loadClient();
+  var n = document.getElementById('acct-name');
+  var p = document.getElementById('acct-phone');
+  if (n) n.value = d.name || '';
+  if (p) p.value = d.phone || '';
+}
+function saveAccountFromSheet(){
+  var name = (document.getElementById('acct-name')||{}).value || '';
+  var phone = (document.getElementById('acct-phone')||{}).value || '';
+  saveClient({name:name, phone:phone});
+  fillClientFields('tier');
+  fillClientFields('custom');
+  showToast('Details saved on this device');
+}
+function renderPendingOrders(){
+  var box = document.getElementById('pending-list');
+  if (!box) return;
+  var list = [];
+  try { list = JSON.parse(localStorage.getItem('dfb_pending_orders_v1') || '[]'); } catch(e){}
+  if (!list.length){
+    box.innerHTML = '<h4>Recent orders on this device</h4><p class="empty-note" style="text-align:left;color:rgba(243,240,227,0.4)">No recent orders yet — place one from Baskets.</p>';
+    return;
+  }
+  box.innerHTML = '<h4>Recent orders on this device</h4>' + list.slice(0,8).map(function(o){
+    var when = o.at ? new Date(o.at).toLocaleString('en-KE', {dateStyle:'medium', timeStyle:'short'}) : '';
+    return '<div class="pending-item"><div class="ref">'+o.ref+'</div><div class="meta">'+
+      (o.type==='tier'?(o.name||'Basket'):'Custom basket')+' · '+fmt(o.total||0)+
+      (o.deposit?' · 50% deposit':'')+(o.air?' · airtime '+fmt(o.air):'')+
+      '<br>'+when+(o.phone?' · '+o.phone:'')+'</div></div>';
+  }).join('');
+}
+
+
+var RECIPES_DATA = {
+  sukuma: {icon:'🍲', name:'Sukuma Wiki & Ugali', meta:'15 min · Everyday staple', desc:'Classic Kenyan greens stir-fried with onions and tomatoes, served with soft ugali.', ings:['kales','onions','tomatoes','garlic','maize'], steps:['Boil water and stir in maize flour until firm ugali forms.','Wash and chop sukuma wiki.','Sauté onions, tomatoes and garlic.','Add sukuma and cook until tender. Season and serve with ugali.']},
+  managu: {icon:'🥘', name:'Managu & Terere Mix', meta:'20 min · Kienyeji favourite', desc:'Traditional African nightshade and amaranth greens, lightly cooked with a touch of dhania.', ings:['managu','terere','dhania','onions','tomatoes'], steps:['Wash managu and terere thoroughly.','Boil briefly to reduce bitterness if preferred.','Sauté onions and tomatoes.','Add greens and dhania; cook lightly. Serve warm.']},
+  githeri: {icon:'🍛', name:'Githeri (Beans & Maize)', meta:'45 min · Hearty one-pot', desc:'Boiled maize and beans simmered with carrots, potatoes and a light tomato base.', ings:['maize','beans','carrots','potatoes','onions'], steps:['Soak beans overnight if dry.','Boil maize and beans until soft.','Add diced carrots, potatoes and onions.','Simmer with tomatoes until thick. Season to taste.']},
+  fruit: {icon:'🥗', name:'Fresh Fruit Salad', meta:'10 min · Light & bright', desc:'Seasonal mango, pineapple, pawpaw and passion fruit with a squeeze of lemon.', ings:['mangoes','pineapples','pawpaws','passion','lemons'], steps:['Peel and cube mango, pineapple and pawpaw.','Scoop passion fruit pulp over the top.','Squeeze lemon juice and toss gently.','Chill briefly and serve.']},
+  ndengu: {icon:'🍜', name:'Ndengu Stew', meta:'35 min · Protein-rich', desc:'Green grams cooked with onions, tomatoes, garlic and a hint of turmeric and chili.', ings:['greengrams','onions','tomatoes','garlic','turmeric','chili'], steps:['Wash and boil green grams until soft.','Sauté onions, garlic, tomatoes, turmeric and chili.','Add green grams and simmer.','Adjust seasoning and serve with chapati or rice.']},
+  eggs: {icon:'🍳', name:'Farm Egg & Veggie Scramble', meta:'12 min · Quick breakfast', desc:'Farm eggs scrambled with spinach, tomatoes, onions and a sprinkle of dhania.', ings:['eggs','spinach','tomatoes','onions','dhania'], steps:['Beat eggs lightly.','Sauté onions, tomatoes and spinach.','Pour in eggs and scramble gently.','Finish with chopped dhania.']}
+};
+function openRecipe(id){
+  var r = RECIPES_DATA[id];
+  if (!r) return;
+  currentRecipe = r;
+  document.getElementById('rm-icon').textContent = r.icon;
+  document.getElementById('rm-name').textContent = r.name;
+  document.getElementById('rm-meta').textContent = r.meta;
+  document.getElementById('rm-desc').textContent = r.desc;
+  document.getElementById('rm-ings').innerHTML = r.ings.map(function(iid){
+    var p = findProduct(iid);
+    return p ? '<span>'+p.name+'</span>' : '<span>'+iid+'</span>';
+  }).join('');
+  document.getElementById('rm-steps').innerHTML = r.steps.map(function(s,i){
+    return '<li data-n="'+(i+1)+'.">'+s+'</li>';
+  }).join('');
+  document.getElementById('modal-backdrop').classList.add('open');
+  document.getElementById('recipe-modal').classList.add('open');
+}
+function closeRecipeModal(){
+  var bd = document.getElementById('modal-backdrop');
+  var rm = document.getElementById('recipe-modal');
+  if (bd) bd.classList.remove('open');
+  if (rm) rm.classList.remove('open');
+  currentRecipe = null;
+}
+function addRecipeIngredients(){
+  if (!currentRecipe) return;
+  currentRecipe.ings.forEach(function(id){
+    if (findProduct(id)) cart[id] = (cart[id]||0) + 1;
+  });
+  buildProductList();
+  renderCustom();
+  closeRecipeModal();
+  setMode('custom');
+  showToast('Recipe ingredients added to basket');
+}
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape'){
+    closeProductModal();
+    closeRecipeModal();
+    if (typeof closeAccount === 'function') closeAccount();
+  }
+});
+
+
+
+/* ---- Push / local notifications ---- */
+var NOTIF_PREFS_KEY = 'dfb_notif_prefs_v1';
+// Optional: replace with your real VAPID public key when you connect a push server
+var VAPID_PUBLIC_KEY = ''; // e.g. 'BNxxx...' from web-push or Firebase
+
+function loadNotifPrefs(){
+  try {
+    return JSON.parse(localStorage.getItem(NOTIF_PREFS_KEY) || '{}');
+  } catch(e){ return {}; }
+}
+function saveNotifPrefs(){
+  var prefs = {
+    enabled: !!(document.getElementById('notif-enable')||{}).checked,
+    orders: !!(document.getElementById('notif-orders')||{}).checked,
+    seasonal: !!(document.getElementById('notif-seasonal')||{}).checked,
+    delivery: !!(document.getElementById('notif-delivery')||{}).checked
+  };
+  try { localStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(prefs)); } catch(e){}
+  return prefs;
+}
+function applyNotifPrefsToUI(){
+  var prefs = loadNotifPrefs();
+  var en = document.getElementById('notif-enable');
+  var o = document.getElementById('notif-orders');
+  var s = document.getElementById('notif-seasonal');
+  var d = document.getElementById('notif-delivery');
+  if (en) en.checked = !!prefs.enabled && Notification.permission === 'granted';
+  if (o) o.checked = prefs.orders !== false;
+  if (s) s.checked = prefs.seasonal !== false;
+  if (d) d.checked = !!prefs.delivery;
+  updateNotifStatus();
+}
+function updateNotifStatus(){
+  var el = document.getElementById('notif-status');
+  var testBtn = document.getElementById('notif-test-btn');
+  if (!el) return;
+  if (!('Notification' in window)) {
+    el.textContent = 'Notifications not supported in this browser';
+    el.classList.remove('on');
+    if (testBtn) testBtn.style.display = 'none';
+    return;
+  }
+  var perm = Notification.permission;
+  var prefs = loadNotifPrefs();
+  if (perm === 'granted' && prefs.enabled) {
+    el.textContent = 'Notifications are on';
+    el.classList.add('on');
+    if (testBtn) testBtn.style.display = 'block';
+  } else if (perm === 'denied') {
+    el.textContent = 'Blocked in browser settings — allow notifications for this site';
+    el.classList.remove('on');
+    if (testBtn) testBtn.style.display = 'none';
+  } else {
+    el.textContent = 'Notifications are off';
+    el.classList.remove('on');
+    if (testBtn) testBtn.style.display = 'none';
+  }
+}
+
+async function toggleNotifications(wantOn){
+  if (!('Notification' in window)) {
+    showToast('Notifications not supported here');
+    applyNotifPrefsToUI();
+    return;
+  }
+  if (!wantOn) {
+    var prefs = loadNotifPrefs();
+    prefs.enabled = false;
+    try { localStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(prefs)); } catch(e){}
+    updateNotifStatus();
+    showToast('Notifications turned off');
+    return;
+  }
+  var perm = Notification.permission;
+  if (perm === 'default') {
+    perm = await Notification.requestPermission();
+  }
+  if (perm !== 'granted') {
+    showToast('Permission denied — enable in browser settings');
+    applyNotifPrefsToUI();
+    return;
+  }
+  var prefs = saveNotifPrefs();
+  prefs.enabled = true;
+  try { localStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(prefs)); } catch(e){}
+  // Try Web Push subscription if VAPID key is configured
+  await subscribePushIfPossible();
+  updateNotifStatus();
+  showToast('Notifications enabled');
+  // Welcome notification
+  setTimeout(function(){
+    showLocalNotification({
+      title: 'Dawn Fresh is ready',
+      body: 'You will get order & seasonal alerts here.',
+      tag: 'dfb-welcome',
+      url: './dawn-fresh-basket-expanded.html#baskets'
+    });
+  }, 600);
+}
+
+function urlBase64ToUint8Array(base64String){
+  var padding = '='.repeat((4 - base64String.length % 4) % 4);
+  var base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  var rawData = atob(base64);
+  var outputArray = new Uint8Array(rawData.length);
+  for (var i = 0; i < rawData.length; ++i) outputArray[i] = rawData.charCodeAt(i);
+  return outputArray;
+}
+
+async function subscribePushIfPossible(){
+  if (!VAPID_PUBLIC_KEY || !('serviceWorker' in navigator) || !('PushManager' in window)) {
+    return null;
+  }
+  try {
+    var reg = await navigator.serviceWorker.ready;
+    var sub = await reg.pushManager.getSubscription();
+    if (!sub) {
+      sub = await reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+      });
+    }
+    // In production: POST sub.toJSON() to your backend
+    try { localStorage.setItem('dfb_push_sub_v1', JSON.stringify(sub.toJSON())); } catch(e){}
+    console.log('[DFB] Push subscription', sub.endpoint);
+    return sub;
+  } catch (err) {
+    console.warn('[DFB] Push subscribe failed', err);
+    return null;
+  }
+}
+
+function showLocalNotification(payload){
+  var prefs = loadNotifPrefs();
+  if (!prefs.enabled || Notification.permission !== 'granted') return;
+
+  // Prefer SW so it works when the tab is backgrounded
+  if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({
+      type: 'SHOW_NOTIFICATION',
+      payload: payload
+    });
+    return;
+  }
+  // Fallback: page Notification API
+  try {
+    var n = new Notification(payload.title || 'Dawn Fresh Basket', {
+      body: payload.body || '',
+      icon: payload.icon || './icon-192.png',
+      tag: payload.tag || 'dfb-local',
+      data: { url: payload.url || './dawn-fresh-basket-expanded.html' }
+    });
+    n.onclick = function(){
+      window.focus();
+      if (payload.url) location.href = payload.url;
+      n.close();
+    };
+  } catch(e){}
+}
+
+function sendTestNotification(){
+  showLocalNotification({
+    title: 'Test · Dawn Fresh Basket',
+    body: 'Notifications are working. Order fresh produce anytime.',
+    tag: 'dfb-test',
+    url: './dawn-fresh-basket-expanded.html#baskets'
+  });
+  showToast('Test notification sent');
+}
+
+function notifyOrderPlaced(ref, totalLabel){
+  var prefs = loadNotifPrefs();
+  if (!prefs.enabled || prefs.orders === false) return;
+  showLocalNotification({
+    title: 'Order ready to send',
+    body: (ref ? 'Ref ' + ref + ' · ' : '') + (totalLabel || 'Open WhatsApp to confirm') + '. Forward your M-Pesa SMS after paying.',
+    tag: 'dfb-order',
+    url: './dawn-fresh-basket-expanded.html#baskets'
+  });
+}
+
+function maybeSeasonalTip(){
+  var prefs = loadNotifPrefs();
+  if (!prefs.enabled || prefs.seasonal === false) return;
+  try {
+    var key = 'dfb_seasonal_tip_' + (new Date().getMonth());
+    if (localStorage.getItem(key) === '1') return;
+    localStorage.setItem(key, '1');
+  } catch(e){}
+  var tips = [
+    'Kales, spinach & tomatoes are strong year-round in Nakuru.',
+    'Ask for what is peak this week — we pack the freshest batch.',
+    'Kienyeji greens (managu, terere) are a nutrition powerhouse.'
+  ];
+  var tip = tips[new Date().getDate() % tips.length];
+  // Delay so it does not fight the install banner
+  setTimeout(function(){
+    showLocalNotification({
+      title: 'In season around Nakuru',
+      body: tip,
+      tag: 'dfb-seasonal',
+      url: './dawn-fresh-basket-expanded.html#seasonal'
+    });
+  }, 8000);
+}
+
+// Hook order buttons: fire local notif when user taps Order on WhatsApp
+function hookOrderNotifications(){
+  ['tier-order-btn', 'custom-order-btn'].forEach(function(id){
+    var btn = document.getElementById(id);
+    if (!btn || btn._dfbNotifHooked) return;
+    btn._dfbNotifHooked = true;
+    btn.addEventListener('click', function(){
+      var prefs = loadNotifPrefs();
+      if (!prefs.enabled || prefs.orders === false) return;
+      var text = btn.textContent || 'Order';
+      // Extract total from nearby summary if possible
+      var totalEl = document.querySelector('#' + (id.indexOf('tier')===0 ? 'tier' : 'custom') + '-totals .total span:last-child');
+      var totalLabel = totalEl ? totalEl.textContent : '';
+      setTimeout(function(){
+        notifyOrderPlaced('', totalLabel || 'Your basket');
+      }, 400);
+    });
+  });
+}
+
+// Enhance openAccount to refresh notif UI
+var _origOpenAccount = typeof openAccount === 'function' ? openAccount : null;
+openAccount = function(){
+  if (_origOpenAccount) _origOpenAccount();
+  else {
+    fillAccountSheet();
+    renderPendingOrders();
+    document.getElementById('account-sheet').classList.add('open');
+    document.getElementById('sheet-backdrop').classList.add('open');
+  }
+  applyNotifPrefsToUI();
+};
+
+document.addEventListener('DOMContentLoaded', function(){
+  applyNotifPrefsToUI();
+  hookOrderNotifications();
+  // Re-hook after mode switches (buttons may stay the same)
+  setTimeout(hookOrderNotifications, 1000);
+  maybeSeasonalTip();
+});
+
+/* ---- PWA: install + service worker ---- */
+var deferredPrompt = null;
+var INSTALL_DISMISS_KEY = 'dfb_install_dismissed_v1';
+
+function isStandalone(){
+  return window.matchMedia('(display-mode: standalone)').matches
+    || window.navigator.standalone === true;
+}
+
+function showInstallBanner(){
+  if (isStandalone()) return;
+  try {
+    if (localStorage.getItem(INSTALL_DISMISS_KEY) === '1') return;
+  } catch(e){}
+  var banner = document.getElementById('install-banner');
+  if (banner) banner.classList.add('show');
+}
+
+function hideInstallBanner(persist){
+  var banner = document.getElementById('install-banner');
+  if (banner) banner.classList.remove('show');
+  if (persist) {
+    try { localStorage.setItem(INSTALL_DISMISS_KEY, '1'); } catch(e){}
+  }
+}
+
+window.addEventListener('beforeinstallprompt', function(e){
+  e.preventDefault();
+  deferredPrompt = e;
+  showInstallBanner();
+});
+
+window.addEventListener('appinstalled', function(){
+  deferredPrompt = null;
+  hideInstallBanner(true);
+  showToast('Dawn Fresh installed — open from your home screen');
+});
+
+document.addEventListener('DOMContentLoaded', function(){
+  var btn = document.getElementById('install-btn');
+  var dismiss = document.getElementById('install-dismiss');
+  if (btn) {
+    btn.addEventListener('click', async function(){
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        var choice = await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        hideInstallBanner(choice.outcome === 'accepted');
+        if (choice.outcome === 'accepted') showToast('Installing…');
+      } else {
+        // iOS / browsers without beforeinstallprompt
+        showIosInstallHelp();
+      }
+    });
+  }
+  if (dismiss) {
+    dismiss.addEventListener('click', function(){ hideInstallBanner(true); });
+  }
+  // Show help banner on iOS Safari (no beforeinstallprompt)
+  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  if (isIOS && !isStandalone()) {
+    setTimeout(showInstallBanner, 2500);
+  }
+});
+
+function showIosInstallHelp(){
+  var msg = 'To install on iPhone/iPad:\n1. Tap the Share button\n2. Scroll and tap "Add to Home Screen"\n3. Tap Add';
+  showToast('Tap Share → Add to Home Screen');
+  // Also open a simple alert for clarity
+  setTimeout(function(){ alert(msg); }, 400);
+}
+
+// Register service worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('./sw.js').then(function(reg){
+      console.log('[DFB] Service worker ready', reg.scope);
+    }).catch(function(err){
+      console.warn('[DFB] SW registration failed', err);
+    });
+  });
+}
+
+// Highlight nav on scroll
+window.addEventListener('scroll', function(){
+  var sections = [
+    {id:'story', nav:'home'},
+    {id:'baskets', nav:'baskets'},
+    {id:'products', nav:'products'}
+  ];
+  var y = window.scrollY + 120;
+  var current = 'home';
+  sections.forEach(function(s){
+    var el = document.getElementById(s.id);
+    if (el && el.offsetTop <= y) current = s.nav;
+  });
+  document.querySelectorAll('.app-nav a[data-nav]').forEach(function(a){
+    var n = a.getAttribute('data-nav');
+    if (n === 'order' || n === 'account') return;
+    a.classList.toggle('active', n === current);
+  });
+});
+
+</script>
+
+
+<!-- Product detail modal -->
+<div class="modal-backdrop" id="modal-backdrop" onclick="closeProductModal(); closeRecipeModal();"></div>
+<div class="product-modal" id="product-modal">
+  <button class="close-btn" onclick="closeProductModal()" aria-label="Close">×</button>
+  <img class="pm-img" id="pm-img" src="" alt="">
+  <div class="pm-body">
+    <h3 id="pm-name"></h3>
+    <div class="pm-local" id="pm-local"></div>
+    <p class="pm-desc" id="pm-desc"></p>
+    <div class="pm-meta" id="pm-meta"></div>
+    <div class="pm-actions">
+      <div class="qty-control" style="background:var(--paper-warm)">
+        <button onclick="modalChangeQty(-1)">−</button>
+        <span id="pm-qty">1</span>
+        <button onclick="modalChangeQty(1)">+</button>
+      </div>
+      <button class="btn btn-primary btn-sm" id="pm-add-btn" onclick="addFromModal()">Add to basket</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-modal" id="recipe-modal">
+  <button class="close-btn" onclick="closeRecipeModal()" aria-label="Close">×</button>
+  <div class="pm-body">
+    <div id="rm-icon" style="font-size:40px;margin-bottom:8px"></div>
+    <h3 id="rm-name"></h3>
+    <div class="pm-local" id="rm-meta"></div>
+    <p class="pm-desc" id="rm-desc"></p>
+    <div class="recipe-ings" id="rm-ings" style="margin-bottom:16px"></div>
+    <h4 style="font-size:15px;margin-bottom:8px;color:var(--forest)">Steps</h4>
+    <ol class="recipe-steps" id="rm-steps"></ol>
+    <button class="btn btn-primary btn-sm" style="margin-top:18px" onclick="addRecipeIngredients()">Add ingredients to basket</button>
+  </div>
+</div>
+
+<!-- App toast -->
+<div class="app-toast" id="app-toast"></div>
+
+<!-- Account sheet backdrop -->
+<div class="sheet-backdrop" id="sheet-backdrop" onclick="closeAccount()"></div>
+
+<!-- Account / orders sheet -->
+<div class="account-sheet" id="account-sheet">
+  <div class="sheet-handle"></div>
+  <h3>Your account</h3>
+  <p class="sheet-sub">Saved on this device · used to speed up orders</p>
+  <div class="account-field">
+    <label>Name</label>
+    <input class="client-input" id="acct-name" type="text" placeholder="Your name" style="margin:0">
+  </div>
+  <div class="account-field">
+    <label>Phone</label>
+    <input class="client-input" id="acct-phone" type="tel" placeholder="07… or 01…" style="margin:0">
+  </div>
+  <div class="sheet-actions">
+    <button class="btn btn-gold btn-sm" onclick="saveAccountFromSheet()">Save details</button>
+    <a class="btn btn-ghost onDark btn-sm" href="https://wa.me/254141773312" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    <button class="btn btn-ghost onDark btn-sm" id="acct-install-btn" onclick="document.getElementById('install-btn') && document.getElementById('install-btn').click()">Install app</button>
+  </div>
+  <div class="notif-card" id="notif-card">
+    <h4>Notifications</h4>
+    <div class="notif-row">
+      <div class="nr-label">Enable alerts<small>Orders, seasons &amp; delivery updates</small></div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="notif-enable" onchange="toggleNotifications(this.checked)">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="notif-row">
+      <div class="nr-label">Order confirmations<small>When you send an order on WhatsApp</small></div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="notif-orders" checked onchange="saveNotifPrefs()">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="notif-row">
+      <div class="nr-label">Seasonal tips<small>What's peak this month in Nakuru</small></div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="notif-seasonal" checked onchange="saveNotifPrefs()">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="notif-row">
+      <div class="nr-label">Delivery reminders<small>Gentle nudge on order days</small></div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="notif-delivery" onchange="saveNotifPrefs()">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <p class="notif-status" id="notif-status">Notifications are off</p>
+    <button class="btn btn-ghost onDark btn-sm notif-test-btn" id="notif-test-btn" onclick="sendTestNotification()" style="display:none">Send test notification</button>
+  </div>
+
+  <div class="pending-list" id="pending-list">
+    <h4>Recent orders on this device</h4>
+    <p class="empty-note" style="text-align:left;color:rgba(243,240,227,0.4)">No recent orders yet — place one from Baskets.</p>
+  </div>
+  <p style="font-size:12px;color:rgba(243,240,227,0.4);margin-top:16px;line-height:1.45">
+    Tip: after M-Pesa, forward the confirmation SMS on WhatsApp and quote your order ref so we can reconcile and release airtime / priority delivery.
+  </p>
+</div>
+
+
+<!-- PWA install banner -->
+<div class="install-banner" id="install-banner" role="dialog" aria-label="Install app">
+  <div class="ib-icon">🥬</div>
+  <div class="ib-text">
+    <strong>Install Dawn Fresh</strong>
+    <span>Add to your home screen — works offline, opens like an app</span>
+  </div>
+  <div class="ib-actions">
+    <button class="btn btn-gold btn-sm" id="install-btn">Install</button>
+    <button class="ib-dismiss" id="install-dismiss" aria-label="Dismiss">×</button>
+  </div>
+</div>
+
+<!-- App bottom navigation -->
+<nav class="app-nav" id="app-nav" aria-label="Main">
+  <a href="#story" data-nav="home" onclick="setNav(this)">
+    <span class="nav-ic">🏠</span>
+    <span>Home</span>
+  </a>
+  <a href="#baskets" data-nav="baskets" onclick="setNav(this)">
+    <span class="nav-ic">🧺</span>
+    <span>Baskets</span>
+  </a>
+  <a href="#baskets" class="nav-order" data-nav="order" onclick="setNav(this); setMode('custom');">
+    <span class="nav-ic">＋</span>
+    <span>Order</span>
+  </a>
+  <a href="#products" data-nav="products" onclick="setNav(this)">
+    <span class="nav-ic">🥬</span>
+    <span>Shop</span>
+  </a>
+  <a href="javascript:void(0)" data-nav="account" onclick="openAccount(); return false;">
+    <span class="nav-ic">👤</span>
+    <span>Account</span>
+  </a>
+</nav>
+
+</body>
+</html>
